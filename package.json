@@ -1,5 +1,5 @@
 {
-  "name": "vanillajs-hello",
+  "name": "three-js-test",
   "version": "1.0.0",
   "description": "Professional Boilerplate for Vanilla.js Web Apps",
   "private": true,
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/4GeeksAcademy/vanillajs-hello.git"
+    "url": "https://github.com/AritraSengupta/threeJSTest"
   },
   "keywords": [
     "Vanilla.js",
@@ -22,28 +22,33 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
     ]
   },
   "author": "Alejandro Sanchez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/4GeeksAcademy/vanillajs-hello/issues"
+    "url": "https://github.com/AritraSengupta/threeJSTest"
   },
-  "homepage": "https://github.com/4GeeksAcademy/vanillajs-hello#readme",
+  "homepage": "https://github.com/AritraSengupta/threeJSTest",
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "promise-polyfill": "^8.2.0",
+    "three": "^0.126.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "^7.4.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "bc-console": "0.0.2",
     "bc-webpack-error-reporting-plugin": "0.0.2",
     "clean-stack": "^3.0.1",
+    "core-js": "^3.9.1",
     "css-loader": "^3.5.1",
     "error-overlay-webpack-plugin": "^0.2.0",
     "escape-string-regexp": "^1.0.5",
