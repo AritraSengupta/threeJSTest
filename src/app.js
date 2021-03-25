@@ -2,8 +2,27 @@ import { WEBGL } from "../_utils/webgl";
 import { ThreeDSpace } from "./3dspace";
 import { ModelAnimation } from "./animation";
 import { BasicWorldDemo } from "./BasicWorldDemo";
+import { LoadModelDemo } from "./LoadModelDemo";
+
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import "./style.css";
+import "./assets/img/rigo-baby.jpg";
+import "./assets/resources/negx.jpg";
+import "./assets/resources/negy.jpg";
+import "./assets/resources/negz.jpg";
+import "./assets/resources/posx.jpg";
+import "./assets/resources/posy.jpg";
+import "./assets/resources/posz.jpg";
+import "./assets/resources/aj.fbx";
+import "./assets/resources/walk.fbx";
+import "./assets/resources/run.fbx";
+import "./assets/resources/dance.fbx";
+import "./assets/resources/idle.fbx";
+import "./assets/resources/thing.glb";
+import { CharacterController } from "./CharacterController";
+import { CameraControl } from "./CameraControl";
 
 window.onload = async function() {
   if (WEBGL.isWebGLAvailable()) {
@@ -47,7 +66,10 @@ window.onload = async function() {
       }
     }); */
     let APP = null;
-    APP = new BasicWorldDemo();
+    // APP = new BasicWorldDemo();
+    // APP = new LoadModelDemo();
+    // APP = new CharacterController();
+    APP = new CameraControl();
   } else {
     const warning = WEBGL.getWebGLErrorMessage();
     document.getElementById("container").appendChild(warning);

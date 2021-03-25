@@ -47,16 +47,29 @@ export class BasicWorldDemo {
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.target.set(0, 20, 0);
+    controls.listenToKeyEvents(window);
     controls.update();
+
+    const plane = new THREE.Mesh(
+      new THREE.PlaneGeometry(100, 100, 10, 10),
+      new THREE.MeshStandardMaterial({
+        color: 0xffffff
+      })
+    );
+    plane.castShadow = false;
+    plane.receiveShadow = true;
+    plane.rotation.x = -Math.PI / 2;
+
+    this.scene.add(plane);
 
     const loader = new THREE.CubeTextureLoader();
     const texture = loader.load([
-      "./assets/resources/posx.jpg",
-      "./assets/resources/negx.jpg",
-      "./assets/resources/posy.jpg",
-      "./assets/resources/negy.jpg",
-      "./assets/resources/posz.jpg",
-      "./assets/resources/negz.jpg"
+      "./posx.jpg",
+      "./negx.jpg",
+      "./posy.jpg",
+      "./negy.jpg",
+      "./posz.jpg",
+      "./negz.jpg"
     ]);
     this.scene.background = texture;
 
@@ -72,6 +85,7 @@ export class BasicWorldDemo {
   _raf() {
     window.requestAnimationFrame(() => {
       this.renderer.render(this.scene, this.camera);
+      console.log("calling rag");
       this._raf();
     });
   }
