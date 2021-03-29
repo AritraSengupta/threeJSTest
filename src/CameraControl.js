@@ -4,6 +4,8 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { CharacterFSM } from "./StateMachines";
 import { ThirdPersonCamera } from "./ThirdPersonCamera";
 import { Map } from "./Map";
+import { LoaderStatus } from "./LoaderStatus";
+import { DOMManipulation, texts } from "./DOMManipulation";
 
 class BasicCharacterControllerProxy {
   constructor(animations) {
@@ -26,7 +28,8 @@ class BasicCharacterController {
     this.acceleration = new THREE.Vector3(1, 0.25, 50.0);
     this.velocity = new THREE.Vector3(0, 0, 0);
     this._position = new THREE.Vector3();
-
+    this.raycaster = new THREE.Raycaster();
+    this.interactingObjects = params.interactingObjects;
     this.animations = {};
     this.input = new BasicCharacterControllerInput();
     this.stateMachine = new CharacterFSM(
@@ -37,13 +40,14 @@ class BasicCharacterController {
   }
 
   loadModels() {
+    this.params.loaderStatus.addId("aj.fbx");
     const loader = new FBXLoader();
     loader.load("aj.fbx", fbx => {
       fbx.scale.setScalar(0.05);
       fbx.traverse(c => {
         c.castShadow = true;
       });
-      fbx.position.set(-50, 0, -50);
+      fbx.position.set(10, 0, 0);
 
       this.target = fbx;
       this.params.scene.add(this.target);
@@ -52,6 +56,7 @@ class BasicCharacterController {
 
       this.manager = new THREE.LoadingManager();
       this.manager.onLoad = () => {
+        this.params.loaderStatus.removeId("aj.fbx");
         this.stateMachine.setState("idle");
       };
 
@@ -59,12 +64,14 @@ class BasicCharacterController {
         const clip = anim.animations[0];
         const action = this.mixer.clipAction(clip);
 
+        this.params.loaderStatus.removeId(animName);
         this.animations[animName] = {
           clip,
           action
         };
       };
 
+      this.params.loaderStatus.addIds(["run", "walk", "idle", "dance"]);
       const loader = new FBXLoader(this.manager);
       loader.load("walk.fbx", a => onLoad("walk", a));
       loader.load("run.fbx", a => onLoad("run", a));
@@ -86,9 +93,13 @@ class BasicCharacterController {
   }
 
   update(timeInSeconds) {
-    // console.log("position", this._position);
     if (!this.target) {
       return;
+    }
+
+    if (this.params.loaderStatus.loadingArray.length === 0) {
+      // All loading complete
+      DOMManipulation.removeLoader();
     }
 
     this.stateMachine.update(timeInSeconds, this.input);
@@ -122,6 +133,39 @@ class BasicCharacterController {
     ) {
       acc.multiplyScalar(0.0);
     }
+
+    // if (this.input.keys.interact) {
+    let colorCount = [];
+    for (const object of this.interactingObjects) {
+      var geometry = object.geometry;
+      !geometry.boundingBox && geometry.computeBoundingBox();
+      const box = new THREE.Box3();
+      const center = new THREE.Vector3();
+      box.copy(geometry.boundingBox).applyMatrix4(object.matrixWorld);
+      box.getCenter(center);
+      const cameraCoordinates = new THREE.Vector3();
+      cameraCoordinates.copy(this.params.camera.position);
+      const threshold = 1;
+      const cameraOffset = 15;
+      const isInRange =
+        (Math.abs(cameraCoordinates.x - center.x) < threshold &&
+          Math.abs(cameraCoordinates.z - center.z) <
+            cameraOffset + threshold) ||
+        (Math.abs(cameraCoordinates.x - center.x) < cameraOffset + threshold &&
+          Math.abs(cameraCoordinates.z - center.z) < threshold) ||
+        (Math.abs(this._position.x - center.x) < threshold &&
+          Math.abs(this._position.z - center.z) < threshold);
+      if (isInRange) {
+        object.material.color.setHex(0x55ff63);
+        colorCount.push(object);
+      } else {
+        object.material.color.setHex(0xffff00);
+      }
+    }
+    colorCount.length > 0
+      ? DOMManipulation.showExperiences(texts[colorCount[0].name])
+      : DOMManipulation.removeExperiences();
+    // }
 
     if (this.input.keys.forward) {
       this.velocity.z += acc.z * timeInSeconds;
@@ -161,12 +205,6 @@ class BasicCharacterController {
     simulatedNewPosition.add(forward);
     simulatedNewPosition.add(sideways);
 
-    this.params.map.isBoundaryBreached(simulatedNewPosition) &&
-      console.log(
-        this.params.map.isBoundaryBreached(simulatedNewPosition),
-        simulatedNewPosition
-      );
-
     if (!this.params.map.isBoundaryBreached(simulatedNewPosition)) {
       controlObject.position.copy(simulatedNewPosition);
       this._position.copy(simulatedNewPosition);
@@ -190,7 +228,8 @@ class BasicCharacterControllerInput {
       left: false,
       right: false,
       space: false,
-      shift: false
+      shift: false,
+      interact: false
     };
     document.addEventListener("keydown", e => this.onKeyDown(e), false);
     document.addEventListener("keyup", e => this.onKeyUp(e), false);
@@ -209,6 +248,9 @@ class BasicCharacterControllerInput {
         break;
       case 68: // d
         this.keys.right = true;
+        break;
+      case 69: //e
+        this.keys.interact = true;
         break;
       case 32: // SPACE
         this.keys.space = true;
@@ -232,6 +274,9 @@ class BasicCharacterControllerInput {
         break;
       case 68: // d
         this.keys.right = false;
+        break;
+      case 69: //e
+        this.keys.interact = false;
         break;
       case 32: // SPACE
         this.keys.space = false;
@@ -271,7 +316,7 @@ export class CameraControl {
     this.scene = new THREE.Scene();
 
     let light = new THREE.DirectionalLight(0xffffff);
-    light.position.set(100, 100, 100);
+    light.position.set(10, 100, 10);
     light.target.position.set(0, 0, 0);
     light.castShadow = true;
     light.shadow.bias = -0.01;
@@ -285,45 +330,29 @@ export class CameraControl {
     light.shadow.camera.bottom = -200;
     this.scene.add(light);
 
-    light = new THREE.AmbientLight(0x404040);
+    light = new THREE.AmbientLight(0x404040, 1);
     this.scene.add(light);
 
     const loader = new THREE.CubeTextureLoader();
-    const texture = loader.load([
-      "./posx.jpg",
-      "./negx.jpg",
-      "./posy.jpg",
-      "./negy.jpg",
-      "./posz.jpg",
-      "./negz.jpg"
-    ]);
+    this.loaderStatus = new LoaderStatus();
+
+    this.loaderStatus.addId("backgrounds");
+    const texture = loader.load(
+      [
+        "./posx.jpg",
+        "./negx.jpg",
+        "./posy.jpg",
+        "./negy.jpg",
+        "./posz.jpg",
+        "./negz.jpg"
+      ],
+      () => this.loaderStatus.removeId("backgrounds")
+    );
     texture.encoding = THREE.sRGBEncoding;
     this.scene.background = texture;
-
-    this.map = new Map();
-
-    const plane = new THREE.Mesh(
-      new THREE.PlaneGeometry(100, 100, 10, 10),
-      new THREE.MeshStandardMaterial({
-        color: 0xffffff
-      })
-    );
-    plane.castShadow = false;
-    plane.receiveShadow = true;
-    plane.rotation.x = -Math.PI / 2;
-
-    const box = new THREE.Mesh(
-      new THREE.BoxGeometry(30, 30, 30),
-      new THREE.MeshStandardMaterial({
-        color: 0xd84444
-      })
-    );
-    box.position.set(0, 15, 0);
-    box.castShadow = true;
-    box.receiveShadow = true;
-    this.scene.add(box);
-
-    this.scene.add(plane);
+    this.interactingObjects = [];
+    this.map = new Map(this.scene, this.interactingObjects);
+    this.map.create();
 
     this.mixers = [];
     this.previousRaf = null;
@@ -337,7 +366,9 @@ export class CameraControl {
     const params = {
       camera: this.camera,
       scene: this.scene,
-      map: this.map
+      map: this.map,
+      interactingObjects: this.interactingObjects,
+      loaderStatus: this.loaderStatus
     };
 
     this.controls = new BasicCharacterController(params);

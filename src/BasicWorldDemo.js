@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
+import { Map } from "./Map";
+
 export class BasicWorldDemo {
   constructor() {
     this._initialize();
@@ -24,6 +26,7 @@ export class BasicWorldDemo {
     const near = 1.0;
     const far = 1000.0;
     this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    this.camera.position.set(0, 500, 0);
 
     this.scene = new THREE.Scene();
 
@@ -42,7 +45,7 @@ export class BasicWorldDemo {
     light.shadow.camera.bottom = -200;
     this.scene.add(light);
 
-    light = new THREE.AmbientLight(0x404040);
+    light = new THREE.AmbientLight(0x404040, 1);
     this.scene.add(light);
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -50,17 +53,20 @@ export class BasicWorldDemo {
     controls.listenToKeyEvents(window);
     controls.update();
 
-    const plane = new THREE.Mesh(
-      new THREE.PlaneGeometry(100, 100, 10, 10),
-      new THREE.MeshStandardMaterial({
-        color: 0xffffff
-      })
-    );
-    plane.castShadow = false;
-    plane.receiveShadow = true;
-    plane.rotation.x = -Math.PI / 2;
+    // const plane = new THREE.Mesh(
+    //   new THREE.PlaneGeometry(100, 100, 10, 10),
+    //   new THREE.MeshStandardMaterial({
+    //     color: 0xffffff
+    //   })
+    // );
+    // plane.castShadow = false;
+    // plane.receiveShadow = true;
+    // plane.rotation.x = -Math.PI / 2;
 
-    this.scene.add(plane);
+    // this.scene.add(plane);
+
+    const map = new Map(this.scene);
+    map.create();
 
     const loader = new THREE.CubeTextureLoader();
     const texture = loader.load([
@@ -85,7 +91,6 @@ export class BasicWorldDemo {
   _raf() {
     window.requestAnimationFrame(() => {
       this.renderer.render(this.scene, this.camera);
-      console.log("calling rag");
       this._raf();
     });
   }

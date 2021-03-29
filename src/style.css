@@ -22,10 +22,16 @@ body {
   height: 100vh;
 }
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40vw;
+  height: 80vh;
   align-items: center;
+  z-index: 2;
+  background: #9bffaf;
+  border: 1px solid black;
 }
 #c {
   position: absolute;

@@ -10,14 +10,14 @@ export class ThirdPersonCamera {
   }
 
   calculateIdealOffset() {
-    const idealOffset = new THREE.Vector3(-15, 20, -30);
+    const idealOffset = new THREE.Vector3(0, 10, -15);
     idealOffset.applyQuaternion(this.params.target.rotation);
     idealOffset.add(this.params.target.position);
     return idealOffset;
   }
 
   calculateIdealLookat() {
-    const idealLookat = new THREE.Vector3(0, 10, 50);
+    const idealLookat = new THREE.Vector3(0, 10, 5);
     idealLookat.applyQuaternion(this.params.target.rotation);
     idealLookat.add(this.params.target.position);
     return idealLookat;
