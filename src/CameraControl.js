@@ -145,17 +145,48 @@ class BasicCharacterController {
       box.getCenter(center);
       const cameraCoordinates = new THREE.Vector3();
       cameraCoordinates.copy(this.params.camera.position);
-      const threshold = 1;
+      const threshold = 5;
       const cameraOffset = 15;
-      const isInRange =
+      const isInRangeCamera =
         (Math.abs(cameraCoordinates.x - center.x) < threshold &&
           Math.abs(cameraCoordinates.z - center.z) <
             cameraOffset + threshold) ||
         (Math.abs(cameraCoordinates.x - center.x) < cameraOffset + threshold &&
-          Math.abs(cameraCoordinates.z - center.z) < threshold) ||
-        (Math.abs(this._position.x - center.x) < threshold &&
-          Math.abs(this._position.z - center.z) < threshold);
-      if (isInRange) {
+          Math.abs(cameraCoordinates.z - center.z) < threshold);
+      const isInRangePlayer =
+        Math.abs(this._position.x - center.x) < threshold &&
+        Math.abs(this._position.z - center.z) < threshold;
+      const finalData = new THREE.Vector3();
+      const direction = new THREE.Vector3();
+      object.getWorldDirection(direction);
+      finalData.subVectors(cameraCoordinates, center);
+      finalData.multiply(direction);
+      const isInRange = isInRangePlayer && isInRangeCamera;
+      const isRangeDir =
+        (finalData.x > 17 && finalData.x < 19) ||
+        (finalData.z > 17 && finalData.z < 19);
+      // this.input.keys.interact &&
+      // console.log({
+      //   isInRangePlayer,
+      //   isInRangeCamera,
+      //   isInRange,
+      //   isRangeDir,
+      //   player: this._position,
+      //   camera: cameraCoordinates,
+      //   center,
+      //   name: object.name,
+      //   direction: object.getWorldDirection(),
+      //   finalData
+      // });
+      if (isRangeDir && isInRange) {
+        // console.log({
+        //   player: this._position,
+        //   camera: cameraCoordinates,
+        //   center,
+        //   rotation: this.rotation,
+        //   direction: object.getWorldDirection(),
+        //   finalData
+        // });
         object.material.color.setHex(0x55ff63);
         colorCount.push(object);
       } else {
