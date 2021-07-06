@@ -6,6 +6,7 @@ import { ThirdPersonCamera } from "./ThirdPersonCamera";
 import { Map } from "./Map";
 import { LoaderStatus } from "./LoaderStatus";
 import { DOMManipulation, texts } from "./DOMManipulation";
+import data from "./data";
 
 class BasicCharacterControllerProxy {
   constructor(animations) {
@@ -35,7 +36,8 @@ class BasicCharacterController {
     this.stateMachine = new CharacterFSM(
       new BasicCharacterControllerProxy(this.animations)
     );
-
+    this.domManipulation = new DOMManipulation();
+    this.currentData = {};
     this.loadModels();
   }
 
@@ -99,7 +101,7 @@ class BasicCharacterController {
 
     if (this.params.loaderStatus.loadingArray.length === 0) {
       // All loading complete
-      DOMManipulation.removeLoader();
+      this.domManipulation.removeLoader();
     }
 
     this.stateMachine.update(timeInSeconds, this.input);
@@ -134,69 +136,59 @@ class BasicCharacterController {
       acc.multiplyScalar(0.0);
     }
 
-    // if (this.input.keys.interact) {
     let colorCount = [];
     for (const object of this.interactingObjects) {
       var geometry = object.geometry;
       !geometry.boundingBox && geometry.computeBoundingBox();
       const box = new THREE.Box3();
       const center = new THREE.Vector3();
+      const size = new THREE.Vector3();
       box.copy(geometry.boundingBox).applyMatrix4(object.matrixWorld);
       box.getCenter(center);
-      const cameraCoordinates = new THREE.Vector3();
-      cameraCoordinates.copy(this.params.camera.position);
-      const threshold = 5;
-      const cameraOffset = 15;
-      const isInRangeCamera =
-        (Math.abs(cameraCoordinates.x - center.x) < threshold &&
-          Math.abs(cameraCoordinates.z - center.z) <
-            cameraOffset + threshold) ||
-        (Math.abs(cameraCoordinates.x - center.x) < cameraOffset + threshold &&
-          Math.abs(cameraCoordinates.z - center.z) < threshold);
+      box.getSize(size);
+      // const cameraCoordinates = new THREE.Vector3();
+      // cameraCoordinates.copy(this.params.camera.position);
+      // const threshold = 7;
+      // const cameraOffset = 15;
+      const factor = 3;
+      // const isInRangeCamera =
+      //   (Math.abs(cameraCoordinates.x - center.x) < threshold &&
+      //     Math.abs(cameraCoordinates.z - center.z) <
+      //       cameraOffset + threshold) ||
+      //   (Math.abs(cameraCoordinates.x - center.x) < cameraOffset + threshold &&
+      //     Math.abs(cameraCoordinates.z - center.z) < threshold);
       const isInRangePlayer =
-        Math.abs(this._position.x - center.x) < threshold &&
-        Math.abs(this._position.z - center.z) < threshold;
-      const finalData = new THREE.Vector3();
-      const direction = new THREE.Vector3();
-      object.getWorldDirection(direction);
-      finalData.subVectors(cameraCoordinates, center);
-      finalData.multiply(direction);
-      const isInRange = isInRangePlayer && isInRangeCamera;
-      const isRangeDir =
-        (finalData.x > 17 && finalData.x < 19) ||
-        (finalData.z > 17 && finalData.z < 19);
-      // this.input.keys.interact &&
-      // console.log({
-      //   isInRangePlayer,
-      //   isInRangeCamera,
-      //   isInRange,
-      //   isRangeDir,
-      //   player: this._position,
-      //   camera: cameraCoordinates,
-      //   center,
-      //   name: object.name,
-      //   direction: object.getWorldDirection(),
-      //   finalData
-      // });
-      if (isRangeDir && isInRange) {
-        // console.log({
-        //   player: this._position,
-        //   camera: cameraCoordinates,
-        //   center,
-        //   rotation: this.rotation,
-        //   direction: object.getWorldDirection(),
-        //   finalData
-        // });
+        Math.abs(this._position.x - center.x) < (size.x * factor) / 2 &&
+        Math.abs(this._position.z - center.z) < (size.z * factor) / 2;
+      // const finalData = new THREE.Vector3();
+      // const direction = new THREE.Vector3();
+      // object.getWorldDirection(direction);
+      // finalData.subVectors(cameraCoordinates, center);
+      // finalData.multiply(direction);
+      // const isInRange = isInRangePlayer && isInRangeCamera;
+      // const isRangeDir =
+      //   (Math.abs(finalData.x) > 16 && Math.abs(finalData.x) < 20) ||
+      //   (Math.abs(finalData.z) > 16 && Math.abs(finalData.z) < 20);
+
+      if (isInRangePlayer) {
         object.material.color.setHex(0x55ff63);
+        const resumeData = data.resume[object.name];
+        this.domManipulation.collections[object.name] = resumeData;
+        this.domManipulation.updateScore();
+        this.domManipulation.animateAchievement(`
+          You gained:
+          ${resumeData.title}
+        `);
         colorCount.push(object);
+        this.params.scene.remove(object);
       } else {
         object.material.color.setHex(0xffff00);
       }
     }
-    colorCount.length > 0
-      ? DOMManipulation.showExperiences(texts[colorCount[0].name])
-      : DOMManipulation.removeExperiences();
-    // }
+
+    if (this.input.keys.esc) {
+      this.domManipulation.resetScreen();
+    }
 
     if (this.input.keys.forward) {
       this.velocity.z += acc.z * timeInSeconds;
@@ -260,7 +252,8 @@ class BasicCharacterControllerInput {
       right: false,
       space: false,
       shift: false,
-      interact: false
+      interact: false,
+      esc: false
     };
     document.addEventListener("keydown", e => this.onKeyDown(e), false);
     document.addEventListener("keyup", e => this.onKeyUp(e), false);
@@ -289,6 +282,8 @@ class BasicCharacterControllerInput {
       case 16: // SHIFT
         this.keys.shift = true;
         break;
+      case 27: //ESC
+        this.keys.esc = true;
     }
   }
 
@@ -315,6 +310,8 @@ class BasicCharacterControllerInput {
       case 16: // SHIFT
         this.keys.shift = false;
         break;
+      case 27: //ESC
+        this.keys.esc = false;
     }
   }
 }

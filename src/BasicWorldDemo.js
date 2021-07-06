@@ -53,18 +53,6 @@ export class BasicWorldDemo {
     controls.listenToKeyEvents(window);
     controls.update();
 
-    // const plane = new THREE.Mesh(
-    //   new THREE.PlaneGeometry(100, 100, 10, 10),
-    //   new THREE.MeshStandardMaterial({
-    //     color: 0xffffff
-    //   })
-    // );
-    // plane.castShadow = false;
-    // plane.receiveShadow = true;
-    // plane.rotation.x = -Math.PI / 2;
-
-    // this.scene.add(plane);
-
     const map = new Map(this.scene);
     map.create();
 

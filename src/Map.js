@@ -61,11 +61,56 @@ export class Map {
     ];
   }
 
+  createTextCanvas(text, parameters = {}) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Prepare the font to be able to measure
+    let fontSize = parameters.fontSize || 256;
+    ctx.font = `${fontSize}px monospace`;
+
+    const textMetrics = ctx.measureText(text);
+
+    let width = textMetrics.width;
+    let height = fontSize;
+
+    // Resize canvas to match text size
+    canvas.width = width;
+    canvas.height = height;
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+
+    // Re-apply font since canvas is resized.
+    ctx.font = `${fontSize}px monospace`;
+    ctx.textAlign = parameters.align || "center";
+    ctx.textBaseline = parameters.baseline || "middle";
+
+    // Make the canvas transparent for simplicity
+    ctx.fillStyle = "transparent";
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    ctx.fillStyle = "white";
+    ctx.fillText(text, width / 2, height / 2);
+
+    return canvas;
+  }
+
   create() {
+    const brickTexture = new THREE.TextureLoader().load("./brick.jpg");
+    brickTexture.wrapS = THREE.RepeatWrapping;
+    brickTexture.wrapT = THREE.RepeatWrapping;
+    brickTexture.repeat.set(4, 4);
+
+    const checkeredTexture = new THREE.TextureLoader().load("./checkered.jpg");
+    checkeredTexture.wrapS = THREE.RepeatWrapping;
+    checkeredTexture.wrapT = THREE.RepeatWrapping;
+    checkeredTexture.repeat.set(4, 4);
+
     const plane = new THREE.Mesh(
       new THREE.PlaneGeometry(300, 300, 30, 30),
       new THREE.MeshStandardMaterial({
-        color: 0xffffff
+        // color: 0xffffff
+        map: checkeredTexture
       })
     );
     plane.castShadow = false;
@@ -76,7 +121,8 @@ export class Map {
     const divider1 = new THREE.Mesh(
       new THREE.BoxGeometry(260, 30, 30),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     divider1.position.set(-20, 15, -35);
@@ -87,7 +133,8 @@ export class Map {
     const box1 = new THREE.Mesh(
       new THREE.BoxGeometry(60, 30, 140),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     box1.position.set(80, 15, 50);
@@ -98,7 +145,8 @@ export class Map {
     const box2 = new THREE.Mesh(
       new THREE.BoxGeometry(100, 30, 140),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     box2.position.set(-50, 15, 50);
@@ -109,7 +157,8 @@ export class Map {
     const wall1 = new THREE.Mesh(
       new THREE.BoxGeometry(300, 30, 10),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall1.position.set(0, 15, -155);
@@ -120,7 +169,8 @@ export class Map {
     const wall2 = new THREE.Mesh(
       new THREE.BoxGeometry(300, 30, 10),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall2.position.set(0, 15, 155);
@@ -131,7 +181,8 @@ export class Map {
     const wall3 = new THREE.Mesh(
       new THREE.BoxGeometry(10, 30, 300),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall3.name = "wall3";
@@ -143,7 +194,8 @@ export class Map {
     const wall4 = new THREE.Mesh(
       new THREE.BoxGeometry(10, 30, 300),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall4.position.set(-155, 15, 0);
@@ -174,9 +226,26 @@ export class Map {
     circle3.name = "button3";
     this.scene.add(circle3);
 
+    const geometry5 = new THREE.SphereGeometry(1, 16, 16);
+    const material5 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const sphere1 = new THREE.Mesh(geometry5, material5);
+    sphere1.position.set(20, 8, 15);
+    sphere1.name = "education";
+    this.scene.add(sphere1);
+
     this.interactingObjects.push(circle);
     this.interactingObjects.push(circle2);
     this.interactingObjects.push(circle3);
+    this.interactingObjects.push(sphere1);
+
+    // const texture = new THREE.Texture(this.createTextCanvas("This is text"));
+    const texture = new THREE.TextureLoader().load("./negx.jpg");
+    const gplaneGeometry = new THREE.PlaneGeometry(20, 10);
+    const material4 = new THREE.MeshBasicMaterial({ map: texture });
+    const plane1 = new THREE.Mesh(gplaneGeometry, material4);
+    plane1.rotation.y = Math.PI / 2;
+    plane1.position.set(1, 20, 15);
+    this.scene.add(plane1);
   }
 
   isBoundaryBreached(currentPosition) {

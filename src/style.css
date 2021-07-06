@@ -97,3 +97,65 @@ body {
   transform: translateX(-50%);
   font-weight: bold;
 }
+
+#banner {
+  position: absolute;
+  display: flex;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: white;
+  color: black;
+}
+
+#show-controls {
+  flex: 1;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+#show-resume {
+  flex: 1;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+#score {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+#achievement {
+  position: absolute;
+  top: 50vh;
+  left: 20vh;
+  display: none;
+  background: transparent;
+  color: black;
+  font-size: 60px;
+  font-weight: 800;
+}
+
+#resume {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  background: red;
+  z-index: 200;
+  width: calc(100vw - 100px);
+  height: calc(100vh - 50px - 100px);
+}
+
+#controls {
+  position: absolute;
+  top: 200px;
+  left: 150px;
+  background: red;
+  z-index: 200;
+  width: calc(100vw - 300px);
+  height: calc(100vh - 50px - 300px);
+}

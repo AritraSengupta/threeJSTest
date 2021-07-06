@@ -21,7 +21,9 @@ import "./assets/resources/run.fbx";
 import "./assets/resources/dance.fbx";
 import "./assets/resources/idle.fbx";
 import "./assets/resources/thing.glb";
-import { CharacterController } from "./CharacterController";
+import "./assets/resources/brick.jpg";
+import "./assets/resources/checkered.jpg";
+
 import { CameraControl } from "./CameraControl";
 
 window.onload = async function() {
