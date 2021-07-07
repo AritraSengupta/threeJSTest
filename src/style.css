@@ -127,17 +127,21 @@ body {
   flex: 1;
   align-items: center;
   justify-content: center;
+  font-size: large;
+  text-align: center;
+  font-weight: 600;
 }
 
 #achievement {
   position: absolute;
-  top: 50vh;
-  left: 20vh;
+  top: 40vh;
+  left: 40vw;
   display: none;
   background: transparent;
-  color: black;
+  color: #ffa500;
   font-size: 60px;
   font-weight: 800;
+  text-align: center;
 }
 
 #resume {

@@ -137,6 +137,7 @@ class BasicCharacterController {
     }
 
     let colorCount = [];
+    let objectIndex = 0;
     for (const object of this.interactingObjects) {
       var geometry = object.geometry;
       !geometry.boundingBox && geometry.computeBoundingBox();
@@ -146,44 +147,30 @@ class BasicCharacterController {
       box.copy(geometry.boundingBox).applyMatrix4(object.matrixWorld);
       box.getCenter(center);
       box.getSize(size);
-      // const cameraCoordinates = new THREE.Vector3();
-      // cameraCoordinates.copy(this.params.camera.position);
-      // const threshold = 7;
-      // const cameraOffset = 15;
       const factor = 3;
-      // const isInRangeCamera =
-      //   (Math.abs(cameraCoordinates.x - center.x) < threshold &&
-      //     Math.abs(cameraCoordinates.z - center.z) <
-      //       cameraOffset + threshold) ||
-      //   (Math.abs(cameraCoordinates.x - center.x) < cameraOffset + threshold &&
-      //     Math.abs(cameraCoordinates.z - center.z) < threshold);
       const isInRangePlayer =
         Math.abs(this._position.x - center.x) < (size.x * factor) / 2 &&
         Math.abs(this._position.z - center.z) < (size.z * factor) / 2;
-      // const finalData = new THREE.Vector3();
-      // const direction = new THREE.Vector3();
-      // object.getWorldDirection(direction);
-      // finalData.subVectors(cameraCoordinates, center);
-      // finalData.multiply(direction);
-      // const isInRange = isInRangePlayer && isInRangeCamera;
-      // const isRangeDir =
-      //   (Math.abs(finalData.x) > 16 && Math.abs(finalData.x) < 20) ||
-      //   (Math.abs(finalData.z) > 16 && Math.abs(finalData.z) < 20);
 
       if (isInRangePlayer) {
         object.material.color.setHex(0x55ff63);
         const resumeData = data.resume[object.name];
         this.domManipulation.collections[object.name] = resumeData;
-        this.domManipulation.updateScore();
-        this.domManipulation.animateAchievement(`
-          You gained:
-          ${resumeData.title}
-        `);
+        this.domManipulation.animateCoin(resumeData.points, () => {
+          this.domManipulation.updateScore();
+          this.domManipulation.animateAchievement(`
+            You gained:
+            ${resumeData.title}
+          `);
+        });
         colorCount.push(object);
         this.params.scene.remove(object);
+        // Probably not a good idea to manipulate the object on which we are iterating
+        this.interactingObjects.splice(objectIndex, 1);
       } else {
         object.material.color.setHex(0xffff00);
       }
+      objectIndex += 1;
     }
 
     if (this.input.keys.esc) {

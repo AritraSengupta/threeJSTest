@@ -8,6 +8,15 @@ export default {
           text: "IIT Kharagpur"
         }
       ]
+    },
+    projects: {
+      title: "Projects",
+      points: 100,
+      description: [
+        {
+          text: "Photoacoustic drug delivery"
+        }
+      ]
     }
   },
   controls: [

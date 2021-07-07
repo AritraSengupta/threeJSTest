@@ -1,11 +1,13 @@
 import data from "./data";
-import { calculatePoints } from "./utils";
+import { animateScore, calculatePoints, createCoin } from "./utils";
 export class DOMManipulation {
   constructor() {
     this.controlShown = false;
     this.resumeShown = false;
     this.collections = {};
+    this.currentAnimations = {};
     this.totalScore = calculatePoints(data.resume);
+    this.currentScore = calculatePoints(this.collections);
     this.hideControls();
     this.hideResume();
     this.updateScore();
@@ -46,10 +48,24 @@ export class DOMManipulation {
     this.controlShown = false;
   }
 
-  updateScore() {
-    const currentScore = calculatePoints(this.collections);
+  updateScore(callback) {
+    const name = "updateScore";
+    if (this.currentAnimations[name]) return; //animation running
+    this.currentAnimations[name] = true;
+    const updatedScore = calculatePoints(this.collections);
     const elem = document.getElementById("score");
-    elem.innerText = `Score: ${currentScore}/ ${this.totalScore}`;
+    animateScore(
+      elem,
+      this.currentScore,
+      updatedScore,
+      1000,
+      this.totalScore,
+      () => {
+        this.currentAnimations[name] = false;
+        callback && callback();
+      }
+    );
+    this.currentScore = updatedScore;
   }
 
   removeLoader() {
@@ -62,14 +78,34 @@ export class DOMManipulation {
     this.hideControls();
   }
 
-  animateAchievement(message) {
+  animateAchievement(message, callback) {
+    const name = "animateAchievement";
+    if (this.currentAnimations[name]) return; //animation running
+    this.currentAnimations[name] = true;
     const elem = document.getElementById("achievement");
     elem.style.display = "block";
     elem.innerText = message;
     setTimeout(() => {
+      this.currentAnimations[name] = false;
       elem.style.display = "none";
       elem.innerText = "";
-    }, 500);
+      callback && callback();
+    }, 1500);
+  }
+
+  animateCoin(value, callback) {
+    const name = "animateCoin";
+    if (this.currentAnimations[name]) return; //animation running
+    this.currentAnimations[name] = true;
+    const coin = createCoin(value);
+    document.body.appendChild(coin);
+    // Let the animation run
+    setTimeout(() => {
+      // remove from DOM and call callback
+      this.currentAnimations[name] = false;
+      coin && coin.remove();
+      callback && callback();
+    }, 3100);
   }
 }
 

@@ -1,13 +1,7 @@
 import { WEBGL } from "../_utils/webgl";
-import { ThreeDSpace } from "./3dspace";
-import { ModelAnimation } from "./animation";
-import { BasicWorldDemo } from "./BasicWorldDemo";
-import { LoadModelDemo } from "./LoadModelDemo";
-
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import "./style.css";
+import "./coin.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/resources/negx.jpg";
 import "./assets/resources/negy.jpg";

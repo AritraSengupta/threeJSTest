@@ -61,38 +61,14 @@ export class Map {
     ];
   }
 
-  createTextCanvas(text, parameters = {}) {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    // Prepare the font to be able to measure
-    let fontSize = parameters.fontSize || 256;
-    ctx.font = `${fontSize}px monospace`;
-
-    const textMetrics = ctx.measureText(text);
-
-    let width = textMetrics.width;
-    let height = fontSize;
-
-    // Resize canvas to match text size
-    canvas.width = width;
-    canvas.height = height;
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
-
-    // Re-apply font since canvas is resized.
-    ctx.font = `${fontSize}px monospace`;
-    ctx.textAlign = parameters.align || "center";
-    ctx.textBaseline = parameters.baseline || "middle";
-
-    // Make the canvas transparent for simplicity
-    ctx.fillStyle = "transparent";
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-    ctx.fillStyle = "white";
-    ctx.fillText(text, width / 2, height / 2);
-
-    return canvas;
+  addSphereTarget(name, position) {
+    const geometry = new THREE.SphereGeometry(1, 16, 16);
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const sphere = new THREE.Mesh(geometry, material);
+    sphere.position.set(position.x, position.y, position.z);
+    sphere.name = name;
+    this.scene.add(sphere);
+    this.interactingObjects.push(sphere);
   }
 
   create() {
@@ -203,40 +179,8 @@ export class Map {
     wall4.receiveShadow = true;
     this.scene.add(wall4);
 
-    const geometry = new THREE.CircleGeometry(0.4, 32);
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const circle = new THREE.Mesh(geometry, material);
-    circle.position.set(60, 10, 149);
-    circle.rotation.x = Math.PI;
-    circle.name = "button1";
-    this.scene.add(circle);
-
-    const geometry2 = new THREE.CircleGeometry(0.4, 32);
-    const material2 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const circle2 = new THREE.Mesh(geometry2, material2);
-    circle2.position.set(1, 10, 15);
-    circle2.rotation.y = Math.PI / 2;
-    circle2.name = "button2";
-    this.scene.add(circle2);
-
-    const geometry3 = new THREE.CircleGeometry(0.4, 32);
-    const material3 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const circle3 = new THREE.Mesh(geometry3, material3);
-    circle3.position.set(20, 10, -149);
-    circle3.name = "button3";
-    this.scene.add(circle3);
-
-    const geometry5 = new THREE.SphereGeometry(1, 16, 16);
-    const material5 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const sphere1 = new THREE.Mesh(geometry5, material5);
-    sphere1.position.set(20, 8, 15);
-    sphere1.name = "education";
-    this.scene.add(sphere1);
-
-    this.interactingObjects.push(circle);
-    this.interactingObjects.push(circle2);
-    this.interactingObjects.push(circle3);
-    this.interactingObjects.push(sphere1);
+    this.addSphereTarget("education", { x: 20, y: 8, z: 15 });
+    this.addSphereTarget("projects", { x: 60, y: 10, z: 130 });
 
     // const texture = new THREE.Texture(this.createTextCanvas("This is text"));
     const texture = new THREE.TextureLoader().load("./negx.jpg");
