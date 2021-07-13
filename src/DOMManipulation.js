@@ -1,5 +1,10 @@
 import data from "./data";
-import { animateScore, calculatePoints, createCoin } from "./utils";
+import {
+  animateScore,
+  calculatePoints,
+  createCoin,
+  createResume
+} from "./utils";
 export class DOMManipulation {
   constructor() {
     this.controlShown = false;
@@ -24,13 +29,14 @@ export class DOMManipulation {
     this.resetScreen();
     const elem = document.getElementById("resume");
     elem.style.display = "block";
-    elem.innerText = JSON.stringify(this.collections);
+    createResume(elem, this.collections);
     this.resumeShown = true;
   }
 
   hideResume() {
     const elem = document.getElementById("resume");
     elem.style.display = "none";
+    elem.innerHTML = "";
     this.resumeShown = false;
   }
 
@@ -108,9 +114,3 @@ export class DOMManipulation {
     }, 3100);
   }
 }
-
-export const texts = {
-  button1: "This is button1 text",
-  button2: "This is button2 text",
-  button3: "This is button3 text"
-};

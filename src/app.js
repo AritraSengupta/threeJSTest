@@ -2,6 +2,7 @@ import { WEBGL } from "../_utils/webgl";
 
 import "./style.css";
 import "./coin.css";
+import "./resume.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/resources/negx.jpg";
 import "./assets/resources/negy.jpg";

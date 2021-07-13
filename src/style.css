@@ -146,16 +146,19 @@ body {
 
 #resume {
   position: absolute;
+  display: none;
   top: 100px;
   left: 50px;
-  background: red;
+  background: rgb(255, 255, 255);
   z-index: 200;
   width: calc(100vw - 100px);
   height: calc(100vh - 50px - 100px);
+  overflow: auto;
 }
 
 #controls {
   position: absolute;
+  display: none;
   top: 200px;
   left: 150px;
   background: red;
