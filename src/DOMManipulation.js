@@ -86,7 +86,7 @@ export class DOMManipulation {
 
   animateAchievement(message, callback) {
     const name = "animateAchievement";
-    if (this.currentAnimations[name]) return; //animation running
+    if (this.currentAnimations[name]) return; //animation currently running so don't run again
     this.currentAnimations[name] = true;
     const elem = document.getElementById("achievement");
     elem.style.display = "block";
@@ -101,7 +101,7 @@ export class DOMManipulation {
 
   animateCoin(value, callback) {
     const name = "animateCoin";
-    if (this.currentAnimations[name]) return; //animation running
+    if (this.currentAnimations[name]) return; //animation currently running so don't run again
     this.currentAnimations[name] = true;
     const coin = createCoin(value);
     document.body.appendChild(coin);

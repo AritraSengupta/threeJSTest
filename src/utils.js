@@ -44,9 +44,15 @@ export function animateScore(obj, start, end, duration, totalScore, callback) {
 export function createResume(obj, collections) {
   const keys = Object.keys(collections);
 
+  const showProfile = true;
+  const showSkills = true;
+  const showTechnical = true;
   const showProjects = keys.includes("projects");
   const showEducation = keys.includes("education");
   const div = document.createElement("div");
+  const defaultMessage = message => `
+    <div class="talen"> You have yet to collect the ${message} coin </div>
+  `;
   const template = `
     <div id="doc2" class="yui-t7">
       <div id="inner">
@@ -72,26 +78,32 @@ export function createResume(obj, collections) {
           <div id="yui-main">
             <div class="yui-b">
 
-              ${`
-                <div class="yui-gf">
-                  <div class="yui-u first">
-                    <h2>Profile</h2>
-                  </div>
-                  <div class="yui-u">
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Profile</h2>
+                </div>
+                <div class="yui-u">
+                  ${
+                    showProfile
+                      ? `
                     <p class="enlarge">
                       Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. 
                     </p>
-                  </div>
-                </div><!--// .yui-gf -->
-              `}
+                  `
+                      : defaultMessage("profile")
+                  }
+                </div>
+              </div><!--// .yui-gf -->
 
-              ${`
-                <div class="yui-gf">
-                  <div class="yui-u first">
-                    <h2>Skills</h2>
-                  </div>
-                  <div class="yui-u">
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Skills</h2>
+                </div>
+                <div class="yui-u">
 
+                    ${
+                      showSkills
+                        ? `
                       <div class="talent">
                         <h2>Web Design</h2>
                         <p>Assertively exploit wireless initiatives rather than synergistic core competencies.	</p>
@@ -106,16 +118,20 @@ export function createResume(obj, collections) {
                         <h2>Project Direction</h2>
                         <p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>
                       </div>
-                  </div>
-                </div><!--// .yui-gf -->
-              `}
+                    `
+                        : defaultMessage("skills")
+                    }
+                </div>
+              </div><!--// .yui-gf -->
 
-              ${`
-                <div class="yui-gf">
-                  <div class="yui-u first">
-                    <h2>Technical</h2>
-                  </div>
-                  <div class="yui-u">
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Technical</h2>
+                </div>
+                <div class="yui-u">
+                  ${
+                    showTechnical
+                      ? `
                     <ul class="talent">
                       <li>XHTML</li>
                       <li>CSS</li>
@@ -132,21 +148,22 @@ export function createResume(obj, collections) {
                       <li>OS X</li>
                       <li>Windows XP/Vista</li>
                       <li class="last">Linux</li>
-                    </ul>
-                  </div>
-                </div><!--// .yui-gf-->
-              `}
+                    </ul>        
+                  `
+                      : defaultMessage("techical")
+                  }
+                </div>
+              </div><!--// .yui-gf-->
 
-              ${
-                showProjects
-                  ? `
-                <div class="yui-gf">   
-                  <div class="yui-u first">
-                    <h2>Experience</h2>
-                  </div><!--// .yui-u -->
+              <div class="yui-gf">   
+                <div class="yui-u first">
+                  <h2>Experience</h2>
+                </div><!--// .yui-u -->
 
-                  <div class="yui-u">
-
+                <div class="yui-u">
+                  ${
+                    showProjects
+                      ? `
                     <div class="job">
                       <h2>Facebook</h2>
                       <h3>Senior Interface Designer</h3>
@@ -175,29 +192,30 @@ export function createResume(obj, collections) {
                       <h4>2001-2004</h4>
                       <p>Globally re-engineer cross-media schemas through viral methods of empowerment. Proactively grow long-term high-impact human capital and highly efficient innovation. Intrinsicly iterate excellent e-tailers with timely e-markets.</p>
                     </div>
+                  `
+                      : defaultMessage("Projects")
+                  }
 
-                  </div><!--// .yui-u -->
-                </div><!--// .yui-gf -->
-              `
-                  : ""
-              }
+                </div><!--// .yui-u -->
+              </div><!--// .yui-gf -->
 
 
-              ${
-                showEducation
-                  ? `
-                <div class="yui-gf last">
-                  <div class="yui-u first">
-                    <h2>Education</h2>
-                  </div>
-                  <div class="yui-u">
-                    <h2>Indiana University - Bloomington, Indiana</h2>
-                    <h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
-                  </div>
-                </div><!--// .yui-gf -->
-              `
-                  : ""
-              }
+
+              <div class="yui-gf last">
+                <div class="yui-u first">
+                  <h2>Education</h2>
+                </div>
+                <div class="yui-u">
+                ${
+                  showEducation
+                    ? `
+                  <h2>Indiana University - Bloomington, Indiana</h2>
+                  <h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
+                `
+                    : defaultMessage("education")
+                }
+                </div>
+              </div><!--// .yui-gf -->
 
 
             </div><!--// .yui-b -->
