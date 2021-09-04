@@ -1972,6 +1972,42 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/coin.css":
+/*!************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/coin.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "@keyframes rotation {\r\n  0% {\r\n    transform: rotate3d(0, 1, 0, 0deg);\r\n  }\r\n  50% {\r\n    transform: rotate3d(0, 1, 0, 180deg);\r\n  }\r\n  100% {\r\n    transform: rotate3d(0, 1, 0, 360deg);\r\n  }\r\n}\r\n\r\n@keyframes transfer {\r\n  0% {\r\n    opacity: 1;\r\n    transform: translate(0, 0);\r\n  }\r\n  50% {\r\n    opacity: 1;\r\n    transform: translate(0, -200px);\r\n  }\r\n  75% {\r\n    opacity: 1;\r\n    transform: translate(0, 0);\r\n  }\r\n  100% {\r\n    opacity: 0.3;\r\n    transform: translate(calc(50vw - 100px), -60vh);\r\n  }\r\n}\r\n.coin_container {\r\n  position: absolute;\r\n  top: 40vh;\r\n  left: 40vw;\r\n  background-color: transparent;\r\n  width: 100px;\r\n  height: 100px;\r\n  perspective: 1000;\r\n  margin: 1em auto;\r\n  animation-name: transfer;\r\n  animation-iteration-count: 1;\r\n  animation-timing-function: ease-in-out;\r\n  animation-duration: 3s;\r\n}\r\n.coin {\r\n  position: relative;\r\n  top: 25px;\r\n  left: 25px;\r\n  width: 50px;\r\n  height: 50px;\r\n  text-align: center;\r\n  line-height: 50px;\r\n  animation-name: rotation;\r\n  animation-iteration-count: 2;\r\n  animation-timing-function: linear;\r\n  animation-duration: 0.5s;\r\n  transform: rotateY(0deg);\r\n  transform-style: preserve-3d;\r\n}\r\n.face {\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  border-radius: 50%;\r\n  backface-visibility: hidden;\r\n}\r\n.heads {\r\n  background-color: #daa520;\r\n  z-index: 2;\r\n  transform: rotateY(0deg);\r\n}\r\n.tails {\r\n  background-color: #daa520;\r\n  z-index: 1;\r\n  transform: rotateY(180deg);\r\n}\r\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/resume.css":
+/*!**************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/resume.css ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "/*\r\n---------------------------------------------------------------------------------\r\n\tSTRIPPED DOWN RESUME TEMPLATE\r\n    html resume\r\n\r\n    v0.9: 5/28/09\r\n\r\n    design and code by: thingsthatarebrown.com \r\n                        (matt brown)\r\n---------------------------------------------------------------------------------\r\n*/\r\n\r\n.msg {\r\n  padding: 10px;\r\n  background: #222;\r\n  position: relative;\r\n}\r\n.msg h1 {\r\n  color: #fff;\r\n}\r\n.msg a {\r\n  margin-left: 20px;\r\n  background: #408814;\r\n  color: white;\r\n  padding: 4px 8px;\r\n  text-decoration: none;\r\n}\r\n.msg a:hover {\r\n  background: #266400;\r\n}\r\n\r\n/* //-- yui-grids style overrides -- */\r\nbody {\r\n  font-family: Georgia;\r\n  color: #444;\r\n}\r\n#inner {\r\n  padding: 10px 80px;\r\n  margin: auto;\r\n  background: #f5f5f5;\r\n  border: solid #666;\r\n  border-width: 8px 0 2px 0;\r\n}\r\n.yui-gf {\r\n  margin-bottom: 2em;\r\n  padding-bottom: 2em;\r\n  border-bottom: 1px solid #ccc;\r\n}\r\n\r\n/* //-- header, body, footer -- */\r\n#hd {\r\n  margin: 2.5em 0 3em 0;\r\n  padding-bottom: 1.5em;\r\n  border-bottom: 1px solid #ccc;\r\n}\r\n#hd h2 {\r\n  text-transform: uppercase;\r\n  letter-spacing: 2px;\r\n}\r\n#bd,\r\n#ft {\r\n  margin-bottom: 2em;\r\n}\r\n\r\n/* //-- footer -- */\r\n#ft {\r\n  padding: 1em 0 5em 0;\r\n  font-size: 92%;\r\n  border-top: 1px solid #ccc;\r\n  text-align: center;\r\n}\r\n#ft p {\r\n  margin-bottom: 0;\r\n  text-align: center;\r\n}\r\n\r\n/* //-- core typography and style -- */\r\n#hd h1 {\r\n  font-size: 48px;\r\n  text-transform: uppercase;\r\n  letter-spacing: 3px;\r\n}\r\nh2 {\r\n  font-size: 152%;\r\n}\r\nh3,\r\nh4 {\r\n  font-size: 122%;\r\n}\r\nh1,\r\nh2,\r\nh3,\r\nh4 {\r\n  color: #333;\r\n}\r\np {\r\n  font-size: 100%;\r\n  line-height: 18px;\r\n  padding-right: 3em;\r\n}\r\na {\r\n  color: #990003;\r\n}\r\na:hover {\r\n  text-decoration: none;\r\n}\r\nstrong {\r\n  font-weight: bold;\r\n}\r\nli {\r\n  line-height: 24px;\r\n  border-bottom: 1px solid #ccc;\r\n}\r\np.enlarge {\r\n  font-size: 144%;\r\n  padding-right: 6.5em;\r\n  line-height: 24px;\r\n}\r\np.enlarge span {\r\n  color: #000;\r\n}\r\n.contact-info {\r\n  margin-top: 7px;\r\n}\r\n.first h2 {\r\n  font-style: italic;\r\n}\r\n.last {\r\n  border-bottom: 0;\r\n}\r\n\r\n/* //-- section styles -- */\r\n\r\na#pdf {\r\n  display: block;\r\n  float: left;\r\n  background: #666;\r\n  color: white;\r\n  padding: 6px 50px 6px 12px;\r\n  margin-bottom: 6px;\r\n  text-decoration: none;\r\n}\r\na#pdf:hover {\r\n  background: #222;\r\n}\r\n\r\n.job {\r\n  position: relative;\r\n  margin-bottom: 1em;\r\n  padding-bottom: 1em;\r\n  border-bottom: 1px solid #ccc;\r\n}\r\n.job h4 {\r\n  position: absolute;\r\n  top: 0.35em;\r\n  right: 0;\r\n}\r\n.job p {\r\n  margin: 0.75em 0 3em 0;\r\n}\r\n\r\n.last {\r\n  border: none;\r\n}\r\n.skills-list {\r\n}\r\n.skills-list ul {\r\n  margin: 0;\r\n}\r\n.skills-list li {\r\n  margin: 3px 0;\r\n  padding: 3px 0;\r\n}\r\n.skills-list li span {\r\n  font-size: 152%;\r\n  display: block;\r\n  margin-bottom: -2px;\r\n  padding: 0;\r\n}\r\n.talent {\r\n  width: 32%;\r\n  float: left;\r\n}\r\n.talent h2 {\r\n  margin-bottom: 6px;\r\n}\r\n\r\n#srt-ttab {\r\n  margin-bottom: 100px;\r\n  text-align: center;\r\n}\r\n#srt-ttab img.last {\r\n  margin-top: 20px;\r\n}\r\n\r\n/* --// override to force 1/8th width grids -- */\r\n.yui-gf .yui-u {\r\n  width: 80.2%;\r\n}\r\n.yui-gf div.first {\r\n  width: 12.3%;\r\n}\r\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
@@ -1983,7 +2019,7 @@ module.exports = {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body,\r\nhtml {\r\n  margin: 0;\r\n  padding: 0;\r\n  background: #25252b;\r\n}\r\n* {\r\n  touch-action: manipulation;\r\n}\r\n*,\r\n*:before,\r\n*:after {\r\n  box-sizing: border-box;\r\n}\r\nbody {\r\n  position: relative;\r\n  color: white;\r\n  letter-spacing: 2px;\r\n  font-size: 11px;\r\n  font-family: \"Poppins\", sans-serif;\r\n  width: 100%;\r\n  height: 100vh;\r\n}\r\n.wrapper {\r\n  display: none;\r\n  position: absolute;\r\n  right: 10px;\r\n  top: 10px;\r\n  width: 40vw;\r\n  height: 80vh;\r\n  align-items: center;\r\n  z-index: 2;\r\n  background: #9bffaf;\r\n  border: 1px solid black;\r\n}\r\n#c {\r\n  position: absolute;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  display: block;\r\n}\r\n\r\n.loading {\r\n  position: fixed;\r\n  z-index: 50;\r\n  width: 100%;\r\n  height: 100%;\r\n  top: 0;\r\n  left: 0;\r\n  background: #f1f1f1;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.loader {\r\n  -webkit-perspective: 120px;\r\n  -moz-perspective: 120px;\r\n  -ms-perspective: 120px;\r\n  perspective: 120px;\r\n  width: 100px;\r\n  height: 100px;\r\n}\r\n\r\n.loader:before {\r\n  content: \"\";\r\n  position: absolute;\r\n  left: 25px;\r\n  top: 25px;\r\n  width: 50px;\r\n  height: 50px;\r\n  background-color: #9bffaf;\r\n  animation: flip 1s infinite;\r\n}\r\n\r\n@keyframes flip {\r\n  0% {\r\n    transform: rotate(0);\r\n  }\r\n\r\n  50% {\r\n    transform: rotateY(180deg);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateY(180deg) rotateX(180deg);\r\n  }\r\n}\r\n\r\n.tutorial-link {\r\n  position: absolute;\r\n  display: block;\r\n  z-index: 100;\r\n  top: 2em;\r\n  left: 2em;\r\n  transform: translateX(-50%);\r\n  font-weight: bold;\r\n}\r\n", ""]);
+exports.push([module.i, "body,\r\nhtml {\r\n  margin: 0;\r\n  padding: 0;\r\n  background: #25252b;\r\n}\r\n* {\r\n  touch-action: manipulation;\r\n}\r\n*,\r\n*:before,\r\n*:after {\r\n  box-sizing: border-box;\r\n}\r\nbody {\r\n  position: relative;\r\n  color: white;\r\n  letter-spacing: 2px;\r\n  font-size: 11px;\r\n  font-family: \"Poppins\", sans-serif;\r\n  width: 100%;\r\n  height: 100vh;\r\n}\r\n.wrapper {\r\n  display: none;\r\n  position: absolute;\r\n  right: 10px;\r\n  top: 10px;\r\n  width: 40vw;\r\n  height: 80vh;\r\n  align-items: center;\r\n  z-index: 2;\r\n  background: #9bffaf;\r\n  border: 1px solid black;\r\n}\r\n#c {\r\n  position: absolute;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  display: block;\r\n}\r\n\r\n.loading {\r\n  position: fixed;\r\n  z-index: 50;\r\n  width: 100%;\r\n  height: 100%;\r\n  top: 0;\r\n  left: 0;\r\n  background: #f1f1f1;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.loader {\r\n  -webkit-perspective: 120px;\r\n  -moz-perspective: 120px;\r\n  -ms-perspective: 120px;\r\n  perspective: 120px;\r\n  width: 100px;\r\n  height: 100px;\r\n}\r\n\r\n.loader:before {\r\n  content: \"\";\r\n  position: absolute;\r\n  left: 25px;\r\n  top: 25px;\r\n  width: 50px;\r\n  height: 50px;\r\n  background-color: #9bffaf;\r\n  animation: flip 1s infinite;\r\n}\r\n\r\n@keyframes flip {\r\n  0% {\r\n    transform: rotate(0);\r\n  }\r\n\r\n  50% {\r\n    transform: rotateY(180deg);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateY(180deg) rotateX(180deg);\r\n  }\r\n}\r\n\r\n.tutorial-link {\r\n  position: absolute;\r\n  display: block;\r\n  z-index: 100;\r\n  top: 2em;\r\n  left: 2em;\r\n  transform: translateX(-50%);\r\n  font-weight: bold;\r\n}\r\n\r\n#banner {\r\n  position: absolute;\r\n  display: flex;\r\n  z-index: 100;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 50px;\r\n  background: white;\r\n  color: black;\r\n}\r\n\r\n#show-controls {\r\n  flex: 1;\r\n  cursor: pointer;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n#show-resume {\r\n  flex: 1;\r\n  cursor: pointer;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n#score {\r\n  flex: 1;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-size: large;\r\n  text-align: center;\r\n  font-weight: 600;\r\n}\r\n\r\n#achievement {\r\n  position: absolute;\r\n  top: 40vh;\r\n  left: 40vw;\r\n  display: none;\r\n  background: transparent;\r\n  color: #ffa500;\r\n  font-size: 60px;\r\n  font-weight: 800;\r\n  text-align: center;\r\n}\r\n\r\n#resume {\r\n  position: absolute;\r\n  display: none;\r\n  top: 100px;\r\n  left: 50px;\r\n  background: rgb(255, 255, 255);\r\n  z-index: 200;\r\n  width: calc(100vw - 100px);\r\n  height: calc(100vh - 50px - 100px);\r\n  overflow: auto;\r\n}\r\n\r\n#controls {\r\n  position: absolute;\r\n  display: none;\r\n  top: 200px;\r\n  left: 150px;\r\n  background: red;\r\n  z-index: 200;\r\n  width: calc(100vw - 300px);\r\n  height: calc(100vh - 50px - 300px);\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -3913,375 +3949,6 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/promise-polyfill/src/allSettled.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/promise-polyfill/src/allSettled.js ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function allSettled(arr) {
-  var P = this;
-  return new P(function(resolve, reject) {
-    if (!(arr && typeof arr.length !== 'undefined')) {
-      return reject(
-        new TypeError(
-          typeof arr +
-            ' ' +
-            arr +
-            ' is not iterable(cannot read property Symbol(Symbol.iterator))'
-        )
-      );
-    }
-    var args = Array.prototype.slice.call(arr);
-    if (args.length === 0) return resolve([]);
-    var remaining = args.length;
-
-    function res(i, val) {
-      if (val && (typeof val === 'object' || typeof val === 'function')) {
-        var then = val.then;
-        if (typeof then === 'function') {
-          then.call(
-            val,
-            function(val) {
-              res(i, val);
-            },
-            function(e) {
-              args[i] = { status: 'rejected', reason: e };
-              if (--remaining === 0) {
-                resolve(args);
-              }
-            }
-          );
-          return;
-        }
-      }
-      args[i] = { status: 'fulfilled', value: val };
-      if (--remaining === 0) {
-        resolve(args);
-      }
-    }
-
-    for (var i = 0; i < args.length; i++) {
-      res(i, args[i]);
-    }
-  });
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (allSettled);
-
-
-/***/ }),
-
-/***/ "./node_modules/promise-polyfill/src/finally.js":
-/*!******************************************************!*\
-  !*** ./node_modules/promise-polyfill/src/finally.js ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/**
- * @this {Promise}
- */
-function finallyConstructor(callback) {
-  var constructor = this.constructor;
-  return this.then(
-    function(value) {
-      // @ts-ignore
-      return constructor.resolve(callback()).then(function() {
-        return value;
-      });
-    },
-    function(reason) {
-      // @ts-ignore
-      return constructor.resolve(callback()).then(function() {
-        // @ts-ignore
-        return constructor.reject(reason);
-      });
-    }
-  );
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (finallyConstructor);
-
-
-/***/ }),
-
-/***/ "./node_modules/promise-polyfill/src/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/promise-polyfill/src/index.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(setImmediate) {/* harmony import */ var _finally__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./finally */ "./node_modules/promise-polyfill/src/finally.js");
-/* harmony import */ var _allSettled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./allSettled */ "./node_modules/promise-polyfill/src/allSettled.js");
-
-
-
-// Store setTimeout reference so promise-polyfill will be unaffected by
-// other code modifying setTimeout (like sinon.useFakeTimers())
-var setTimeoutFunc = setTimeout;
-
-function isArray(x) {
-  return Boolean(x && typeof x.length !== 'undefined');
-}
-
-function noop() {}
-
-// Polyfill for Function.prototype.bind
-function bind(fn, thisArg) {
-  return function() {
-    fn.apply(thisArg, arguments);
-  };
-}
-
-/**
- * @constructor
- * @param {Function} fn
- */
-function Promise(fn) {
-  if (!(this instanceof Promise))
-    throw new TypeError('Promises must be constructed via new');
-  if (typeof fn !== 'function') throw new TypeError('not a function');
-  /** @type {!number} */
-  this._state = 0;
-  /** @type {!boolean} */
-  this._handled = false;
-  /** @type {Promise|undefined} */
-  this._value = undefined;
-  /** @type {!Array<!Function>} */
-  this._deferreds = [];
-
-  doResolve(fn, this);
-}
-
-function handle(self, deferred) {
-  while (self._state === 3) {
-    self = self._value;
-  }
-  if (self._state === 0) {
-    self._deferreds.push(deferred);
-    return;
-  }
-  self._handled = true;
-  Promise._immediateFn(function() {
-    var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
-    if (cb === null) {
-      (self._state === 1 ? resolve : reject)(deferred.promise, self._value);
-      return;
-    }
-    var ret;
-    try {
-      ret = cb(self._value);
-    } catch (e) {
-      reject(deferred.promise, e);
-      return;
-    }
-    resolve(deferred.promise, ret);
-  });
-}
-
-function resolve(self, newValue) {
-  try {
-    // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
-    if (newValue === self)
-      throw new TypeError('A promise cannot be resolved with itself.');
-    if (
-      newValue &&
-      (typeof newValue === 'object' || typeof newValue === 'function')
-    ) {
-      var then = newValue.then;
-      if (newValue instanceof Promise) {
-        self._state = 3;
-        self._value = newValue;
-        finale(self);
-        return;
-      } else if (typeof then === 'function') {
-        doResolve(bind(then, newValue), self);
-        return;
-      }
-    }
-    self._state = 1;
-    self._value = newValue;
-    finale(self);
-  } catch (e) {
-    reject(self, e);
-  }
-}
-
-function reject(self, newValue) {
-  self._state = 2;
-  self._value = newValue;
-  finale(self);
-}
-
-function finale(self) {
-  if (self._state === 2 && self._deferreds.length === 0) {
-    Promise._immediateFn(function() {
-      if (!self._handled) {
-        Promise._unhandledRejectionFn(self._value);
-      }
-    });
-  }
-
-  for (var i = 0, len = self._deferreds.length; i < len; i++) {
-    handle(self, self._deferreds[i]);
-  }
-  self._deferreds = null;
-}
-
-/**
- * @constructor
- */
-function Handler(onFulfilled, onRejected, promise) {
-  this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
-  this.onRejected = typeof onRejected === 'function' ? onRejected : null;
-  this.promise = promise;
-}
-
-/**
- * Take a potentially misbehaving resolver function and make sure
- * onFulfilled and onRejected are only called once.
- *
- * Makes no guarantees about asynchrony.
- */
-function doResolve(fn, self) {
-  var done = false;
-  try {
-    fn(
-      function(value) {
-        if (done) return;
-        done = true;
-        resolve(self, value);
-      },
-      function(reason) {
-        if (done) return;
-        done = true;
-        reject(self, reason);
-      }
-    );
-  } catch (ex) {
-    if (done) return;
-    done = true;
-    reject(self, ex);
-  }
-}
-
-Promise.prototype['catch'] = function(onRejected) {
-  return this.then(null, onRejected);
-};
-
-Promise.prototype.then = function(onFulfilled, onRejected) {
-  // @ts-ignore
-  var prom = new this.constructor(noop);
-
-  handle(this, new Handler(onFulfilled, onRejected, prom));
-  return prom;
-};
-
-Promise.prototype['finally'] = _finally__WEBPACK_IMPORTED_MODULE_0__["default"];
-
-Promise.all = function(arr) {
-  return new Promise(function(resolve, reject) {
-    if (!isArray(arr)) {
-      return reject(new TypeError('Promise.all accepts an array'));
-    }
-
-    var args = Array.prototype.slice.call(arr);
-    if (args.length === 0) return resolve([]);
-    var remaining = args.length;
-
-    function res(i, val) {
-      try {
-        if (val && (typeof val === 'object' || typeof val === 'function')) {
-          var then = val.then;
-          if (typeof then === 'function') {
-            then.call(
-              val,
-              function(val) {
-                res(i, val);
-              },
-              reject
-            );
-            return;
-          }
-        }
-        args[i] = val;
-        if (--remaining === 0) {
-          resolve(args);
-        }
-      } catch (ex) {
-        reject(ex);
-      }
-    }
-
-    for (var i = 0; i < args.length; i++) {
-      res(i, args[i]);
-    }
-  });
-};
-
-Promise.allSettled = _allSettled__WEBPACK_IMPORTED_MODULE_1__["default"];
-
-Promise.resolve = function(value) {
-  if (value && typeof value === 'object' && value.constructor === Promise) {
-    return value;
-  }
-
-  return new Promise(function(resolve) {
-    resolve(value);
-  });
-};
-
-Promise.reject = function(value) {
-  return new Promise(function(resolve, reject) {
-    reject(value);
-  });
-};
-
-Promise.race = function(arr) {
-  return new Promise(function(resolve, reject) {
-    if (!isArray(arr)) {
-      return reject(new TypeError('Promise.race accepts an array'));
-    }
-
-    for (var i = 0, len = arr.length; i < len; i++) {
-      Promise.resolve(arr[i]).then(resolve, reject);
-    }
-  });
-};
-
-// Use polyfill for setImmediate for performance gains
-Promise._immediateFn =
-  // @ts-ignore
-  (typeof setImmediate === 'function' &&
-    function(fn) {
-      // @ts-ignore
-      setImmediate(fn);
-    }) ||
-  function(fn) {
-    setTimeoutFunc(fn, 0);
-  };
-
-Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
-  if (typeof console !== 'undefined' && console) {
-    console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Promise);
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../timers-browserify/main.js */ "./node_modules/timers-browserify/main.js").setImmediate))
-
-/***/ }),
-
 /***/ "./node_modules/querystring-es3/decode.js":
 /*!************************************************!*\
   !*** ./node_modules/querystring-es3/decode.js ***!
@@ -4841,204 +4508,6 @@ module.exports = function required(port, protocol) {
   return port !== 0;
 };
 
-
-/***/ }),
-
-/***/ "./node_modules/setimmediate/setImmediate.js":
-/*!***************************************************!*\
-  !*** ./node_modules/setimmediate/setImmediate.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
-    "use strict";
-
-    if (global.setImmediate) {
-        return;
-    }
-
-    var nextHandle = 1; // Spec says greater than zero
-    var tasksByHandle = {};
-    var currentlyRunningATask = false;
-    var doc = global.document;
-    var registerImmediate;
-
-    function setImmediate(callback) {
-      // Callback can either be a function or a string
-      if (typeof callback !== "function") {
-        callback = new Function("" + callback);
-      }
-      // Copy function arguments
-      var args = new Array(arguments.length - 1);
-      for (var i = 0; i < args.length; i++) {
-          args[i] = arguments[i + 1];
-      }
-      // Store and register the task
-      var task = { callback: callback, args: args };
-      tasksByHandle[nextHandle] = task;
-      registerImmediate(nextHandle);
-      return nextHandle++;
-    }
-
-    function clearImmediate(handle) {
-        delete tasksByHandle[handle];
-    }
-
-    function run(task) {
-        var callback = task.callback;
-        var args = task.args;
-        switch (args.length) {
-        case 0:
-            callback();
-            break;
-        case 1:
-            callback(args[0]);
-            break;
-        case 2:
-            callback(args[0], args[1]);
-            break;
-        case 3:
-            callback(args[0], args[1], args[2]);
-            break;
-        default:
-            callback.apply(undefined, args);
-            break;
-        }
-    }
-
-    function runIfPresent(handle) {
-        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
-        // So if we're currently running a task, we'll need to delay this invocation.
-        if (currentlyRunningATask) {
-            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
-            // "too much recursion" error.
-            setTimeout(runIfPresent, 0, handle);
-        } else {
-            var task = tasksByHandle[handle];
-            if (task) {
-                currentlyRunningATask = true;
-                try {
-                    run(task);
-                } finally {
-                    clearImmediate(handle);
-                    currentlyRunningATask = false;
-                }
-            }
-        }
-    }
-
-    function installNextTickImplementation() {
-        registerImmediate = function(handle) {
-            process.nextTick(function () { runIfPresent(handle); });
-        };
-    }
-
-    function canUsePostMessage() {
-        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
-        // where `global.postMessage` means something completely different and can't be used for this purpose.
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
-    function installPostMessageImplementation() {
-        // Installs an event handler on `global` for the `message` event: see
-        // * https://developer.mozilla.org/en/DOM/window.postMessage
-        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
-
-        var messagePrefix = "setImmediate$" + Math.random() + "$";
-        var onGlobalMessage = function(event) {
-            if (event.source === global &&
-                typeof event.data === "string" &&
-                event.data.indexOf(messagePrefix) === 0) {
-                runIfPresent(+event.data.slice(messagePrefix.length));
-            }
-        };
-
-        if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
-        } else {
-            global.attachEvent("onmessage", onGlobalMessage);
-        }
-
-        registerImmediate = function(handle) {
-            global.postMessage(messagePrefix + handle, "*");
-        };
-    }
-
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        registerImmediate = function(handle) {
-            channel.port2.postMessage(handle);
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        registerImmediate = function(handle) {
-            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
-            setTimeout(runIfPresent, 0, handle);
-        };
-    }
-
-    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
-
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
-
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
-}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -59541,1243 +59010,6 @@ if ( typeof window !== 'undefined' ) {
 
 /***/ }),
 
-/***/ "./node_modules/three/examples/jsm/controls/OrbitControls.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/three/examples/jsm/controls/OrbitControls.js ***!
-  \*******************************************************************/
-/*! exports provided: OrbitControls, MapControls */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrbitControls", function() { return OrbitControls; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapControls", function() { return MapControls; });
-/* harmony import */ var _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../build/three.module.js */ "./node_modules/three/build/three.module.js");
-
-
-// This set of controls performs orbiting, dollying (zooming), and panning.
-// Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
-//
-//    Orbit - left mouse / touch: one-finger move
-//    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
-//    Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move
-
-var OrbitControls = function ( object, domElement ) {
-
-	if ( domElement === undefined ) console.warn( 'THREE.OrbitControls: The second parameter "domElement" is now mandatory.' );
-	if ( domElement === document ) console.error( 'THREE.OrbitControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.' );
-
-	this.object = object;
-	this.domElement = domElement;
-
-	// Set to false to disable this control
-	this.enabled = true;
-
-	// "target" sets the location of focus, where the object orbits around
-	this.target = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-	// How far you can dolly in and out ( PerspectiveCamera only )
-	this.minDistance = 0;
-	this.maxDistance = Infinity;
-
-	// How far you can zoom in and out ( OrthographicCamera only )
-	this.minZoom = 0;
-	this.maxZoom = Infinity;
-
-	// How far you can orbit vertically, upper and lower limits.
-	// Range is 0 to Math.PI radians.
-	this.minPolarAngle = 0; // radians
-	this.maxPolarAngle = Math.PI; // radians
-
-	// How far you can orbit horizontally, upper and lower limits.
-	// If set, the interval [ min, max ] must be a sub-interval of [ - 2 PI, 2 PI ], with ( max - min < 2 PI )
-	this.minAzimuthAngle = - Infinity; // radians
-	this.maxAzimuthAngle = Infinity; // radians
-
-	// Set to true to enable damping (inertia)
-	// If damping is enabled, you must call controls.update() in your animation loop
-	this.enableDamping = false;
-	this.dampingFactor = 0.05;
-
-	// This option actually enables dollying in and out; left as "zoom" for backwards compatibility.
-	// Set to false to disable zooming
-	this.enableZoom = true;
-	this.zoomSpeed = 1.0;
-
-	// Set to false to disable rotating
-	this.enableRotate = true;
-	this.rotateSpeed = 1.0;
-
-	// Set to false to disable panning
-	this.enablePan = true;
-	this.panSpeed = 1.0;
-	this.screenSpacePanning = true; // if false, pan orthogonal to world-space direction camera.up
-	this.keyPanSpeed = 7.0;	// pixels moved per arrow key push
-
-	// Set to true to automatically rotate around the target
-	// If auto-rotate is enabled, you must call controls.update() in your animation loop
-	this.autoRotate = false;
-	this.autoRotateSpeed = 2.0; // 30 seconds per orbit when fps is 60
-
-	// The four arrow keys
-	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };
-
-	// Mouse buttons
-	this.mouseButtons = { LEFT: _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].ROTATE, MIDDLE: _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].DOLLY, RIGHT: _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].PAN };
-
-	// Touch fingers
-	this.touches = { ONE: _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].ROTATE, TWO: _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].DOLLY_PAN };
-
-	// for reset
-	this.target0 = this.target.clone();
-	this.position0 = this.object.position.clone();
-	this.zoom0 = this.object.zoom;
-
-	// the target DOM element for key events
-	this._domElementKeyEvents = null;
-
-	//
-	// public methods
-	//
-
-	this.getPolarAngle = function () {
-
-		return spherical.phi;
-
-	};
-
-	this.getAzimuthalAngle = function () {
-
-		return spherical.theta;
-
-	};
-
-	this.listenToKeyEvents = function ( domElement ) {
-
-		domElement.addEventListener( 'keydown', onKeyDown );
-		this._domElementKeyEvents = domElement;
-
-	};
-
-	this.saveState = function () {
-
-		scope.target0.copy( scope.target );
-		scope.position0.copy( scope.object.position );
-		scope.zoom0 = scope.object.zoom;
-
-	};
-
-	this.reset = function () {
-
-		scope.target.copy( scope.target0 );
-		scope.object.position.copy( scope.position0 );
-		scope.object.zoom = scope.zoom0;
-
-		scope.object.updateProjectionMatrix();
-		scope.dispatchEvent( changeEvent );
-
-		scope.update();
-
-		state = STATE.NONE;
-
-	};
-
-	// this method is exposed, but perhaps it would be better if we can make it private...
-	this.update = function () {
-
-		var offset = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-		// so camera.up is the orbit axis
-		var quat = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]().setFromUnitVectors( object.up, new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]( 0, 1, 0 ) );
-		var quatInverse = quat.clone().invert();
-
-		var lastPosition = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-		var lastQuaternion = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]();
-
-		var twoPI = 2 * Math.PI;
-
-		return function update() {
-
-			var position = scope.object.position;
-
-			offset.copy( position ).sub( scope.target );
-
-			// rotate offset to "y-axis-is-up" space
-			offset.applyQuaternion( quat );
-
-			// angle from z-axis around y-axis
-			spherical.setFromVector3( offset );
-
-			if ( scope.autoRotate && state === STATE.NONE ) {
-
-				rotateLeft( getAutoRotationAngle() );
-
-			}
-
-			if ( scope.enableDamping ) {
-
-				spherical.theta += sphericalDelta.theta * scope.dampingFactor;
-				spherical.phi += sphericalDelta.phi * scope.dampingFactor;
-
-			} else {
-
-				spherical.theta += sphericalDelta.theta;
-				spherical.phi += sphericalDelta.phi;
-
-			}
-
-			// restrict theta to be between desired limits
-
-			var min = scope.minAzimuthAngle;
-			var max = scope.maxAzimuthAngle;
-
-			if ( isFinite( min ) && isFinite( max ) ) {
-
-				if ( min < - Math.PI ) min += twoPI; else if ( min > Math.PI ) min -= twoPI;
-
-				if ( max < - Math.PI ) max += twoPI; else if ( max > Math.PI ) max -= twoPI;
-
-				if ( min <= max ) {
-
-					spherical.theta = Math.max( min, Math.min( max, spherical.theta ) );
-
-				} else {
-
-					spherical.theta = ( spherical.theta > ( min + max ) / 2 ) ?
-						Math.max( min, spherical.theta ) :
-						Math.min( max, spherical.theta );
-
-				}
-
-			}
-
-			// restrict phi to be between desired limits
-			spherical.phi = Math.max( scope.minPolarAngle, Math.min( scope.maxPolarAngle, spherical.phi ) );
-
-			spherical.makeSafe();
-
-
-			spherical.radius *= scale;
-
-			// restrict radius to be between desired limits
-			spherical.radius = Math.max( scope.minDistance, Math.min( scope.maxDistance, spherical.radius ) );
-
-			// move target to panned location
-
-			if ( scope.enableDamping === true ) {
-
-				scope.target.addScaledVector( panOffset, scope.dampingFactor );
-
-			} else {
-
-				scope.target.add( panOffset );
-
-			}
-
-			offset.setFromSpherical( spherical );
-
-			// rotate offset back to "camera-up-vector-is-up" space
-			offset.applyQuaternion( quatInverse );
-
-			position.copy( scope.target ).add( offset );
-
-			scope.object.lookAt( scope.target );
-
-			if ( scope.enableDamping === true ) {
-
-				sphericalDelta.theta *= ( 1 - scope.dampingFactor );
-				sphericalDelta.phi *= ( 1 - scope.dampingFactor );
-
-				panOffset.multiplyScalar( 1 - scope.dampingFactor );
-
-			} else {
-
-				sphericalDelta.set( 0, 0, 0 );
-
-				panOffset.set( 0, 0, 0 );
-
-			}
-
-			scale = 1;
-
-			// update condition is:
-			// min(camera displacement, camera rotation in radians)^2 > EPS
-			// using small-angle approximation cos(x/2) = 1 - x^2 / 8
-
-			if ( zoomChanged ||
-				lastPosition.distanceToSquared( scope.object.position ) > EPS ||
-				8 * ( 1 - lastQuaternion.dot( scope.object.quaternion ) ) > EPS ) {
-
-				scope.dispatchEvent( changeEvent );
-
-				lastPosition.copy( scope.object.position );
-				lastQuaternion.copy( scope.object.quaternion );
-				zoomChanged = false;
-
-				return true;
-
-			}
-
-			return false;
-
-		};
-
-	}();
-
-	this.dispose = function () {
-
-		scope.domElement.removeEventListener( 'contextmenu', onContextMenu );
-
-		scope.domElement.removeEventListener( 'pointerdown', onPointerDown );
-		scope.domElement.removeEventListener( 'wheel', onMouseWheel );
-
-		scope.domElement.removeEventListener( 'touchstart', onTouchStart );
-		scope.domElement.removeEventListener( 'touchend', onTouchEnd );
-		scope.domElement.removeEventListener( 'touchmove', onTouchMove );
-
-		scope.domElement.ownerDocument.removeEventListener( 'pointermove', onPointerMove );
-		scope.domElement.ownerDocument.removeEventListener( 'pointerup', onPointerUp );
-
-
-		if ( scope._domElementKeyEvents !== null ) {
-
-			scope._domElementKeyEvents.removeEventListener( 'keydown', onKeyDown );
-
-		}
-
-		//scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
-
-	};
-
-	//
-	// internals
-	//
-
-	var scope = this;
-
-	var changeEvent = { type: 'change' };
-	var startEvent = { type: 'start' };
-	var endEvent = { type: 'end' };
-
-	var STATE = {
-		NONE: - 1,
-		ROTATE: 0,
-		DOLLY: 1,
-		PAN: 2,
-		TOUCH_ROTATE: 3,
-		TOUCH_PAN: 4,
-		TOUCH_DOLLY_PAN: 5,
-		TOUCH_DOLLY_ROTATE: 6
-	};
-
-	var state = STATE.NONE;
-
-	var EPS = 0.000001;
-
-	// current position in spherical coordinates
-	var spherical = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Spherical"]();
-	var sphericalDelta = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Spherical"]();
-
-	var scale = 1;
-	var panOffset = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-	var zoomChanged = false;
-
-	var rotateStart = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-	var rotateEnd = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-	var rotateDelta = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-
-	var panStart = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-	var panEnd = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-	var panDelta = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-
-	var dollyStart = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-	var dollyEnd = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-	var dollyDelta = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
-
-	function getAutoRotationAngle() {
-
-		return 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
-
-	}
-
-	function getZoomScale() {
-
-		return Math.pow( 0.95, scope.zoomSpeed );
-
-	}
-
-	function rotateLeft( angle ) {
-
-		sphericalDelta.theta -= angle;
-
-	}
-
-	function rotateUp( angle ) {
-
-		sphericalDelta.phi -= angle;
-
-	}
-
-	var panLeft = function () {
-
-		var v = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-		return function panLeft( distance, objectMatrix ) {
-
-			v.setFromMatrixColumn( objectMatrix, 0 ); // get X column of objectMatrix
-			v.multiplyScalar( - distance );
-
-			panOffset.add( v );
-
-		};
-
-	}();
-
-	var panUp = function () {
-
-		var v = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-		return function panUp( distance, objectMatrix ) {
-
-			if ( scope.screenSpacePanning === true ) {
-
-				v.setFromMatrixColumn( objectMatrix, 1 );
-
-			} else {
-
-				v.setFromMatrixColumn( objectMatrix, 0 );
-				v.crossVectors( scope.object.up, v );
-
-			}
-
-			v.multiplyScalar( distance );
-
-			panOffset.add( v );
-
-		};
-
-	}();
-
-	// deltaX and deltaY are in pixels; right and down are positive
-	var pan = function () {
-
-		var offset = new _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-		return function pan( deltaX, deltaY ) {
-
-			var element = scope.domElement;
-
-			if ( scope.object.isPerspectiveCamera ) {
-
-				// perspective
-				var position = scope.object.position;
-				offset.copy( position ).sub( scope.target );
-				var targetDistance = offset.length();
-
-				// half of the fov is center to top of screen
-				targetDistance *= Math.tan( ( scope.object.fov / 2 ) * Math.PI / 180.0 );
-
-				// we use only clientHeight here so aspect ratio does not distort speed
-				panLeft( 2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix );
-				panUp( 2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix );
-
-			} else if ( scope.object.isOrthographicCamera ) {
-
-				// orthographic
-				panLeft( deltaX * ( scope.object.right - scope.object.left ) / scope.object.zoom / element.clientWidth, scope.object.matrix );
-				panUp( deltaY * ( scope.object.top - scope.object.bottom ) / scope.object.zoom / element.clientHeight, scope.object.matrix );
-
-			} else {
-
-				// camera neither orthographic nor perspective
-				console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.' );
-				scope.enablePan = false;
-
-			}
-
-		};
-
-	}();
-
-	function dollyOut( dollyScale ) {
-
-		if ( scope.object.isPerspectiveCamera ) {
-
-			scale /= dollyScale;
-
-		} else if ( scope.object.isOrthographicCamera ) {
-
-			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom * dollyScale ) );
-			scope.object.updateProjectionMatrix();
-			zoomChanged = true;
-
-		} else {
-
-			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
-			scope.enableZoom = false;
-
-		}
-
-	}
-
-	function dollyIn( dollyScale ) {
-
-		if ( scope.object.isPerspectiveCamera ) {
-
-			scale *= dollyScale;
-
-		} else if ( scope.object.isOrthographicCamera ) {
-
-			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom / dollyScale ) );
-			scope.object.updateProjectionMatrix();
-			zoomChanged = true;
-
-		} else {
-
-			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
-			scope.enableZoom = false;
-
-		}
-
-	}
-
-	//
-	// event callbacks - update the object state
-	//
-
-	function handleMouseDownRotate( event ) {
-
-		rotateStart.set( event.clientX, event.clientY );
-
-	}
-
-	function handleMouseDownDolly( event ) {
-
-		dollyStart.set( event.clientX, event.clientY );
-
-	}
-
-	function handleMouseDownPan( event ) {
-
-		panStart.set( event.clientX, event.clientY );
-
-	}
-
-	function handleMouseMoveRotate( event ) {
-
-		rotateEnd.set( event.clientX, event.clientY );
-
-		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
-
-		var element = scope.domElement;
-
-		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
-
-		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
-
-		rotateStart.copy( rotateEnd );
-
-		scope.update();
-
-	}
-
-	function handleMouseMoveDolly( event ) {
-
-		dollyEnd.set( event.clientX, event.clientY );
-
-		dollyDelta.subVectors( dollyEnd, dollyStart );
-
-		if ( dollyDelta.y > 0 ) {
-
-			dollyOut( getZoomScale() );
-
-		} else if ( dollyDelta.y < 0 ) {
-
-			dollyIn( getZoomScale() );
-
-		}
-
-		dollyStart.copy( dollyEnd );
-
-		scope.update();
-
-	}
-
-	function handleMouseMovePan( event ) {
-
-		panEnd.set( event.clientX, event.clientY );
-
-		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
-
-		pan( panDelta.x, panDelta.y );
-
-		panStart.copy( panEnd );
-
-		scope.update();
-
-	}
-
-	function handleMouseUp( /*event*/ ) {
-
-		// no-op
-
-	}
-
-	function handleMouseWheel( event ) {
-
-		if ( event.deltaY < 0 ) {
-
-			dollyIn( getZoomScale() );
-
-		} else if ( event.deltaY > 0 ) {
-
-			dollyOut( getZoomScale() );
-
-		}
-
-		scope.update();
-
-	}
-
-	function handleKeyDown( event ) {
-
-		var needsUpdate = false;
-
-		switch ( event.keyCode ) {
-
-			case scope.keys.UP:
-				pan( 0, scope.keyPanSpeed );
-				needsUpdate = true;
-				break;
-
-			case scope.keys.BOTTOM:
-				pan( 0, - scope.keyPanSpeed );
-				needsUpdate = true;
-				break;
-
-			case scope.keys.LEFT:
-				pan( scope.keyPanSpeed, 0 );
-				needsUpdate = true;
-				break;
-
-			case scope.keys.RIGHT:
-				pan( - scope.keyPanSpeed, 0 );
-				needsUpdate = true;
-				break;
-
-		}
-
-		if ( needsUpdate ) {
-
-			// prevent the browser from scrolling on cursor keys
-			event.preventDefault();
-
-			scope.update();
-
-		}
-
-
-	}
-
-	function handleTouchStartRotate( event ) {
-
-		if ( event.touches.length == 1 ) {
-
-			rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-
-		} else {
-
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
-
-			rotateStart.set( x, y );
-
-		}
-
-	}
-
-	function handleTouchStartPan( event ) {
-
-		if ( event.touches.length == 1 ) {
-
-			panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-
-		} else {
-
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
-
-			panStart.set( x, y );
-
-		}
-
-	}
-
-	function handleTouchStartDolly( event ) {
-
-		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
-
-		var distance = Math.sqrt( dx * dx + dy * dy );
-
-		dollyStart.set( 0, distance );
-
-	}
-
-	function handleTouchStartDollyPan( event ) {
-
-		if ( scope.enableZoom ) handleTouchStartDolly( event );
-
-		if ( scope.enablePan ) handleTouchStartPan( event );
-
-	}
-
-	function handleTouchStartDollyRotate( event ) {
-
-		if ( scope.enableZoom ) handleTouchStartDolly( event );
-
-		if ( scope.enableRotate ) handleTouchStartRotate( event );
-
-	}
-
-	function handleTouchMoveRotate( event ) {
-
-		if ( event.touches.length == 1 ) {
-
-			rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-
-		} else {
-
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
-
-			rotateEnd.set( x, y );
-
-		}
-
-		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
-
-		var element = scope.domElement;
-
-		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
-
-		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
-
-		rotateStart.copy( rotateEnd );
-
-	}
-
-	function handleTouchMovePan( event ) {
-
-		if ( event.touches.length == 1 ) {
-
-			panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-
-		} else {
-
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
-
-			panEnd.set( x, y );
-
-		}
-
-		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
-
-		pan( panDelta.x, panDelta.y );
-
-		panStart.copy( panEnd );
-
-	}
-
-	function handleTouchMoveDolly( event ) {
-
-		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
-
-		var distance = Math.sqrt( dx * dx + dy * dy );
-
-		dollyEnd.set( 0, distance );
-
-		dollyDelta.set( 0, Math.pow( dollyEnd.y / dollyStart.y, scope.zoomSpeed ) );
-
-		dollyOut( dollyDelta.y );
-
-		dollyStart.copy( dollyEnd );
-
-	}
-
-	function handleTouchMoveDollyPan( event ) {
-
-		if ( scope.enableZoom ) handleTouchMoveDolly( event );
-
-		if ( scope.enablePan ) handleTouchMovePan( event );
-
-	}
-
-	function handleTouchMoveDollyRotate( event ) {
-
-		if ( scope.enableZoom ) handleTouchMoveDolly( event );
-
-		if ( scope.enableRotate ) handleTouchMoveRotate( event );
-
-	}
-
-	function handleTouchEnd( /*event*/ ) {
-
-		// no-op
-
-	}
-
-	//
-	// event handlers - FSM: listen for events and reset state
-	//
-
-	function onPointerDown( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		switch ( event.pointerType ) {
-
-			case 'mouse':
-			case 'pen':
-				onMouseDown( event );
-				break;
-
-			// TODO touch
-
-		}
-
-	}
-
-	function onPointerMove( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		switch ( event.pointerType ) {
-
-			case 'mouse':
-			case 'pen':
-				onMouseMove( event );
-				break;
-
-			// TODO touch
-
-		}
-
-	}
-
-	function onPointerUp( event ) {
-
-		switch ( event.pointerType ) {
-
-			case 'mouse':
-			case 'pen':
-				onMouseUp( event );
-				break;
-
-			// TODO touch
-
-		}
-
-	}
-
-	function onMouseDown( event ) {
-
-		// Prevent the browser from scrolling.
-		event.preventDefault();
-
-		// Manually set the focus since calling preventDefault above
-		// prevents the browser from setting it automatically.
-
-		scope.domElement.focus ? scope.domElement.focus() : window.focus();
-
-		var mouseAction;
-
-		switch ( event.button ) {
-
-			case 0:
-
-				mouseAction = scope.mouseButtons.LEFT;
-				break;
-
-			case 1:
-
-				mouseAction = scope.mouseButtons.MIDDLE;
-				break;
-
-			case 2:
-
-				mouseAction = scope.mouseButtons.RIGHT;
-				break;
-
-			default:
-
-				mouseAction = - 1;
-
-		}
-
-		switch ( mouseAction ) {
-
-			case _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].DOLLY:
-
-				if ( scope.enableZoom === false ) return;
-
-				handleMouseDownDolly( event );
-
-				state = STATE.DOLLY;
-
-				break;
-
-			case _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].ROTATE:
-
-				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
-
-					if ( scope.enablePan === false ) return;
-
-					handleMouseDownPan( event );
-
-					state = STATE.PAN;
-
-				} else {
-
-					if ( scope.enableRotate === false ) return;
-
-					handleMouseDownRotate( event );
-
-					state = STATE.ROTATE;
-
-				}
-
-				break;
-
-			case _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].PAN:
-
-				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
-
-					if ( scope.enableRotate === false ) return;
-
-					handleMouseDownRotate( event );
-
-					state = STATE.ROTATE;
-
-				} else {
-
-					if ( scope.enablePan === false ) return;
-
-					handleMouseDownPan( event );
-
-					state = STATE.PAN;
-
-				}
-
-				break;
-
-			default:
-
-				state = STATE.NONE;
-
-		}
-
-		if ( state !== STATE.NONE ) {
-
-			scope.domElement.ownerDocument.addEventListener( 'pointermove', onPointerMove );
-			scope.domElement.ownerDocument.addEventListener( 'pointerup', onPointerUp );
-
-			scope.dispatchEvent( startEvent );
-
-		}
-
-	}
-
-	function onMouseMove( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		event.preventDefault();
-
-		switch ( state ) {
-
-			case STATE.ROTATE:
-
-				if ( scope.enableRotate === false ) return;
-
-				handleMouseMoveRotate( event );
-
-				break;
-
-			case STATE.DOLLY:
-
-				if ( scope.enableZoom === false ) return;
-
-				handleMouseMoveDolly( event );
-
-				break;
-
-			case STATE.PAN:
-
-				if ( scope.enablePan === false ) return;
-
-				handleMouseMovePan( event );
-
-				break;
-
-		}
-
-	}
-
-	function onMouseUp( event ) {
-
-		scope.domElement.ownerDocument.removeEventListener( 'pointermove', onPointerMove );
-		scope.domElement.ownerDocument.removeEventListener( 'pointerup', onPointerUp );
-
-		if ( scope.enabled === false ) return;
-
-		handleMouseUp( event );
-
-		scope.dispatchEvent( endEvent );
-
-		state = STATE.NONE;
-
-	}
-
-	function onMouseWheel( event ) {
-
-		if ( scope.enabled === false || scope.enableZoom === false || ( state !== STATE.NONE && state !== STATE.ROTATE ) ) return;
-
-		event.preventDefault();
-		event.stopPropagation();
-
-		scope.dispatchEvent( startEvent );
-
-		handleMouseWheel( event );
-
-		scope.dispatchEvent( endEvent );
-
-	}
-
-	function onKeyDown( event ) {
-
-		if ( scope.enabled === false || scope.enablePan === false ) return;
-
-		handleKeyDown( event );
-
-	}
-
-	function onTouchStart( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		event.preventDefault(); // prevent scrolling
-
-		switch ( event.touches.length ) {
-
-			case 1:
-
-				switch ( scope.touches.ONE ) {
-
-					case _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].ROTATE:
-
-						if ( scope.enableRotate === false ) return;
-
-						handleTouchStartRotate( event );
-
-						state = STATE.TOUCH_ROTATE;
-
-						break;
-
-					case _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].PAN:
-
-						if ( scope.enablePan === false ) return;
-
-						handleTouchStartPan( event );
-
-						state = STATE.TOUCH_PAN;
-
-						break;
-
-					default:
-
-						state = STATE.NONE;
-
-				}
-
-				break;
-
-			case 2:
-
-				switch ( scope.touches.TWO ) {
-
-					case _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].DOLLY_PAN:
-
-						if ( scope.enableZoom === false && scope.enablePan === false ) return;
-
-						handleTouchStartDollyPan( event );
-
-						state = STATE.TOUCH_DOLLY_PAN;
-
-						break;
-
-					case _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].DOLLY_ROTATE:
-
-						if ( scope.enableZoom === false && scope.enableRotate === false ) return;
-
-						handleTouchStartDollyRotate( event );
-
-						state = STATE.TOUCH_DOLLY_ROTATE;
-
-						break;
-
-					default:
-
-						state = STATE.NONE;
-
-				}
-
-				break;
-
-			default:
-
-				state = STATE.NONE;
-
-		}
-
-		if ( state !== STATE.NONE ) {
-
-			scope.dispatchEvent( startEvent );
-
-		}
-
-	}
-
-	function onTouchMove( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		event.preventDefault(); // prevent scrolling
-		event.stopPropagation();
-
-		switch ( state ) {
-
-			case STATE.TOUCH_ROTATE:
-
-				if ( scope.enableRotate === false ) return;
-
-				handleTouchMoveRotate( event );
-
-				scope.update();
-
-				break;
-
-			case STATE.TOUCH_PAN:
-
-				if ( scope.enablePan === false ) return;
-
-				handleTouchMovePan( event );
-
-				scope.update();
-
-				break;
-
-			case STATE.TOUCH_DOLLY_PAN:
-
-				if ( scope.enableZoom === false && scope.enablePan === false ) return;
-
-				handleTouchMoveDollyPan( event );
-
-				scope.update();
-
-				break;
-
-			case STATE.TOUCH_DOLLY_ROTATE:
-
-				if ( scope.enableZoom === false && scope.enableRotate === false ) return;
-
-				handleTouchMoveDollyRotate( event );
-
-				scope.update();
-
-				break;
-
-			default:
-
-				state = STATE.NONE;
-
-		}
-
-	}
-
-	function onTouchEnd( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		handleTouchEnd( event );
-
-		scope.dispatchEvent( endEvent );
-
-		state = STATE.NONE;
-
-	}
-
-	function onContextMenu( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		event.preventDefault();
-
-	}
-
-	//
-
-	scope.domElement.addEventListener( 'contextmenu', onContextMenu );
-
-	scope.domElement.addEventListener( 'pointerdown', onPointerDown );
-	scope.domElement.addEventListener( 'wheel', onMouseWheel );
-
-	scope.domElement.addEventListener( 'touchstart', onTouchStart );
-	scope.domElement.addEventListener( 'touchend', onTouchEnd );
-	scope.domElement.addEventListener( 'touchmove', onTouchMove );
-
-	// force an update at start
-
-	this.update();
-
-};
-
-OrbitControls.prototype = Object.create( _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["EventDispatcher"].prototype );
-OrbitControls.prototype.constructor = OrbitControls;
-
-
-// This set of controls performs orbiting, dollying (zooming), and panning.
-// Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
-// This is very similar to OrbitControls, another set of touch behavior
-//
-//    Orbit - right mouse, or left mouse + ctrl/meta/shiftKey / touch: two-finger rotate
-//    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
-//    Pan - left mouse, or arrow keys / touch: one-finger move
-
-var MapControls = function ( object, domElement ) {
-
-	OrbitControls.call( this, object, domElement );
-
-	this.screenSpacePanning = false; // pan orthogonal to world-space direction camera.up
-
-	this.mouseButtons.LEFT = _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].PAN;
-	this.mouseButtons.RIGHT = _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["MOUSE"].ROTATE;
-
-	this.touches.ONE = _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].PAN;
-	this.touches.TWO = _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["TOUCH"].DOLLY_ROTATE;
-
-};
-
-MapControls.prototype = Object.create( _build_three_module_js__WEBPACK_IMPORTED_MODULE_0__["EventDispatcher"].prototype );
-MapControls.prototype.constructor = MapControls;
-
-
-
-
-/***/ }),
-
 /***/ "./node_modules/three/examples/jsm/curves/NURBSCurve.js":
 /*!**************************************************************!*\
   !*** ./node_modules/three/examples/jsm/curves/NURBSCurve.js ***!
@@ -69493,81 +67725,6 @@ var GLTFLoader = ( function () {
 
 /***/ }),
 
-/***/ "./node_modules/timers-browserify/main.js":
-/*!************************************************!*\
-  !*** ./node_modules/timers-browserify/main.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
-            (typeof self !== "undefined" && self) ||
-            window;
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(scope, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(/*! setimmediate */ "./node_modules/setimmediate/setImmediate.js");
-// On some exotic environments, it's not clear which object `setimmediate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
-                       (typeof global !== "undefined" && global.setImmediate) ||
-                       (this && this.setImmediate);
-exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
-                         (typeof global !== "undefined" && global.clearImmediate) ||
-                         (this && this.clearImmediate);
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
 /***/ "./node_modules/url-parse/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/url-parse/index.js ***!
@@ -70893,342 +69050,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./src/3dspace.js":
-/*!************************!*\
-  !*** ./src/3dspace.js ***!
-  \************************/
-/*! exports provided: ThreeDSpace */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThreeDSpace", function() { return ThreeDSpace; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/loaders/GLTFLoader.js */ "./node_modules/three/examples/jsm/loaders/GLTFLoader.js");
-/* harmony import */ var promise_polyfill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! promise-polyfill */ "./node_modules/promise-polyfill/src/index.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-var MODEL_PATH = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy_lightweight.glb";
-var MODEL_TEXTURE = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy.jpg";
-var backgroundColor = 0xf1f1f1;
-var ThreeDSpace = function ThreeDSpace(canvas) {
-  var _this = this;
-
-  _classCallCheck(this, ThreeDSpace);
-
-  _defineProperty(this, "init", function () {
-    _this.initScene();
-
-    _this.initRender();
-
-    _this.initCamera();
-
-    _this.addLights();
-
-    _this.addFloor();
-
-    _this.addSphere();
-  });
-
-  _defineProperty(this, "initScene", function () {
-    // Init the scene
-    _this.scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-    _this.scene.background = new three__WEBPACK_IMPORTED_MODULE_0__["Color"](backgroundColor);
-    _this.scene.fog = new three__WEBPACK_IMPORTED_MODULE_0__["Fog"](backgroundColor, 60, 100);
-  });
-
-  _defineProperty(this, "initRender", function () {
-    // Init the renderer
-    _this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
-      canvas: _this.canvas,
-      antialias: true
-    });
-    _this.renderer.shadowMap.enabled = true;
-
-    _this.renderer.setPixelRatio(window.devicePixelRatio);
-
-    document.body.appendChild(_this.renderer.domElement);
-  });
-
-  _defineProperty(this, "initCamera", function () {
-    // Add a camera
-    _this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](50, window.innerWidth / window.innerHeight, 0.1, 1000);
-    _this.camera.position.z = 30;
-    _this.camera.position.x = 0;
-    _this.camera.position.y = -3;
-  });
-
-  _defineProperty(this, "loadModel", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var loaderAnim, stacy_txt, stacy_mtl, loader;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            loaderAnim = document.getElementById("js-loader");
-            stacy_txt = new three__WEBPACK_IMPORTED_MODULE_0__["TextureLoader"]().load(MODEL_TEXTURE);
-            stacy_txt.flipY = false;
-            stacy_mtl = new three__WEBPACK_IMPORTED_MODULE_0__["MeshPhongMaterial"]({
-              map: stacy_txt,
-              color: 0xffffff,
-              skinning: true
-            });
-            loader = new three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__["GLTFLoader"]();
-            return _context.abrupt("return", new promise_polyfill__WEBPACK_IMPORTED_MODULE_2__["default"](function (resolve, reject) {
-              return loader.load(MODEL_PATH, function (gltf) {
-                _this.model = gltf.scene; // init model
-
-                var fileAnimations = gltf.animations;
-
-                _this.model.traverse(function (o) {
-                  if (o.isMesh) {
-                    o.castShadow = true;
-                    o.receiveShadow = true;
-                    o.material = stacy_mtl;
-                  } // Reference the neck and waist bones
-
-
-                  if (o.isBone && o.name === "mixamorigNeck") {
-                    _this.neck = o;
-                  }
-
-                  if (o.isBone && o.name === "mixamorigSpine") {
-                    _this.waist = o;
-                  }
-                });
-
-                _this.model.scale.set(7, 7, 7);
-
-                _this.model.position.y = -11;
-
-                _this.scene.add(_this.model);
-
-                loaderAnim.remove(); // Remove JS Animation
-
-                _this.mixer = new three__WEBPACK_IMPORTED_MODULE_0__["AnimationMixer"](_this.model);
-                var clips = fileAnimations.filter(function (val) {
-                  return val.name !== "idle";
-                });
-                _this.possibleAnims = clips.map(function (val) {
-                  // TO be animated on later
-                  var clip = three__WEBPACK_IMPORTED_MODULE_0__["AnimationClip"].findByName(clips, val.name);
-                  clip.tracks.splice(3, 3);
-                  clip.tracks.splice(9, 3);
-                  clip = _this.mixer.clipAction(clip);
-                  return clip;
-                });
-                var idleAnim = three__WEBPACK_IMPORTED_MODULE_0__["AnimationClip"].findByName(fileAnimations, "idle");
-                idleAnim.tracks.splice(3, 3);
-                idleAnim.tracks.splice(9, 3);
-                _this.idle = _this.mixer.clipAction(idleAnim);
-
-                _this.idle.play();
-
-                resolve({
-                  idle: _this.idle
-                });
-              }, undefined, // We don't need this function
-              function (error) {
-                reject(error);
-              });
-            }));
-
-          case 6:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  })));
-
-  _defineProperty(this, "addLights", function () {
-    // Add lights
-    var hemiLight = new three__WEBPACK_IMPORTED_MODULE_0__["HemisphereLight"](0xffffff, 0xffffff, 0.61);
-    hemiLight.position.set(0, 50, 0); // Add hemisphere light to scene
-
-    _this.scene.add(hemiLight);
-
-    var d = 8.25;
-    var dirLight = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](0xffffff, 0.54);
-    dirLight.position.set(-8, 12, 8);
-    dirLight.castShadow = true;
-    dirLight.shadow.mapSize = new three__WEBPACK_IMPORTED_MODULE_0__["Vector2"](1024, 1024);
-    dirLight.shadow.camera.near = 0.1;
-    dirLight.shadow.camera.far = 1500;
-    dirLight.shadow.camera.left = d * -1;
-    dirLight.shadow.camera.right = d;
-    dirLight.shadow.camera.top = d;
-    dirLight.shadow.camera.bottom = d * -1; // Add directional Light to scene
-
-    _this.scene.add(dirLight);
-  });
-
-  _defineProperty(this, "addFloor", function () {
-    // Floor
-    var floorGeometry = new three__WEBPACK_IMPORTED_MODULE_0__["PlaneGeometry"](5000, 5000, 1, 1);
-    var floorMaterial = new three__WEBPACK_IMPORTED_MODULE_0__["MeshPhongMaterial"]({
-      color: 0xeeeeee,
-      shininess: 0
-    });
-    var floor = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](floorGeometry, floorMaterial);
-    floor.rotation.x = -0.5 * Math.PI;
-    floor.receiveShadow = true;
-    floor.position.y = -11;
-
-    _this.scene.add(floor);
-  });
-
-  _defineProperty(this, "addSphere", function () {
-    var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["SphereGeometry"](8, 32, 32);
-    var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-      color: 0x9bffaf
-    }); // 0xf2ce2e
-
-    var sphere = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-    sphere.position.z = -15;
-    sphere.position.y = -2.5;
-    sphere.position.x = -0.25;
-
-    _this.scene.add(sphere);
-  });
-
-  this.canvas = canvas;
-  this.scene = null;
-  this.camera = null;
-  this.renderer = null;
-  this.model = null;
-  this.possibleAnims = null;
-  this.neck = null;
-  this.waist = null;
-  this.idle = null;
-  this.mixer = null;
-};
-
-/***/ }),
-
-/***/ "./src/BasicWorldDemo.js":
-/*!*******************************!*\
-  !*** ./src/BasicWorldDemo.js ***!
-  \*******************************/
-/*! exports provided: BasicWorldDemo */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BasicWorldDemo", function() { return BasicWorldDemo; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
-/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Map */ "./src/Map.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-var BasicWorldDemo = /*#__PURE__*/function () {
-  function BasicWorldDemo() {
-    _classCallCheck(this, BasicWorldDemo);
-
-    this._initialize();
-  }
-
-  _createClass(BasicWorldDemo, [{
-    key: "_initialize",
-    value: function _initialize() {
-      var _this = this;
-
-      this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
-        antialias: true
-      });
-      this.renderer.shadowMap.enabled = true;
-      this.renderer.shadowMap.type = three__WEBPACK_IMPORTED_MODULE_0__["PCFSoftShadowMap"];
-      this.renderer.setPixelRatio(window.devicePixelRatio);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(this.renderer.domElement);
-      window.addEventListener("resize", function () {
-        return _this._onWindowResize();
-      }, false);
-      var fov = 60;
-      var aspect = window.innerWidth / window.innerHeight;
-      var near = 1.0;
-      var far = 1000.0;
-      this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](fov, aspect, near, far);
-      this.camera.position.set(0, 500, 0);
-      this.scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-      var light = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](0xffffff);
-      light.position.set(100, 100, 100);
-      light.target.position.set(0, 0, 0);
-      light.castShadow = true;
-      light.shadow.bias = -0.01;
-      light.shadow.mapSize.width = 2048;
-      light.shadow.mapSize.height = 2048;
-      light.shadow.camera.near = 1.0;
-      light.shadow.camera.far = 500;
-      light.shadow.camera.left = 200;
-      light.shadow.camera.right = -200;
-      light.shadow.camera.top = 200;
-      light.shadow.camera.bottom = -200;
-      this.scene.add(light);
-      light = new three__WEBPACK_IMPORTED_MODULE_0__["AmbientLight"](0x404040, 1);
-      this.scene.add(light);
-      var controls = new three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__["OrbitControls"](this.camera, this.renderer.domElement);
-      controls.target.set(0, 20, 0);
-      controls.listenToKeyEvents(window);
-      controls.update(); // const plane = new THREE.Mesh(
-      //   new THREE.PlaneGeometry(100, 100, 10, 10),
-      //   new THREE.MeshStandardMaterial({
-      //     color: 0xffffff
-      //   })
-      // );
-      // plane.castShadow = false;
-      // plane.receiveShadow = true;
-      // plane.rotation.x = -Math.PI / 2;
-      // this.scene.add(plane);
-
-      var map = new _Map__WEBPACK_IMPORTED_MODULE_2__["Map"](this.scene);
-      map.create();
-      var loader = new three__WEBPACK_IMPORTED_MODULE_0__["CubeTextureLoader"]();
-      var texture = loader.load(["./posx.jpg", "./negx.jpg", "./posy.jpg", "./negy.jpg", "./posz.jpg", "./negz.jpg"]);
-      this.scene.background = texture;
-
-      this._raf();
-    }
-  }, {
-    key: "_onWindowResize",
-    value: function _onWindowResize() {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-  }, {
-    key: "_raf",
-    value: function _raf() {
-      var _this2 = this;
-
-      window.requestAnimationFrame(function () {
-        _this2.renderer.render(_this2.scene, _this2.camera);
-
-        _this2._raf();
-      });
-    }
-  }]);
-
-  return BasicWorldDemo;
-}();
-
-/***/ }),
-
 /***/ "./src/CameraControl.js":
 /*!******************************!*\
   !*** ./src/CameraControl.js ***!
@@ -71247,6 +69068,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Map */ "./src/Map.js");
 /* harmony import */ var _LoaderStatus__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LoaderStatus */ "./src/LoaderStatus.js");
 /* harmony import */ var _DOMManipulation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DOMManipulation */ "./src/DOMManipulation.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./data */ "./src/data.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -71258,6 +69080,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -71305,6 +69128,8 @@ var BasicCharacterController = /*#__PURE__*/function () {
       this.animations = {};
       this.input = new BasicCharacterControllerInput();
       this.stateMachine = new _StateMachines__WEBPACK_IMPORTED_MODULE_3__["CharacterFSM"](new BasicCharacterControllerProxy(this.animations));
+      this.domManipulation = new _DOMManipulation__WEBPACK_IMPORTED_MODULE_7__["DOMManipulation"]();
+      this.currentData = {};
       this.loadModels();
     }
   }, {
@@ -71380,13 +69205,15 @@ var BasicCharacterController = /*#__PURE__*/function () {
   }, {
     key: "update",
     value: function update(timeInSeconds) {
+      var _this2 = this;
+
       if (!this.target) {
         return;
       }
 
       if (this.params.loaderStatus.loadingArray.length === 0) {
         // All loading complete
-        _DOMManipulation__WEBPACK_IMPORTED_MODULE_7__["DOMManipulation"].removeLoader();
+        this.domManipulation.removeLoader();
       }
 
       this.stateMachine.update(timeInSeconds, this.input);
@@ -71410,10 +69237,10 @@ var BasicCharacterController = /*#__PURE__*/function () {
 
       if (this.stateMachine.currentState && this.stateMachine.currentState.name === "dance") {
         acc.multiplyScalar(0.0);
-      } // if (this.input.keys.interact) {
-
+      }
 
       var colorCount = [];
+      var objectIndex = 0;
 
       var _iterator = _createForOfIteratorHelper(this.interactingObjects),
           _step;
@@ -71425,48 +69252,37 @@ var BasicCharacterController = /*#__PURE__*/function () {
           !geometry.boundingBox && geometry.computeBoundingBox();
           var box = new three__WEBPACK_IMPORTED_MODULE_0__["Box3"]();
           var center = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
+          var size = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
           box.copy(geometry.boundingBox).applyMatrix4(object.matrixWorld);
           box.getCenter(center);
-          var cameraCoordinates = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-          cameraCoordinates.copy(this.params.camera.position);
-          var threshold = 5;
-          var cameraOffset = 15;
-          var isInRangeCamera = Math.abs(cameraCoordinates.x - center.x) < threshold && Math.abs(cameraCoordinates.z - center.z) < cameraOffset + threshold || Math.abs(cameraCoordinates.x - center.x) < cameraOffset + threshold && Math.abs(cameraCoordinates.z - center.z) < threshold;
-          var isInRangePlayer = Math.abs(this._position.x - center.x) < threshold && Math.abs(this._position.z - center.z) < threshold;
-          var finalData = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-          var direction = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-          object.getWorldDirection(direction);
-          finalData.subVectors(cameraCoordinates, center);
-          finalData.multiply(direction);
-          var isInRange = isInRangePlayer && isInRangeCamera;
-          var isRangeDir = finalData.x > 17 && finalData.x < 19 || finalData.z > 17 && finalData.z < 19; // this.input.keys.interact &&
-          // console.log({
-          //   isInRangePlayer,
-          //   isInRangeCamera,
-          //   isInRange,
-          //   isRangeDir,
-          //   player: this._position,
-          //   camera: cameraCoordinates,
-          //   center,
-          //   name: object.name,
-          //   direction: object.getWorldDirection(),
-          //   finalData
-          // });
+          box.getSize(size);
+          var factor = 3;
+          var isInRangePlayer = Math.abs(this._position.x - center.x) < size.x * factor / 2 && Math.abs(this._position.z - center.z) < size.z * factor / 2;
 
-          if (isRangeDir && isInRange) {
-            // console.log({
-            //   player: this._position,
-            //   camera: cameraCoordinates,
-            //   center,
-            //   rotation: this.rotation,
-            //   direction: object.getWorldDirection(),
-            //   finalData
-            // });
-            object.material.color.setHex(0x55ff63);
-            colorCount.push(object);
+          if (isInRangePlayer) {
+            (function () {
+              object.material.color.setHex(0x55ff63);
+              var resumeData = _data__WEBPACK_IMPORTED_MODULE_8__["default"].resume[object.name];
+              _this2.domManipulation.collections[object.name] = resumeData;
+
+              _this2.domManipulation.animateCoin(resumeData.points, function () {
+                _this2.domManipulation.updateScore();
+
+                _this2.domManipulation.animateAchievement("\n            You gained:\n            ".concat(resumeData.title, "\n          "));
+              });
+
+              colorCount.push(object);
+
+              _this2.params.scene.remove(object); // Probably not a good idea to manipulate the object on which we are iterating
+
+
+              _this2.interactingObjects.splice(objectIndex, 1);
+            })();
           } else {
             object.material.color.setHex(0xffff00);
           }
+
+          objectIndex += 1;
         }
       } catch (err) {
         _iterator.e(err);
@@ -71474,7 +69290,9 @@ var BasicCharacterController = /*#__PURE__*/function () {
         _iterator.f();
       }
 
-      colorCount.length > 0 ? _DOMManipulation__WEBPACK_IMPORTED_MODULE_7__["DOMManipulation"].showExperiences(_DOMManipulation__WEBPACK_IMPORTED_MODULE_7__["texts"][colorCount[0].name]) : _DOMManipulation__WEBPACK_IMPORTED_MODULE_7__["DOMManipulation"].removeExperiences(); // }
+      if (this.input.keys.esc) {
+        this.domManipulation.resetScreen();
+      }
 
       if (this.input.keys.forward) {
         this.velocity.z += acc.z * timeInSeconds;
@@ -71541,7 +69359,7 @@ var BasicCharacterControllerInput = /*#__PURE__*/function () {
   _createClass(BasicCharacterControllerInput, [{
     key: "init",
     value: function init() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.keys = {
         forward: false,
@@ -71550,13 +69368,14 @@ var BasicCharacterControllerInput = /*#__PURE__*/function () {
         right: false,
         space: false,
         shift: false,
-        interact: false
+        interact: false,
+        esc: false
       };
       document.addEventListener("keydown", function (e) {
-        return _this2.onKeyDown(e);
+        return _this3.onKeyDown(e);
       }, false);
       document.addEventListener("keyup", function (e) {
-        return _this2.onKeyUp(e);
+        return _this3.onKeyUp(e);
       }, false);
     }
   }, {
@@ -71597,6 +69416,10 @@ var BasicCharacterControllerInput = /*#__PURE__*/function () {
           // SHIFT
           this.keys.shift = true;
           break;
+
+        case 27:
+          //ESC
+          this.keys.esc = true;
       }
     }
   }, {
@@ -71637,6 +69460,10 @@ var BasicCharacterControllerInput = /*#__PURE__*/function () {
           // SHIFT
           this.keys.shift = false;
           break;
+
+        case 27:
+          //ESC
+          this.keys.esc = false;
       }
     }
   }]);
@@ -71654,7 +69481,7 @@ var CameraControl = /*#__PURE__*/function () {
   _createClass(CameraControl, [{
     key: "_initialize",
     value: function _initialize() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
         antialias: true
@@ -71665,7 +69492,7 @@ var CameraControl = /*#__PURE__*/function () {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(this.renderer.domElement);
       window.addEventListener("resize", function () {
-        return _this3._onWindowResize();
+        return _this4._onWindowResize();
       }, false);
       var fov = 60;
       var aspect = window.innerWidth / window.innerHeight;
@@ -71694,7 +69521,7 @@ var CameraControl = /*#__PURE__*/function () {
       this.loaderStatus = new _LoaderStatus__WEBPACK_IMPORTED_MODULE_6__["LoaderStatus"]();
       this.loaderStatus.addId("backgrounds");
       var texture = loader.load(["./posx.jpg", "./negx.jpg", "./posy.jpg", "./negy.jpg", "./posz.jpg", "./negz.jpg"], function () {
-        return _this3.loaderStatus.removeId("backgrounds");
+        return _this4.loaderStatus.removeId("backgrounds");
       });
       texture.encoding = three__WEBPACK_IMPORTED_MODULE_0__["sRGBEncoding"];
       this.scene.background = texture;
@@ -71727,7 +69554,7 @@ var CameraControl = /*#__PURE__*/function () {
   }, {
     key: "_loadStaticModel",
     value: function _loadStaticModel() {
-      var _this4 = this;
+      var _this5 = this;
 
       var loader = new three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__["GLTFLoader"]();
       loader.load("thing.glb", function (gltf) {
@@ -71735,7 +69562,7 @@ var CameraControl = /*#__PURE__*/function () {
           c.castShadow = true;
         });
 
-        _this4.scene.add(gltf.scene);
+        _this5.scene.add(gltf.scene);
       });
     }
   }, {
@@ -71748,20 +69575,20 @@ var CameraControl = /*#__PURE__*/function () {
   }, {
     key: "_raf",
     value: function _raf() {
-      var _this5 = this;
+      var _this6 = this;
 
       window.requestAnimationFrame(function (t) {
-        if (_this5.previousRaf === null) {
-          _this5.previousRaf = t;
+        if (_this6.previousRaf === null) {
+          _this6.previousRaf = t;
         }
 
-        _this5._raf();
+        _this6._raf();
 
-        _this5.renderer.render(_this5.scene, _this5.camera);
+        _this6.renderer.render(_this6.scene, _this6.camera);
 
-        _this5._step(t - _this5.previousRaf);
+        _this6._step(t - _this6.previousRaf);
 
-        _this5.previousRaf = t;
+        _this6.previousRaf = t;
       });
     }
   }, {
@@ -71788,829 +69615,153 @@ var CameraControl = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/CharacterController.js":
-/*!************************************!*\
-  !*** ./src/CharacterController.js ***!
-  \************************************/
-/*! exports provided: CharacterController */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CharacterController", function() { return CharacterController; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
-/* harmony import */ var three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three/examples/jsm/loaders/GLTFLoader.js */ "./node_modules/three/examples/jsm/loaders/GLTFLoader.js");
-/* harmony import */ var three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! three/examples/jsm/loaders/FBXLoader.js */ "./node_modules/three/examples/jsm/loaders/FBXLoader.js");
-/* harmony import */ var _StateMachines__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./StateMachines */ "./src/StateMachines.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-var BasicCharacterControllerProxy = /*#__PURE__*/function () {
-  function BasicCharacterControllerProxy(animations) {
-    _classCallCheck(this, BasicCharacterControllerProxy);
-
-    this._animations = animations;
-  }
-
-  _createClass(BasicCharacterControllerProxy, [{
-    key: "animations",
-    get: function get() {
-      return this._animations;
-    }
-  }]);
-
-  return BasicCharacterControllerProxy;
-}();
-
-var BasicCharacterController = /*#__PURE__*/function () {
-  function BasicCharacterController(params) {
-    _classCallCheck(this, BasicCharacterController);
-
-    this.init(params);
-  }
-
-  _createClass(BasicCharacterController, [{
-    key: "init",
-    value: function init(params) {
-      this.params = params;
-      this.decceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-0.0005, -0.0001, -5.0);
-      this.acceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0.25, 50.0);
-      this.velocity = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 0);
-      this.animations = {};
-      this.input = new BasicCharacterControllerInput();
-      this.stateMachine = new _StateMachines__WEBPACK_IMPORTED_MODULE_4__["CharacterFSM"](new BasicCharacterControllerProxy(this.animations));
-      this.loadModels();
-    }
-  }, {
-    key: "loadModels",
-    value: function loadModels() {
-      var _this = this;
-
-      var loader = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_3__["FBXLoader"]();
-      loader.load("aj.fbx", function (fbx) {
-        fbx.scale.setScalar(0.1);
-        fbx.traverse(function (c) {
-          c.castShadow = true;
-        });
-        _this.target = fbx;
-
-        _this.params.scene.add(_this.target);
-
-        _this.mixer = new three__WEBPACK_IMPORTED_MODULE_0__["AnimationMixer"](_this.target);
-        _this.manager = new three__WEBPACK_IMPORTED_MODULE_0__["LoadingManager"]();
-
-        _this.manager.onLoad = function () {
-          _this.stateMachine.setState("idle");
-        };
-
-        var onLoad = function onLoad(animName, anim) {
-          var clip = anim.animations[0];
-
-          var action = _this.mixer.clipAction(clip);
-
-          _this.animations[animName] = {
-            clip: clip,
-            action: action
-          };
-        };
-
-        var loader = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_3__["FBXLoader"](_this.manager);
-        loader.load("walk.fbx", function (a) {
-          return onLoad("walk", a);
-        });
-        loader.load("run.fbx", function (a) {
-          return onLoad("run", a);
-        });
-        loader.load("idle.fbx", function (a) {
-          return onLoad("idle", a);
-        });
-        loader.load("dance.fbx", function (a) {
-          return onLoad("dance", a);
-        });
-      });
-    }
-  }, {
-    key: "update",
-    value: function update(timeInSeconds) {
-      if (!this.target) {
-        return;
-      }
-
-      this.stateMachine.update(timeInSeconds, this.input);
-      var frameDeccelaration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](this.velocity.x * this.decceleration.x, this.velocity.y * this.decceleration.y, this.velocity.z * this.decceleration.z);
-      frameDeccelaration.multiplyScalar(timeInSeconds);
-      frameDeccelaration.z = Math.sign(frameDeccelaration.z) * Math.min(Math.abs(frameDeccelaration.z), Math.abs(this.velocity.z));
-      this.velocity.add(frameDeccelaration);
-      var controlObject = this.target;
-
-      var _Q = new three__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]();
-
-      var _A = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-      var _R = controlObject.quaternion.clone();
-
-      var acc = this.acceleration.clone();
-
-      if (this.input.keys.shift) {
-        acc.multiplyScalar(2.0);
-      }
-
-      if (this.stateMachine.currentState && this.stateMachine.currentState.name === "dance") {
-        acc.multiplyScalar(0.0);
-      }
-
-      if (this.input.keys.forward) {
-        this.velocity.z += acc.z * timeInSeconds;
-      }
-
-      if (this.input.keys.backward) {
-        this.velocity.z -= acc.z * timeInSeconds;
-      }
-
-      if (this.input.keys.left) {
-        _A.set(0, 1, 0);
-
-        _Q.setFromAxisAngle(_A, Math.PI * timeInSeconds * this.acceleration.y);
-
-        _R.multiply(_Q);
-      }
-
-      if (this.input.keys.right) {
-        _A.set(0, 1, 0);
-
-        _Q.setFromAxisAngle(_A, -Math.PI * timeInSeconds * this.acceleration.y);
-
-        _R.multiply(_Q);
-      }
-
-      controlObject.quaternion.copy(_R);
-      var oldPosition = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-      oldPosition.copy(controlObject.position);
-      var forward = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 1);
-      forward.applyQuaternion(controlObject.quaternion);
-      forward.normalize();
-      var sideways = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0, 0);
-      sideways.applyQuaternion(controlObject.quaternion);
-      sideways.normalize();
-      sideways.multiplyScalar(this.velocity.x * timeInSeconds);
-      forward.multiplyScalar(this.velocity.z * timeInSeconds);
-      controlObject.position.add(forward);
-      controlObject.position.add(sideways);
-      oldPosition.copy(controlObject.position);
-
-      if (this.mixer) {
-        this.mixer.update(timeInSeconds);
-      }
-    }
-  }]);
-
-  return BasicCharacterController;
-}();
-
-var BasicCharacterControllerInput = /*#__PURE__*/function () {
-  function BasicCharacterControllerInput() {
-    _classCallCheck(this, BasicCharacterControllerInput);
-
-    this.init();
-  }
-
-  _createClass(BasicCharacterControllerInput, [{
-    key: "init",
-    value: function init() {
-      var _this2 = this;
-
-      this.keys = {
-        forward: false,
-        backward: false,
-        left: false,
-        right: false,
-        space: false,
-        shift: false
-      };
-      document.addEventListener("keydown", function (e) {
-        return _this2.onKeyDown(e);
-      }, false);
-      document.addEventListener("keyup", function (e) {
-        return _this2.onKeyUp(e);
-      }, false);
-    }
-  }, {
-    key: "onKeyDown",
-    value: function onKeyDown(event) {
-      switch (event.keyCode) {
-        case 87:
-          // w
-          this.keys.forward = true;
-          break;
-
-        case 65:
-          // a
-          this.keys.left = true;
-          break;
-
-        case 83:
-          // s
-          this.keys.backward = true;
-          break;
-
-        case 68:
-          // d
-          this.keys.right = true;
-          break;
-
-        case 32:
-          // SPACE
-          this.keys.space = true;
-          break;
-
-        case 16:
-          // SHIFT
-          this.keys.shift = true;
-          break;
-      }
-    }
-  }, {
-    key: "onKeyUp",
-    value: function onKeyUp(event) {
-      switch (event.keyCode) {
-        case 87:
-          // w
-          this.keys.forward = false;
-          break;
-
-        case 65:
-          // a
-          this.keys.left = false;
-          break;
-
-        case 83:
-          // s
-          this.keys.backward = false;
-          break;
-
-        case 68:
-          // d
-          this.keys.right = false;
-          break;
-
-        case 32:
-          // SPACE
-          this.keys.space = false;
-          break;
-
-        case 16:
-          // SHIFT
-          this.keys.shift = false;
-          break;
-      }
-    }
-  }]);
-
-  return BasicCharacterControllerInput;
-}();
-
-var CharacterController = /*#__PURE__*/function () {
-  function CharacterController() {
-    _classCallCheck(this, CharacterController);
-
-    this._initialize();
-  }
-
-  _createClass(CharacterController, [{
-    key: "_initialize",
-    value: function _initialize() {
-      var _this3 = this;
-
-      this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
-        antialias: true
-      });
-      this.renderer.shadowMap.enabled = true;
-      this.renderer.shadowMap.type = three__WEBPACK_IMPORTED_MODULE_0__["PCFSoftShadowMap"];
-      this.renderer.setPixelRatio(window.devicePixelRatio);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(this.renderer.domElement);
-      window.addEventListener("resize", function () {
-        return _this3._onWindowResize();
-      }, false);
-      var fov = 60;
-      var aspect = window.innerWidth / window.innerHeight;
-      var near = 1.0;
-      var far = 1000.0;
-      this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](fov, aspect, near, far);
-      this.camera.position.set(25, 10, 25);
-      this.scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-      var light = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](0xffffff);
-      light.position.set(100, 100, 100);
-      light.target.position.set(0, 0, 0);
-      light.castShadow = true;
-      light.shadow.bias = -0.01;
-      light.shadow.mapSize.width = 2048;
-      light.shadow.mapSize.height = 2048;
-      light.shadow.camera.near = 1.0;
-      light.shadow.camera.far = 500;
-      light.shadow.camera.left = 200;
-      light.shadow.camera.right = -200;
-      light.shadow.camera.top = 200;
-      light.shadow.camera.bottom = -200;
-      this.scene.add(light);
-      light = new three__WEBPACK_IMPORTED_MODULE_0__["AmbientLight"](0x404040);
-      this.scene.add(light);
-      var controls = new three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__["OrbitControls"](this.camera, this.renderer.domElement);
-      controls.target.set(0, 20, 0);
-      controls.listenToKeyEvents(window);
-      controls.update();
-      var loader = new three__WEBPACK_IMPORTED_MODULE_0__["CubeTextureLoader"]();
-      var texture = loader.load(["./posx.jpg", "./negx.jpg", "./posy.jpg", "./negy.jpg", "./posz.jpg", "./negz.jpg"]);
-      texture.encoding = three__WEBPACK_IMPORTED_MODULE_0__["sRGBEncoding"];
-      this.scene.background = texture;
-      var plane = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["PlaneGeometry"](100, 100, 10, 10), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xffffff
-      }));
-      plane.castShadow = false;
-      plane.receiveShadow = true;
-      plane.rotation.x = -Math.PI / 2;
-      this.scene.add(plane);
-      this.mixers = [];
-      this.previousRaf = null;
-
-      this._loadAnimatedModel();
-
-      this._raf();
-    }
-  }, {
-    key: "_loadAnimatedModel",
-    value: function _loadAnimatedModel() {
-      var params = {
-        camera: this.camera,
-        scene: this.scene
-      };
-      this.controls = new BasicCharacterController(params);
-    }
-  }, {
-    key: "_loadStaticModel",
-    value: function _loadStaticModel() {
-      var _this4 = this;
-
-      var loader = new three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_2__["GLTFLoader"]();
-      loader.load("thing.glb", function (gltf) {
-        gltf.scene.traverse(function (c) {
-          c.castShadow = true;
-        });
-
-        _this4.scene.add(gltf.scene);
-      });
-    }
-  }, {
-    key: "_onWindowResize",
-    value: function _onWindowResize() {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-  }, {
-    key: "_raf",
-    value: function _raf() {
-      var _this5 = this;
-
-      window.requestAnimationFrame(function (t) {
-        if (_this5.previousRaf === null) {
-          _this5.previousRaf = t;
-        }
-
-        _this5._raf();
-
-        _this5.renderer.render(_this5.scene, _this5.camera);
-
-        _this5._step(t - _this5.previousRaf);
-
-        _this5.previousRaf = t;
-      });
-    }
-  }, {
-    key: "_step",
-    value: function _step(timeElapsed) {
-      var timeElapsedInSeconds = timeElapsed * 0.001;
-
-      if (this.mixers) {
-        this.mixers.map(function (m) {
-          return m.update(timeElapsedInSeconds);
-        });
-      }
-
-      if (this.controls) {
-        this.controls.update(timeElapsedInSeconds);
-      }
-    }
-  }]);
-
-  return CharacterController;
-}();
-
-/***/ }),
-
 /***/ "./src/DOMManipulation.js":
 /*!********************************!*\
   !*** ./src/DOMManipulation.js ***!
   \********************************/
-/*! exports provided: DOMManipulation, texts */
+/*! exports provided: DOMManipulation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMManipulation", function() { return DOMManipulation; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "texts", function() { return texts; });
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/data.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/utils.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+
+
 var DOMManipulation = /*#__PURE__*/function () {
   function DOMManipulation() {
+    var _this = this;
+
     _classCallCheck(this, DOMManipulation);
 
-    throw new Error("to be used as a static class");
+    this.controlShown = false;
+    this.resumeShown = false;
+    this.collections = {};
+    this.currentAnimations = {};
+    this.totalScore = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["calculatePoints"])(_data__WEBPACK_IMPORTED_MODULE_0__["default"].resume);
+    this.currentScore = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["calculatePoints"])(this.collections);
+    this.hideControls();
+    this.hideResume();
+    this.updateScore();
+    document.addEventListener("click", function (e) {
+      if (e.target.id === "show-resume") {
+        _this.resumeShown ? _this.hideResume() : _this.showResume();
+      } else if (e.target.id === "show-controls") {
+        _this.controlShown ? _this.hideControls() : _this.showControls();
+      }
+    });
   }
 
-  _createClass(DOMManipulation, null, [{
+  _createClass(DOMManipulation, [{
+    key: "showResume",
+    value: function showResume() {
+      this.resetScreen();
+      var elem = document.getElementById("resume");
+      elem.style.display = "block";
+      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["createResume"])(elem, this.collections);
+      this.resumeShown = true;
+    }
+  }, {
+    key: "hideResume",
+    value: function hideResume() {
+      var elem = document.getElementById("resume");
+      elem.style.display = "none";
+      elem.innerHTML = "";
+      this.resumeShown = false;
+    }
+  }, {
+    key: "showControls",
+    value: function showControls() {
+      this.resetScreen();
+      var elem = document.getElementById("controls");
+      elem.style.display = "block";
+      elem.innerText = JSON.stringify(_data__WEBPACK_IMPORTED_MODULE_0__["default"].controls);
+      this.controlShown = true;
+    }
+  }, {
+    key: "hideControls",
+    value: function hideControls() {
+      var elem = document.getElementById("controls");
+      elem.style.display = "none";
+      this.controlShown = false;
+    }
+  }, {
+    key: "updateScore",
+    value: function updateScore(callback) {
+      var _this2 = this;
+
+      var name = "updateScore";
+      if (this.currentAnimations[name]) return; //animation running
+
+      this.currentAnimations[name] = true;
+      var updatedScore = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["calculatePoints"])(this.collections);
+      var elem = document.getElementById("score");
+      Object(_utils__WEBPACK_IMPORTED_MODULE_1__["animateScore"])(elem, this.currentScore, updatedScore, 1000, this.totalScore, function () {
+        _this2.currentAnimations[name] = false;
+        callback && callback();
+      });
+      this.currentScore = updatedScore;
+    }
+  }, {
     key: "removeLoader",
     value: function removeLoader() {
       var loaderAnim = document.getElementById("js-loader");
       loaderAnim && loaderAnim.remove();
     }
   }, {
-    key: "removeExperiences",
-    value: function removeExperiences() {
-      var content = document.getElementById("content");
-      content.style.display = "none";
+    key: "resetScreen",
+    value: function resetScreen() {
+      this.hideResume();
+      this.hideControls();
     }
   }, {
-    key: "showExperiences",
-    value: function showExperiences(experiences) {
-      var content = document.getElementById("content");
-      content.innerHTML = experiences;
-      content.style.display = "block";
+    key: "animateAchievement",
+    value: function animateAchievement(message, callback) {
+      var _this3 = this;
+
+      var name = "animateAchievement";
+      if (this.currentAnimations[name]) return; //animation currently running so don't run again
+
+      this.currentAnimations[name] = true;
+      var elem = document.getElementById("achievement");
+      elem.style.display = "block";
+      elem.innerText = message;
+      setTimeout(function () {
+        _this3.currentAnimations[name] = false;
+        elem.style.display = "none";
+        elem.innerText = "";
+        callback && callback();
+      }, 1500);
+    }
+  }, {
+    key: "animateCoin",
+    value: function animateCoin(value, callback) {
+      var _this4 = this;
+
+      var name = "animateCoin";
+      if (this.currentAnimations[name]) return; //animation currently running so don't run again
+
+      this.currentAnimations[name] = true;
+      var coin = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["createCoin"])(value);
+      document.body.appendChild(coin); // Let the animation run
+
+      setTimeout(function () {
+        // remove from DOM and call callback
+        _this4.currentAnimations[name] = false;
+        coin && coin.remove();
+        callback && callback();
+      }, 3100);
     }
   }]);
 
   return DOMManipulation;
-}();
-var texts = {
-  button1: "This is button1 text",
-  button2: "This is button2 text",
-  button3: "This is button3 text"
-};
-
-/***/ }),
-
-/***/ "./src/LoadModelDemo.js":
-/*!******************************!*\
-  !*** ./src/LoadModelDemo.js ***!
-  \******************************/
-/*! exports provided: LoadModelDemo */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadModelDemo", function() { return LoadModelDemo; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
-/* harmony import */ var three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three/examples/jsm/loaders/GLTFLoader.js */ "./node_modules/three/examples/jsm/loaders/GLTFLoader.js");
-/* harmony import */ var three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! three/examples/jsm/loaders/FBXLoader.js */ "./node_modules/three/examples/jsm/loaders/FBXLoader.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-var BasicCharacterControls = /*#__PURE__*/function () {
-  function BasicCharacterControls(params) {
-    _classCallCheck(this, BasicCharacterControls);
-
-    this._Init(params);
-  }
-
-  _createClass(BasicCharacterControls, [{
-    key: "_Init",
-    value: function _Init(params) {
-      var _this = this;
-
-      this._params = params;
-      this._move = {
-        forward: false,
-        backward: false,
-        left: false,
-        right: false
-      };
-      this._decceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-0.0005, -0.0001, -5.0);
-      this._acceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0.25, 50.0);
-      this._velocity = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 0);
-      document.addEventListener("keydown", function (e) {
-        return _this._onKeyDown(e);
-      }, false);
-      document.addEventListener("keyup", function (e) {
-        return _this._onKeyUp(e);
-      }, false);
-    }
-  }, {
-    key: "_onKeyDown",
-    value: function _onKeyDown(event) {
-      switch (event.keyCode) {
-        case 87:
-          // w
-          this._move.forward = true;
-          break;
-
-        case 65:
-          // a
-          this._move.left = true;
-          break;
-
-        case 83:
-          // s
-          this._move.backward = true;
-          break;
-
-        case 68:
-          // d
-          this._move.right = true;
-          break;
-
-        case 38: // up
-
-        case 37: // left
-
-        case 40: // down
-
-        case 39:
-          // right
-          break;
-      }
-    }
-  }, {
-    key: "_onKeyUp",
-    value: function _onKeyUp(event) {
-      switch (event.keyCode) {
-        case 87:
-          // w
-          this._move.forward = false;
-          break;
-
-        case 65:
-          // a
-          this._move.left = false;
-          break;
-
-        case 83:
-          // s
-          this._move.backward = false;
-          break;
-
-        case 68:
-          // d
-          this._move.right = false;
-          break;
-
-        case 38: // up
-
-        case 37: // left
-
-        case 40: // down
-
-        case 39:
-          // right
-          break;
-      }
-    }
-  }, {
-    key: "Update",
-    value: function Update(timeInSeconds) {
-      var frameDeccelaration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](this._velocity.x * this._decceleration.x, this._velocity.y * this._decceleration.y, this._velocity.z * this._decceleration.z);
-      frameDeccelaration.multiplyScalar(timeInSeconds);
-      frameDeccelaration.z = Math.sign(frameDeccelaration.z) * Math.min(Math.abs(frameDeccelaration.z), Math.abs(this._velocity.z));
-
-      this._velocity.add(frameDeccelaration);
-
-      var controlObject = this._params.target;
-
-      var _Q = new three__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]();
-
-      var _A = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-      var _R = controlObject.quaternion.clone();
-
-      if (this._move.forward) {
-        this._velocity.z += this._acceleration.z * timeInSeconds;
-      }
-
-      if (this._move.backward) {
-        this._velocity.z -= this._acceleration.z * timeInSeconds;
-      }
-
-      if (this._move.left) {
-        _A.set(0, 1, 0);
-
-        _Q.setFromAxisAngle(_A, Math.PI * timeInSeconds * this._acceleration.y);
-
-        _R.multiply(_Q);
-      }
-
-      if (this._move.right) {
-        _A.set(0, 1, 0);
-
-        _Q.setFromAxisAngle(_A, -Math.PI * timeInSeconds * this._acceleration.y);
-
-        _R.multiply(_Q);
-      }
-
-      controlObject.quaternion.copy(_R);
-      var oldPosition = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-      oldPosition.copy(controlObject.position);
-      var forward = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 1);
-      forward.applyQuaternion(controlObject.quaternion);
-      forward.normalize();
-      var sideways = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0, 0);
-      sideways.applyQuaternion(controlObject.quaternion);
-      sideways.normalize();
-      sideways.multiplyScalar(this._velocity.x * timeInSeconds);
-      forward.multiplyScalar(this._velocity.z * timeInSeconds);
-      controlObject.position.add(forward);
-      controlObject.position.add(sideways);
-      oldPosition.copy(controlObject.position);
-    }
-  }]);
-
-  return BasicCharacterControls;
-}();
-
-var LoadModelDemo = /*#__PURE__*/function () {
-  function LoadModelDemo() {
-    _classCallCheck(this, LoadModelDemo);
-
-    this._initialize();
-  }
-
-  _createClass(LoadModelDemo, [{
-    key: "_initialize",
-    value: function _initialize() {
-      var _this2 = this;
-
-      this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
-        antialias: true
-      });
-      this.renderer.shadowMap.enabled = true;
-      this.renderer.shadowMap.type = three__WEBPACK_IMPORTED_MODULE_0__["PCFSoftShadowMap"];
-      this.renderer.setPixelRatio(window.devicePixelRatio);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(this.renderer.domElement);
-      window.addEventListener("resize", function () {
-        return _this2._onWindowResize();
-      }, false);
-      var fov = 60;
-      var aspect = window.innerWidth / window.innerHeight;
-      var near = 1.0;
-      var far = 1000.0;
-      this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](fov, aspect, near, far);
-      this.scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-      var light = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](0xffffff);
-      light.position.set(100, 100, 100);
-      light.target.position.set(0, 0, 0);
-      light.castShadow = true;
-      light.shadow.bias = -0.01;
-      light.shadow.mapSize.width = 2048;
-      light.shadow.mapSize.height = 2048;
-      light.shadow.camera.near = 1.0;
-      light.shadow.camera.far = 500;
-      light.shadow.camera.left = 200;
-      light.shadow.camera.right = -200;
-      light.shadow.camera.top = 200;
-      light.shadow.camera.bottom = -200;
-      this.scene.add(light);
-      light = new three__WEBPACK_IMPORTED_MODULE_0__["AmbientLight"](0x404040);
-      this.scene.add(light);
-      var controls = new three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__["OrbitControls"](this.camera, this.renderer.domElement);
-      controls.target.set(0, 20, 0);
-      controls.listenToKeyEvents(window);
-      controls.update();
-      var loader = new three__WEBPACK_IMPORTED_MODULE_0__["CubeTextureLoader"]();
-      var texture = loader.load(["./posx.jpg", "./negx.jpg", "./posy.jpg", "./negy.jpg", "./posz.jpg", "./negz.jpg"]);
-      this.scene.background = texture;
-      var plane = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["PlaneGeometry"](100, 100, 10, 10), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xffffff
-      }));
-      plane.castShadow = false;
-      plane.receiveShadow = true;
-      plane.rotation.x = -Math.PI / 2;
-      this.scene.add(plane);
-      this.mixers = [];
-      this.previousRaf = null;
-
-      this._loadAnimatedModel();
-
-      this._raf();
-    }
-  }, {
-    key: "_loadAnimatedModel",
-    value: function _loadAnimatedModel() {
-      var _this3 = this;
-
-      var loader = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_3__["FBXLoader"]();
-      loader.load("aj.fbx", function (fbx) {
-        fbx.scale.setScalar(0.1);
-        fbx.traverse(function (c) {
-          c.castShadow = true;
-        });
-        var params = {
-          target: fbx,
-          camera: _this3.camera
-        };
-        _this3.controls = new BasicCharacterControls(params);
-        var anim = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_3__["FBXLoader"]();
-        anim.load("walk.fbx", function (a) {
-          var m = new three__WEBPACK_IMPORTED_MODULE_0__["AnimationMixer"](fbx);
-
-          _this3.mixers.push(m);
-
-          var idle = m.clipAction(a.animations[0]);
-          idle.play();
-        });
-
-        _this3.scene.add(fbx);
-      });
-    }
-  }, {
-    key: "_loadStaticModel",
-    value: function _loadStaticModel() {
-      var _this4 = this;
-
-      var loader = new three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_2__["GLTFLoader"]();
-      loader.load("thing.glb", function (gltf) {
-        gltf.scene.traverse(function (c) {
-          c.castShadow = true;
-        });
-
-        _this4.scene.add(gltf.scene);
-      });
-    }
-  }, {
-    key: "_onWindowResize",
-    value: function _onWindowResize() {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-  }, {
-    key: "_raf",
-    value: function _raf() {
-      var _this5 = this;
-
-      window.requestAnimationFrame(function (t) {
-        if (_this5.previousRaf === null) {
-          _this5.previousRaf = t;
-        }
-
-        _this5._raf();
-
-        _this5.renderer.render(_this5.scene, _this5.camera);
-
-        _this5._step(t - _this5.previousRaf);
-
-        _this5.previousRaf = t;
-      });
-    }
-  }, {
-    key: "_step",
-    value: function _step(timeElapsed) {
-      var timeElapsedInSeconds = timeElapsed * 0.001;
-
-      if (this.mixers) {
-        this.mixers.map(function (m) {
-          return m.update(timeElapsedInSeconds);
-        });
-      }
-
-      if (this.controls) {
-        this.controls.Update(timeElapsedInSeconds);
-      }
-    }
-  }]);
-
-  return LoadModelDemo;
 }();
 
 /***/ }),
@@ -72755,52 +69906,80 @@ var Map = /*#__PURE__*/function () {
   }
 
   _createClass(Map, [{
+    key: "addSphereTarget",
+    value: function addSphereTarget(name, position) {
+      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["SphereGeometry"](1, 16, 16);
+      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
+        color: 0xffff00
+      });
+      var sphere = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
+      sphere.position.set(position.x, position.y, position.z);
+      sphere.name = name;
+      this.scene.add(sphere);
+      this.interactingObjects.push(sphere);
+    }
+  }, {
     key: "create",
     value: function create() {
+      var brickTexture = new three__WEBPACK_IMPORTED_MODULE_0__["TextureLoader"]().load("./brick.jpg");
+      brickTexture.wrapS = three__WEBPACK_IMPORTED_MODULE_0__["RepeatWrapping"];
+      brickTexture.wrapT = three__WEBPACK_IMPORTED_MODULE_0__["RepeatWrapping"];
+      brickTexture.repeat.set(4, 4);
+      var checkeredTexture = new three__WEBPACK_IMPORTED_MODULE_0__["TextureLoader"]().load("./checkered.jpg");
+      checkeredTexture.wrapS = three__WEBPACK_IMPORTED_MODULE_0__["RepeatWrapping"];
+      checkeredTexture.wrapT = three__WEBPACK_IMPORTED_MODULE_0__["RepeatWrapping"];
+      checkeredTexture.repeat.set(4, 4);
       var plane = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["PlaneGeometry"](300, 300, 30, 30), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xffffff
+        // color: 0xffffff
+        map: checkeredTexture
       }));
       plane.castShadow = false;
       plane.receiveShadow = true;
       plane.rotation.x = -Math.PI / 2;
       this.scene.add(plane);
       var divider1 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](260, 30, 30), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       }));
       divider1.position.set(-20, 15, -35);
       divider1.castShadow = true;
       divider1.receiveShadow = true;
       this.scene.add(divider1);
       var box1 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](60, 30, 140), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       }));
       box1.position.set(80, 15, 50);
       box1.castShadow = true;
       box1.receiveShadow = true;
       this.scene.add(box1);
       var box2 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](100, 30, 140), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       }));
       box2.position.set(-50, 15, 50);
       box2.castShadow = true;
       box2.receiveShadow = true;
       this.scene.add(box2);
       var wall1 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](300, 30, 10), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       }));
       wall1.position.set(0, 15, -155);
       wall1.castShadow = true;
       wall1.receiveShadow = true;
       this.scene.add(wall1);
       var wall2 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](300, 30, 10), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       }));
       wall2.position.set(0, 15, 155);
       wall2.castShadow = true;
       wall2.receiveShadow = true;
       this.scene.add(wall2);
       var wall3 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](10, 30, 300), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       }));
       wall3.name = "wall3";
       wall3.position.set(155, 15, 0);
@@ -72808,41 +69987,33 @@ var Map = /*#__PURE__*/function () {
       wall3.receiveShadow = true;
       this.scene.add(wall3);
       var wall4 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](10, 30, 300), new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       }));
       wall4.position.set(-155, 15, 0);
       wall4.castShadow = true;
       wall4.receiveShadow = true;
       this.scene.add(wall4);
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["CircleGeometry"](0.4, 32);
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0xffff00
+      this.addSphereTarget("education", {
+        x: 20,
+        y: 8,
+        z: 15
       });
-      var circle = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      circle.position.set(60, 10, 149);
-      circle.rotation.x = Math.PI;
-      circle.name = "button1";
-      this.scene.add(circle);
-      var geometry2 = new three__WEBPACK_IMPORTED_MODULE_0__["CircleGeometry"](0.4, 32);
-      var material2 = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0xffff00
+      this.addSphereTarget("projects", {
+        x: 60,
+        y: 10,
+        z: 130
+      }); // const texture = new THREE.Texture(this.createTextCanvas("This is text"));
+
+      var texture = new three__WEBPACK_IMPORTED_MODULE_0__["TextureLoader"]().load("./negx.jpg");
+      var gplaneGeometry = new three__WEBPACK_IMPORTED_MODULE_0__["PlaneGeometry"](20, 10);
+      var material4 = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
+        map: texture
       });
-      var circle2 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry2, material2);
-      circle2.position.set(1, 10, 15);
-      circle2.rotation.y = Math.PI / 2;
-      circle2.name = "button2";
-      this.scene.add(circle2);
-      var geometry3 = new three__WEBPACK_IMPORTED_MODULE_0__["CircleGeometry"](0.4, 32);
-      var material3 = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0xffff00
-      });
-      var circle3 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry3, material3);
-      circle3.position.set(20, 10, -149);
-      circle3.name = "button3";
-      this.scene.add(circle3);
-      this.interactingObjects.push(circle);
-      this.interactingObjects.push(circle2);
-      this.interactingObjects.push(circle3);
+      var plane1 = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](gplaneGeometry, material4);
+      plane1.rotation.y = Math.PI / 2;
+      plane1.position.set(1, 20, 15);
+      this.scene.add(plane1);
     }
   }, {
     key: "isBoundaryBreached",
@@ -73302,200 +70473,6 @@ var ThirdPersonCamera = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/animation.js":
-/*!**************************!*\
-  !*** ./src/animation.js ***!
-  \**************************/
-/*! exports provided: ModelAnimation */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModelAnimation", function() { return ModelAnimation; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-var ModelAnimation = /*#__PURE__*/function () {
-  function ModelAnimation(scene, camera, renderer, mixer) {
-    var _this = this;
-
-    _classCallCheck(this, ModelAnimation);
-
-    _defineProperty(this, "update", function () {
-      if (_this.mixer) {
-        _this.mixer.update(_this.clock.getDelta());
-      }
-
-      if (_this.resizeRendererToDisplaySize(_this.renderer)) {
-        var canvas = _this.renderer.domElement;
-        _this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-
-        _this.camera.updateProjectionMatrix();
-      }
-
-      _this.renderer.render(_this.scene, _this.camera);
-
-      window.requestAnimationFrame(_this.update);
-    });
-
-    _defineProperty(this, "moveJoint", function (mouse, joint, degreeLimit) {
-      var degrees = _this.getMouseDegrees(mouse.x, mouse.y, degreeLimit);
-
-      joint.rotation.y = three__WEBPACK_IMPORTED_MODULE_0__["Math"].degToRad(degrees.x);
-      joint.rotation.x = three__WEBPACK_IMPORTED_MODULE_0__["Math"].degToRad(degrees.y);
-    });
-
-    _defineProperty(this, "getMouseDegrees", function (x, y, degreeLimit) {
-      var dx = 0,
-          dy = 0,
-          xdiff,
-          xPercentage,
-          ydiff,
-          yPercentage;
-      var w = {
-        x: window.innerWidth,
-        y: window.innerHeight
-      }; // Left (Rotates neck left between 0 and -degreeLimit)
-      // 1. If cursor is in the left half of screen
-
-      if (x <= w.x / 2) {
-        // 2. Get the difference between middle of screen and cursor position
-        xdiff = w.x / 2 - x; // 3. Find the percentage of that difference (percentage toward edge of screen)
-
-        xPercentage = xdiff / (w.x / 2) * 100; // 4. Convert that to a percentage of the maximum rotation we allow for the neck
-
-        dx = degreeLimit * xPercentage / 100 * -1;
-      } // Right (Rotates neck right between 0 and degreeLimit)
-
-
-      if (x >= w.x / 2) {
-        xdiff = x - w.x / 2;
-        xPercentage = xdiff / (w.x / 2) * 100;
-        dx = degreeLimit * xPercentage / 100;
-      } // Up (Rotates neck up between 0 and -degreeLimit)
-
-
-      if (y <= w.y / 2) {
-        ydiff = w.y / 2 - y;
-        yPercentage = ydiff / (w.y / 2) * 100; // Note that I cut degreeLimit in half when she looks up
-
-        dy = degreeLimit * 0.5 * yPercentage / 100 * -1;
-      } // Down (Rotates neck down between 0 and degreeLimit)
-
-
-      if (y >= w.y / 2) {
-        ydiff = y - w.y / 2;
-        yPercentage = ydiff / (w.y / 2) * 100;
-        dy = degreeLimit * yPercentage / 100;
-      }
-
-      return {
-        x: dx,
-        y: dy
-      };
-    });
-
-    _defineProperty(this, "raycast", function (e) {
-      var touch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var idle = arguments.length > 2 ? arguments[2] : undefined;
-      var possibleAnims = arguments.length > 3 ? arguments[3] : undefined;
-      var mouse = {};
-
-      if (touch) {
-        mouse.x = 2 * (e.changedTouches[0].clientX / window.innerWidth) - 1;
-        mouse.y = 1 - 2 * (e.changedTouches[0].clientY / window.innerHeight);
-      } else {
-        mouse.x = 2 * (e.clientX / window.innerWidth) - 1;
-        mouse.y = 1 - 2 * (e.clientY / window.innerHeight);
-      } // update the picking ray with the camera and mouse position
-
-
-      _this.raycaster.setFromCamera(mouse, _this.camera); // calculate objects intersecting the picking ray
-
-
-      var intersects = _this.raycaster.intersectObjects(_this.scene.children, true);
-
-      if (intersects[0]) {
-        var object = intersects[0].object;
-
-        if (object.name === "stacy") {
-          if (!_this.currentlyAnimating) {
-            _this.currentlyAnimating = true;
-
-            _this.playOnClick(idle, possibleAnims);
-          }
-        }
-      }
-    });
-
-    this.raycaster = new three__WEBPACK_IMPORTED_MODULE_0__["Raycaster"]();
-    this.scene = scene;
-    this.camera = camera;
-    this.renderer = renderer;
-    this.mixer = mixer;
-    this.clock = new three__WEBPACK_IMPORTED_MODULE_0__["Clock"]();
-    this.currentlyAnimating = false;
-  }
-
-  _createClass(ModelAnimation, [{
-    key: "playOnClick",
-    value: function playOnClick(idle, possibleAnims) {
-      var anim = Math.floor(Math.random() * possibleAnims.length) + 0;
-      this.playModifierAnimation(idle, 0.25, possibleAnims[anim], 0.25);
-    }
-  }, {
-    key: "playModifierAnimation",
-    value: function playModifierAnimation(from, fSpeed, to, tSpeed) {
-      var _this2 = this;
-
-      to.setLoop(three__WEBPACK_IMPORTED_MODULE_0__["LoopOnce"]);
-      to.reset();
-      to.play();
-      from.crossFadeTo(to, fSpeed, true);
-      setTimeout(function () {
-        from.enabled = true;
-        to.crossFadeTo(from, tSpeed, true);
-        _this2.currentlyAnimating = false;
-      }, to._clip.duration * 1000 - (tSpeed + fSpeed) * 1000);
-    }
-  }, {
-    key: "getMousePos",
-    value: function getMousePos(e) {
-      return {
-        x: e.clientX,
-        y: e.clientY
-      };
-    }
-  }, {
-    key: "resizeRendererToDisplaySize",
-    value: function resizeRendererToDisplaySize() {
-      var canvas = this.renderer.domElement;
-      var width = window.innerWidth;
-      var height = window.innerHeight;
-      var canvasPixelWidth = canvas.width / window.devicePixelRatio;
-      var canvasPixelHeight = canvas.height / window.devicePixelRatio;
-      var needResize = canvasPixelWidth !== width || canvasPixelHeight !== height;
-
-      if (needResize) {
-        this.renderer.setSize(width, height, false);
-      }
-
-      return needResize;
-    }
-  }]);
-
-  return ModelAnimation;
-}();
-
-/***/ }),
-
 /***/ "./src/app.js":
 /*!********************!*\
   !*** ./src/app.js ***!
@@ -73506,35 +70483,31 @@ var ModelAnimation = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_webgl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_utils/webgl */ "./_utils/webgl.js");
-/* harmony import */ var _3dspace__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./3dspace */ "./src/3dspace.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animation */ "./src/animation.js");
-/* harmony import */ var _BasicWorldDemo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./BasicWorldDemo */ "./src/BasicWorldDemo.js");
-/* harmony import */ var _LoadModelDemo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LoadModelDemo */ "./src/LoadModelDemo.js");
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _assets_img_rigo_baby_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./assets/img/rigo-baby.jpg */ "./src/assets/img/rigo-baby.jpg");
-/* harmony import */ var _assets_resources_negx_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/resources/negx.jpg */ "./src/assets/resources/negx.jpg");
-/* harmony import */ var _assets_resources_negy_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./assets/resources/negy.jpg */ "./src/assets/resources/negy.jpg");
-/* harmony import */ var _assets_resources_negz_jpg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/resources/negz.jpg */ "./src/assets/resources/negz.jpg");
-/* harmony import */ var _assets_resources_posx_jpg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./assets/resources/posx.jpg */ "./src/assets/resources/posx.jpg");
-/* harmony import */ var _assets_resources_posy_jpg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./assets/resources/posy.jpg */ "./src/assets/resources/posy.jpg");
-/* harmony import */ var _assets_resources_posz_jpg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./assets/resources/posz.jpg */ "./src/assets/resources/posz.jpg");
-/* harmony import */ var _assets_resources_aj_fbx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./assets/resources/aj.fbx */ "./src/assets/resources/aj.fbx");
-/* harmony import */ var _assets_resources_walk_fbx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./assets/resources/walk.fbx */ "./src/assets/resources/walk.fbx");
-/* harmony import */ var _assets_resources_run_fbx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./assets/resources/run.fbx */ "./src/assets/resources/run.fbx");
-/* harmony import */ var _assets_resources_dance_fbx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./assets/resources/dance.fbx */ "./src/assets/resources/dance.fbx");
-/* harmony import */ var _assets_resources_idle_fbx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./assets/resources/idle.fbx */ "./src/assets/resources/idle.fbx");
-/* harmony import */ var _assets_resources_thing_glb__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./assets/resources/thing.glb */ "./src/assets/resources/thing.glb");
-/* harmony import */ var _CharacterController__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./CharacterController */ "./src/CharacterController.js");
-/* harmony import */ var _CameraControl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./CameraControl */ "./src/CameraControl.js");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _coin_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./coin.css */ "./src/coin.css");
+/* harmony import */ var _coin_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_coin_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _resume_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./resume.css */ "./src/resume.css");
+/* harmony import */ var _resume_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_resume_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _assets_img_rigo_baby_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/img/rigo-baby.jpg */ "./src/assets/img/rigo-baby.jpg");
+/* harmony import */ var _assets_resources_negx_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/resources/negx.jpg */ "./src/assets/resources/negx.jpg");
+/* harmony import */ var _assets_resources_negy_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/resources/negy.jpg */ "./src/assets/resources/negy.jpg");
+/* harmony import */ var _assets_resources_negz_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./assets/resources/negz.jpg */ "./src/assets/resources/negz.jpg");
+/* harmony import */ var _assets_resources_posx_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./assets/resources/posx.jpg */ "./src/assets/resources/posx.jpg");
+/* harmony import */ var _assets_resources_posy_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/resources/posy.jpg */ "./src/assets/resources/posy.jpg");
+/* harmony import */ var _assets_resources_posz_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./assets/resources/posz.jpg */ "./src/assets/resources/posz.jpg");
+/* harmony import */ var _assets_resources_aj_fbx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/resources/aj.fbx */ "./src/assets/resources/aj.fbx");
+/* harmony import */ var _assets_resources_walk_fbx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./assets/resources/walk.fbx */ "./src/assets/resources/walk.fbx");
+/* harmony import */ var _assets_resources_run_fbx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./assets/resources/run.fbx */ "./src/assets/resources/run.fbx");
+/* harmony import */ var _assets_resources_dance_fbx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./assets/resources/dance.fbx */ "./src/assets/resources/dance.fbx");
+/* harmony import */ var _assets_resources_idle_fbx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./assets/resources/idle.fbx */ "./src/assets/resources/idle.fbx");
+/* harmony import */ var _assets_resources_thing_glb__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./assets/resources/thing.glb */ "./src/assets/resources/thing.glb");
+/* harmony import */ var _assets_resources_brick_jpg__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./assets/resources/brick.jpg */ "./src/assets/resources/brick.jpg");
+/* harmony import */ var _assets_resources_checkered_jpg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./assets/resources/checkered.jpg */ "./src/assets/resources/checkered.jpg");
+/* harmony import */ var _CameraControl__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./CameraControl */ "./src/CameraControl.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
 
 
 
@@ -73602,7 +70575,7 @@ window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.
             // APP = new LoadModelDemo();
             // APP = new CharacterController();
 
-            APP = new _CameraControl__WEBPACK_IMPORTED_MODULE_22__["CameraControl"]();
+            APP = new _CameraControl__WEBPACK_IMPORTED_MODULE_19__["CameraControl"]();
           } else {
             warning = _utils_webgl__WEBPACK_IMPORTED_MODULE_0__["WEBGL"].getWebGLErrorMessage();
             document.getElementById("container").appendChild(warning);
@@ -73641,6 +70614,32 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "aj.fbx");
+
+/***/ }),
+
+/***/ "./src/assets/resources/brick.jpg":
+/*!****************************************!*\
+  !*** ./src/assets/resources/brick.jpg ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "brick.jpg");
+
+/***/ }),
+
+/***/ "./src/assets/resources/checkered.jpg":
+/*!********************************************!*\
+  !*** ./src/assets/resources/checkered.jpg ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "checkered.jpg");
 
 /***/ }),
 
@@ -73787,6 +70786,110 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/coin.css":
+/*!**********************!*\
+  !*** ./src/coin.css ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js!./coin.css */ "./node_modules/css-loader/dist/cjs.js!./src/coin.css");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/data.js":
+/*!*********************!*\
+  !*** ./src/data.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  resume: {
+    education: {
+      title: "Education",
+      points: 50,
+      description: [{
+        text: "IIT Kharagpur"
+      }]
+    },
+    projects: {
+      title: "Projects",
+      points: 100,
+      description: [{
+        text: "Photoacoustic drug delivery"
+      }]
+    }
+  },
+  controls: [{
+    title: "W",
+    description: "Move Forward"
+  }, {
+    title: "S",
+    description: "Move Backward"
+  }, {
+    title: "D",
+    description: "Turn Right"
+  }, {
+    title: "A",
+    description: "Turn Left"
+  }, {
+    title: "Shift",
+    description: "Run"
+  }]
+});
+
+/***/ }),
+
+/***/ "./src/resume.css":
+/*!************************!*\
+  !*** ./src/resume.css ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js!./resume.css */ "./node_modules/css-loader/dist/cjs.js!./src/resume.css");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/style.css":
 /*!***********************!*\
   !*** ./src/style.css ***!
@@ -73813,6 +70916,71 @@ var update = api(content, options);
 
 
 module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/utils.js":
+/*!**********************!*\
+  !*** ./src/utils.js ***!
+  \**********************/
+/*! exports provided: calculatePoints, createCoin, animateScore, createResume */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculatePoints", function() { return calculatePoints; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCoin", function() { return createCoin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animateScore", function() { return animateScore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createResume", function() { return createResume; });
+function calculatePoints(resume) {
+  return Object.keys(resume).reduce(function (prev, curr) {
+    return prev + resume[curr].points;
+  }, 0);
+}
+function createCoin(value) {
+  var innerHTML = "\n    <div class=\"coin_container\">\n      <div class=\"coin\">\n        <div class=\"face heads\">\n          ".concat(value, "\n        </div>\n        <div class=\"face tails\">\n          ").concat(value, "\n        </div>\n      </div>\n    </div>\n  ");
+  var elem = document.createElement("span");
+  elem.innerHTML = innerHTML;
+  return elem;
+}
+function animateScore(obj, start, end, duration, totalScore, callback) {
+  var startTimestamp = null;
+
+  var step = function step(timestamp) {
+    if (!startTimestamp) startTimestamp = timestamp;
+    var progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    var updatedScore = Math.floor(progress * (end - start) + start);
+    obj.innerHTML = "Score: ".concat(updatedScore, " / ").concat(totalScore);
+
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+
+    if (updatedScore === end) {
+      callback && callback();
+    }
+  };
+
+  window.requestAnimationFrame(step);
+}
+function createResume(obj, collections) {
+  var keys = Object.keys(collections);
+  var showProfile = true;
+  var showSkills = true;
+  var showTechnical = true;
+  var showProjects = keys.includes("projects");
+  var showEducation = keys.includes("education");
+  var div = document.createElement("div");
+
+  var defaultMessage = function defaultMessage(message) {
+    return "\n    <div class=\"talen\"> You have yet to collect the ".concat(message, " coin </div>\n  ");
+  };
+
+  var template = "\n    <div id=\"doc2\" class=\"yui-t7\">\n      <div id=\"inner\">\n      \n        <div id=\"hd\">\n          <div class=\"yui-gc\">\n            <div class=\"yui-u first\">\n              <h1>Jonathan Doe</h1>\n              <h2>Web Designer, Director</h2>\n            </div>\n\n            <div class=\"yui-u\">\n              <div class=\"contact-info\">\n                <h3><a id=\"pdf\" href=\"#\">Download PDF</a></h3>\n                <h3><a href=\"mailto:name@yourdomain.com\">name@yourdomain.com</a></h3>\n                <h3>(313) - 867-5309</h3>\n              </div><!--// .contact-info -->\n            </div>\n          </div><!--// .yui-gc -->\n        </div><!--// hd -->\n\n        <div id=\"bd\">\n          <div id=\"yui-main\">\n            <div class=\"yui-b\">\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Profile</h2>\n                </div>\n                <div class=\"yui-u\">\n                  ".concat(showProfile ? "\n                    <p class=\"enlarge\">\n                      Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. \n                    </p>\n                  " : defaultMessage("profile"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Skills</h2>\n                </div>\n                <div class=\"yui-u\">\n\n                    ").concat(showSkills ? "\n                      <div class=\"talent\">\n                        <h2>Web Design</h2>\n                        <p>Assertively exploit wireless initiatives rather than synergistic core competencies.\t</p>\n                      </div>\n\n                      <div class=\"talent\">\n                        <h2>Interface Design</h2>\n                        <p>Credibly streamline mission-critical value with multifunctional functionalities.\t </p>\n                      </div>\n\n                      <div class=\"talent\">\n                        <h2>Project Direction</h2>\n                        <p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>\n                      </div>\n                    " : defaultMessage("skills"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Technical</h2>\n                </div>\n                <div class=\"yui-u\">\n                  ").concat(showTechnical ? "\n                    <ul class=\"talent\">\n                      <li>XHTML</li>\n                      <li>CSS</li>\n                      <li class=\"last\">Javascript</li>\n                    </ul>\n\n                    <ul class=\"talent\">\n                      <li>Jquery</li>\n                      <li>PHP</li>\n                      <li class=\"last\">CVS / Subversion</li>\n                    </ul>\n\n                    <ul class=\"talent\">\n                      <li>OS X</li>\n                      <li>Windows XP/Vista</li>\n                      <li class=\"last\">Linux</li>\n                    </ul>        \n                  " : defaultMessage("techical"), "\n                </div>\n              </div><!--// .yui-gf-->\n\n              <div class=\"yui-gf\">   \n                <div class=\"yui-u first\">\n                  <h2>Experience</h2>\n                </div><!--// .yui-u -->\n\n                <div class=\"yui-u\">\n                  ").concat(showProjects ? "\n                    <div class=\"job\">\n                      <h2>Facebook</h2>\n                      <h3>Senior Interface Designer</h3>\n                      <h4>2005-2007</h4>\n                      <p>Intrinsicly enable optimal core competencies through corporate relationships. Phosfluorescently implement worldwide vortals and client-focused imperatives. Conveniently initiate virtual paradigms and top-line convergence. </p>\n                    </div>\n\n                    <div class=\"job\">\n                      <h2>Apple Inc.</h2>\n                      <h3>Senior Interface Designer</h3>\n                      <h4>2005-2007</h4>\n                      <p>Progressively reconceptualize multifunctional \"outside the box\" thinking through inexpensive methods of empowerment. Compellingly morph extensive niche markets with mission-critical ideas. Phosfluorescently deliver bricks-and-clicks strategic theme areas rather than scalable benefits. </p>\n                    </div>\n\n                    <div class=\"job\">\n                      <h2>Microsoft</h2>\n                      <h3>Principal and Creative Lead</h3>\n                      <h4>2004-2005</h4>\n                      <p>Intrinsicly transform flexible manufactured products without excellent intellectual capital. Energistically evisculate orthogonal architectures through covalent action items. Assertively incentivize sticky platforms without synergistic materials. </p>\n                    </div>\n\n\n                    <div class=\"job last\">\n                      <h2>International Business Machines (IBM)</h2>\n                      <h3>Lead Web Designer</h3>\n                      <h4>2001-2004</h4>\n                      <p>Globally re-engineer cross-media schemas through viral methods of empowerment. Proactively grow long-term high-impact human capital and highly efficient innovation. Intrinsicly iterate excellent e-tailers with timely e-markets.</p>\n                    </div>\n                  " : defaultMessage("Projects"), "\n\n                </div><!--// .yui-u -->\n              </div><!--// .yui-gf -->\n\n\n\n              <div class=\"yui-gf last\">\n                <div class=\"yui-u first\">\n                  <h2>Education</h2>\n                </div>\n                <div class=\"yui-u\">\n                ").concat(showEducation ? "\n                  <h2>Indiana University - Bloomington, Indiana</h2>\n                  <h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>\n                " : defaultMessage("education"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n\n            </div><!--// .yui-b -->\n          </div><!--// yui-main -->\n        </div><!--// bd -->\n\n        <div id=\"ft\">\n          <p>Jonathan Doe &mdash; <a href=\"mailto:name@yourdomain.com\">name@yourdomain.com</a> &mdash; (313) - 867-5309</p>\n        </div><!--// footer -->\n\n      </div><!-- // inner -->\n\n\n    </div><!--// doc -->\n  ");
+  div.innerHTML = template;
+  obj.appendChild(div);
+  return obj;
+}
 
 /***/ }),
 
