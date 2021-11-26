@@ -73,13 +73,21 @@ class BasicCharacterController {
         };
       };
 
-      this.params.loaderStatus.addIds(["run", "walk", "idle", "dance"]);
+      this.params.loaderStatus.addIds(["run", "walk", "idle", "dance", "jump"]);
       const loader = new FBXLoader(this.manager);
       loader.load("walk.fbx", a => onLoad("walk", a));
       loader.load("run.fbx", a => onLoad("run", a));
       loader.load("idle.fbx", a => onLoad("idle", a));
       loader.load("dance.fbx", a => onLoad("dance", a));
+      loader.load("jump.fbx", a => onLoad("jump", a));
     });
+  }
+
+  get isGround() {
+    // currently its a flat ground
+    // can be made more complicated
+    // and a function of x and z
+    return this._position.y === 0;
   }
 
   get position() {
@@ -138,6 +146,8 @@ class BasicCharacterController {
 
     let colorCount = [];
     let objectIndex = 0;
+    const initVelocity = 30;
+    const accFactor = 300;
     for (const object of this.interactingObjects) {
       var geometry = object.geometry;
       !geometry.boundingBox && geometry.computeBoundingBox();
@@ -150,7 +160,8 @@ class BasicCharacterController {
       const factor = 3;
       const isInRangePlayer =
         Math.abs(this._position.x - center.x) < (size.x * factor) / 2 &&
-        Math.abs(this._position.z - center.z) < (size.z * factor) / 2;
+        Math.abs(this._position.z - center.z) < (size.z * factor) / 2 &&
+        Math.abs(this._position.y - center.y) < 15;
 
       if (isInRangePlayer) {
         object.material.color.setHex(0x55ff63);
@@ -183,6 +194,12 @@ class BasicCharacterController {
     if (this.input.keys.backward) {
       this.velocity.z -= acc.z * timeInSeconds;
     }
+    if (this.input.keys.space && this.isGround) {
+      this.velocity.y = initVelocity;
+      if (this.input.keys.shift) {
+        this.velocity.y *= 1.5;
+      }
+    }
     if (this.input.keys.left) {
       _A.set(0, 1, 0);
       _Q.setFromAxisAngle(_A, Math.PI * timeInSeconds * this.acceleration.y);
@@ -192,6 +209,10 @@ class BasicCharacterController {
       _A.set(0, 1, 0);
       _Q.setFromAxisAngle(_A, -Math.PI * timeInSeconds * this.acceleration.y);
       _R.multiply(_Q);
+    }
+
+    if (!this.isGround) {
+      this.velocity.y -= acc.y * accFactor * timeInSeconds;
     }
 
     controlObject.quaternion.copy(_R);
@@ -207,13 +228,24 @@ class BasicCharacterController {
     sideways.applyQuaternion(controlObject.quaternion);
     sideways.normalize();
 
+    const upwards = new THREE.Vector3(0, 1, 0);
+    upwards.applyQuaternion(controlObject.quaternion);
+    upwards.normalize();
+
     sideways.multiplyScalar(this.velocity.x * timeInSeconds);
     forward.multiplyScalar(this.velocity.z * timeInSeconds);
+    upwards.multiplyScalar(this.velocity.y * timeInSeconds);
 
     const simulatedNewPosition = new THREE.Vector3();
     simulatedNewPosition.copy(oldPosition);
     simulatedNewPosition.add(forward);
     simulatedNewPosition.add(sideways);
+    simulatedNewPosition.add(upwards);
+
+    if (simulatedNewPosition.y < 0) {
+      simulatedNewPosition.y = 0;
+      this.velocity.y = 0;
+    }
 
     if (!this.params.map.isBoundaryBreached(simulatedNewPosition)) {
       controlObject.position.copy(simulatedNewPosition);

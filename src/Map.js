@@ -14,7 +14,7 @@ export class Map {
         },
         end: {
           x: 145,
-          y: 1,
+          y: 30,
           z: 145
         },
         type: "outside"
@@ -180,7 +180,7 @@ export class Map {
     this.scene.add(wall4);
 
     this.addSphereTarget("education", { x: 20, y: 8, z: 15 });
-    this.addSphereTarget("projects", { x: 60, y: 10, z: 130 });
+    this.addSphereTarget("projects", { x: 60, y: 15, z: 130 });
 
     // const texture = new THREE.Texture(this.createTextCanvas("This is text"));
     const texture = new THREE.TextureLoader().load("./negx.jpg");

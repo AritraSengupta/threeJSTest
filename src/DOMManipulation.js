@@ -3,12 +3,14 @@ import {
   animateScore,
   calculatePoints,
   createCoin,
-  createResume
+  createResume,
+  gameOver
 } from "./utils";
 export class DOMManipulation {
   constructor() {
     this.controlShown = false;
     this.resumeShown = false;
+    this.gameOver = false;
     this.collections = {};
     this.currentAnimations = {};
     this.totalScore = calculatePoints(data.resume);
@@ -112,5 +114,19 @@ export class DOMManipulation {
       coin && coin.remove();
       callback && callback();
     }, 3100);
+  }
+
+  animateGameOverScreen(callback) {
+    const name = "gameOver";
+    //animation currently running so don't run again
+    if (this.currentAnimations[name]) return;
+    this.currentAnimations[name] = true;
+    const gameOverDiv = gameOver();
+    // setTimeout(() => {
+    //   // remove from DOM and call callback
+    //   this.currentAnimations[name] = false;
+    //   coin && coin.remove();
+    //   callback && callback();
+    // }, 3100);
   }
 }

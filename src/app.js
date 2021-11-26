@@ -14,6 +14,7 @@ import "./assets/resources/aj.fbx";
 import "./assets/resources/walk.fbx";
 import "./assets/resources/run.fbx";
 import "./assets/resources/dance.fbx";
+import "./assets/resources/jump.fbx";
 import "./assets/resources/idle.fbx";
 import "./assets/resources/thing.glb";
 import "./assets/resources/brick.jpg";

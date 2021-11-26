@@ -60,15 +60,14 @@ export function createResume(obj, collections) {
         <div id="hd">
           <div class="yui-gc">
             <div class="yui-u first">
-              <h1>Jonathan Doe</h1>
-              <h2>Web Designer, Director</h2>
+              <h1>Aritra Sengupta, Ph.D.</h1>
+              <h2>Software Engineer</h2>
             </div>
 
             <div class="yui-u">
               <div class="contact-info">
-                <h3><a id="pdf" href="#">Download PDF</a></h3>
-                <h3><a href="mailto:name@yourdomain.com">name@yourdomain.com</a></h3>
-                <h3>(313) - 867-5309</h3>
+                <h3><a href="mailto:aritra55@ygmail.com">aritra55@ygmail.com</a></h3>
+                <h3>+917499158960</h3>
               </div><!--// .contact-info -->
             </div>
           </div><!--// .yui-gc -->
@@ -105,18 +104,29 @@ export function createResume(obj, collections) {
                       showSkills
                         ? `
                       <div class="talent">
-                        <h2>Web Design</h2>
-                        <p>Assertively exploit wireless initiatives rather than synergistic core competencies.	</p>
+                        <h2>Javascript</h2>
+                        <ul>
+                          <li>React</li>
+                          <li>React Native</li>
+                          <li>NodeJS</li>
+                        <ul>
                       </div>
 
                       <div class="talent">
-                        <h2>Interface Design</h2>
-                        <p>Credibly streamline mission-critical value with multifunctional functionalities.	 </p>
+                        <h2>APIs</h2>
+                        <ul>
+                          <li>REST APIs</li>
+                          <li>GraphQL</li>
+                          <li>Apollo</li>
+                        <ul>
                       </div>
 
                       <div class="talent">
-                        <h2>Project Direction</h2>
-                        <p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>
+                        <h2>CI / CD</h2>
+                        <ul>
+                          <li>Jenkins</li>
+                          <li>Github pipelines</li>
+                        <ul>
                       </div>
                     `
                         : defaultMessage("skills")
@@ -165,32 +175,28 @@ export function createResume(obj, collections) {
                     showProjects
                       ? `
                     <div class="job">
-                      <h2>Facebook</h2>
-                      <h3>Senior Interface Designer</h3>
-                      <h4>2005-2007</h4>
-                      <p>Intrinsicly enable optimal core competencies through corporate relationships. Phosfluorescently implement worldwide vortals and client-focused imperatives. Conveniently initiate virtual paradigms and top-line convergence. </p>
+                      <h2>Catapharma Pvt Ltd.</h2>
+                      <h3>VP, IT Systems</h3>
+                      <h4>2020 - current</h4>
+                      <ul>
+                        <li> Leading a team of 4 people to design an inhouse ERP system to track inventory and accounts </li>
+                        <li> Built the architecture from scratch for both the frontend and backend </li>
+                        <li> Designed and documented the REST APIs </li>
+                        <li> Built an agile work environment and track progress using scrum </li>
+                      </ul>
                     </div>
 
                     <div class="job">
-                      <h2>Apple Inc.</h2>
-                      <h3>Senior Interface Designer</h3>
-                      <h4>2005-2007</h4>
-                      <p>Progressively reconceptualize multifunctional "outside the box" thinking through inexpensive methods of empowerment. Compellingly morph extensive niche markets with mission-critical ideas. Phosfluorescently deliver bricks-and-clicks strategic theme areas rather than scalable benefits. </p>
-                    </div>
-
-                    <div class="job">
-                      <h2>Microsoft</h2>
-                      <h3>Principal and Creative Lead</h3>
-                      <h4>2004-2005</h4>
-                      <p>Intrinsicly transform flexible manufactured products without excellent intellectual capital. Energistically evisculate orthogonal architectures through covalent action items. Assertively incentivize sticky platforms without synergistic materials. </p>
-                    </div>
-
-
-                    <div class="job last">
-                      <h2>International Business Machines (IBM)</h2>
-                      <h3>Lead Web Designer</h3>
-                      <h4>2001-2004</h4>
-                      <p>Globally re-engineer cross-media schemas through viral methods of empowerment. Proactively grow long-term high-impact human capital and highly efficient innovation. Intrinsicly iterate excellent e-tailers with timely e-markets.</p>
+                      <h2>Medallia Inc.</h2>
+                      <h3>Senior Software Engineer</h3>
+                      <h4>2016-2020</h4>
+                      <ul>
+                        <li> Designed REST APIs for various deployer and deployer related technologies for the Infrastructure team </li>
+                        <li> Implemented the APIs and build web interfaces using React and Angular deployed in Medallia Cloud </li>
+                        <li> Designed the client facing UI for ‘sandbox’ feature, which is currently used by 75% of Medallia’s clients </li>
+                        <li> Worked on developing the company app from scratch using React Native </li>
+                        <li> Developed a pipeline to automate the process of branded apps for clients </li>
+                      </ul>
                     </div>
                   `
                       : defaultMessage("Projects")
@@ -199,7 +205,17 @@ export function createResume(obj, collections) {
                 </div><!--// .yui-u -->
               </div><!--// .yui-gf -->
 
-
+              <div class="yui-gf">
+                <div class="yui-u first">
+                  <h2>Publication</h2>
+                </div>
+                <div class="yui-u">
+                  <p>
+                    B. Sarkar, A. Sengupta, S. De, S. DasGupta, Prediction of permeate flux during electric field enhanced
+                    cross-flow ultrafiltration - A neural network approach, Separation and Purification Technology (2008)
+                  </p>
+                </div>
+              </div>
 
               <div class="yui-gf last">
                 <div class="yui-u first">
@@ -209,8 +225,12 @@ export function createResume(obj, collections) {
                 ${
                   showEducation
                     ? `
-                  <h2>Indiana University - Bloomington, Indiana</h2>
-                  <h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
+                  <h2>Georgia Institute of Technology, Atlanta, GA</h2>
+                  <h3>Ph.D. Chemical and Biomolecular Engineering &mdash; <strong>3.96 / 4.0 GPA</strong> </h3>
+                  <h3>Minor in Industrial Engineering &mdash; <strong>3.96 / 4.0 GPA</strong></h3>
+                  <br />
+                  <h2>Indian Institute of Technology, Kharagpur, India</h2>
+                  <h3>B.Tech. Chemical Engineering &mdash; <strong>8.75 / 10.0 GPA</strong> </h3>
                 `
                     : defaultMessage("education")
                 }
@@ -223,7 +243,7 @@ export function createResume(obj, collections) {
         </div><!--// bd -->
 
         <div id="ft">
-          <p>Jonathan Doe &mdash; <a href="mailto:name@yourdomain.com">name@yourdomain.com</a> &mdash; (313) - 867-5309</p>
+          <p>Aritra Sengupta &mdash; <a href="mailto:aritra55@gmail.com">aritra55@gmail.com</a> &mdash; +917499158960</p>
         </div><!--// footer -->
 
       </div><!-- // inner -->
@@ -235,4 +255,23 @@ export function createResume(obj, collections) {
   div.innerHTML = template;
   obj.appendChild(div);
   return obj;
+}
+
+export function gameOver() {
+  const innerHTML = `
+    <div class="coin_container">
+      <div class="coin">
+        <div class="face heads">
+          Game Over
+        </div>
+        <div class="face tails">
+          Game Over
+        </div>
+      </div>
+    </div>
+  `;
+
+  const elem = document.createElement("span");
+  elem.innerHTML = innerHTML;
+  return elem;
 }
