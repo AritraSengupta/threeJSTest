@@ -194,15 +194,16 @@ export class Map {
 
   isBoundaryBreached(currentPosition) {
     let boundaryBreached = false;
+    const threshold = 2;
     for (let i = 0; i < this.boundary.length; i += 1) {
       const currentBoundary = this.boundary[i];
       const isInside =
-        currentPosition.x >= currentBoundary.start.x &&
-        currentPosition.x <= currentBoundary.end.x &&
-        currentPosition.y >= currentBoundary.start.y &&
-        currentPosition.y <= currentBoundary.end.y &&
-        currentPosition.z >= currentBoundary.start.z &&
-        currentPosition.z <= currentBoundary.end.z;
+        currentPosition.x + threshold >= currentBoundary.start.x &&
+        currentPosition.x - threshold <= currentBoundary.end.x &&
+        currentPosition.y + threshold >= currentBoundary.start.y &&
+        currentPosition.y - threshold <= currentBoundary.end.y &&
+        currentPosition.z + threshold >= currentBoundary.start.z &&
+        currentPosition.z - threshold <= currentBoundary.end.z;
       if (currentBoundary.type === "outside" && !isInside) {
         boundaryBreached = true;
       }
