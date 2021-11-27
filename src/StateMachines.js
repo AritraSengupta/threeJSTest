@@ -44,6 +44,7 @@ export class CharacterFSM extends FiniteStateMachine {
     this.addState("walk", WalkState);
     this.addState("run", RunState);
     this.addState("dance", DanceState);
+    this.addState("jump", JumpState);
   }
 }
 
@@ -103,6 +104,59 @@ class DanceState extends State {
   update(_) {}
 }
 
+class JumpState extends State {
+  constructor(parent) {
+    super(parent);
+  }
+
+  get name() {
+    return "jump";
+  }
+
+  enter(prevState) {
+    const currAction = this.parent.proxy.animations["jump"].action;
+
+    if (prevState) {
+      const prevAction = this.parent.proxy.animations[prevState.name].action;
+
+      currAction.enabled = true;
+
+      if (prevState.name === "run") {
+        const ratio =
+          currAction.getClip().duration / prevAction.getClip().duration;
+        currAction.time = prevAction.time * ratio;
+      } else {
+        currAction.time = 0.0;
+        currAction.setEffectiveTimeScale(1.0);
+        currAction.setEffectiveWeight(1.0);
+      }
+
+      currAction.crossFadeFrom(prevAction, 0.5, true);
+      currAction.play();
+    } else {
+      currAction.play();
+    }
+  }
+
+  exit() {}
+
+  update(timeElapsed, input) {
+    if (input.keys.space) {
+      this.parent.setState("jump");
+      return;
+    }
+    if (input.keys.forward || input.keys.backward) {
+      if (input.keys.shift) {
+        this.parent.setState("run");
+      } else {
+        this.parent.setState("walk");
+      }
+    }
+
+    this.parent.setState("idle");
+  }
+}
+
 class WalkState extends State {
   constructor(parent) {
     super(parent);
@@ -144,6 +198,10 @@ class WalkState extends State {
       if (input.keys.shift) {
         this.parent.setState("run");
       }
+      return;
+    }
+    if (input.keys.space) {
+      this.parent.setState("idle");
       return;
     }
 
@@ -193,6 +251,10 @@ class RunState extends State {
       }
       return;
     }
+    if (input.keys.space) {
+      this.parent.setState("idle");
+      return;
+    }
 
     this.parent.setState("idle");
   }
@@ -227,8 +289,10 @@ class IdleState extends State {
   update(_, input) {
     if (input.keys.forward || input.keys.backward) {
       this.parent.setState("walk");
-    } else if (input.keys.space) {
-      this.parent.setState("dance");
+      return;
+    }
+    if (input.keys.space) {
+      this.parent.setState("idle");
     }
   }
 }

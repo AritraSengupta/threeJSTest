@@ -14,7 +14,7 @@ export class Map {
         },
         end: {
           x: 145,
-          y: 1,
+          y: 30,
           z: 145
         },
         type: "outside"
@@ -61,11 +61,32 @@ export class Map {
     ];
   }
 
+  addSphereTarget(name, position) {
+    const geometry = new THREE.SphereGeometry(1, 16, 16);
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const sphere = new THREE.Mesh(geometry, material);
+    sphere.position.set(position.x, position.y, position.z);
+    sphere.name = name;
+    this.scene.add(sphere);
+    this.interactingObjects.push(sphere);
+  }
+
   create() {
+    const brickTexture = new THREE.TextureLoader().load("./brick.jpg");
+    brickTexture.wrapS = THREE.RepeatWrapping;
+    brickTexture.wrapT = THREE.RepeatWrapping;
+    brickTexture.repeat.set(4, 4);
+
+    const checkeredTexture = new THREE.TextureLoader().load("./checkered.jpg");
+    checkeredTexture.wrapS = THREE.RepeatWrapping;
+    checkeredTexture.wrapT = THREE.RepeatWrapping;
+    checkeredTexture.repeat.set(4, 4);
+
     const plane = new THREE.Mesh(
       new THREE.PlaneGeometry(300, 300, 30, 30),
       new THREE.MeshStandardMaterial({
-        color: 0xffffff
+        // color: 0xffffff
+        map: checkeredTexture
       })
     );
     plane.castShadow = false;
@@ -76,7 +97,8 @@ export class Map {
     const divider1 = new THREE.Mesh(
       new THREE.BoxGeometry(260, 30, 30),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     divider1.position.set(-20, 15, -35);
@@ -87,7 +109,8 @@ export class Map {
     const box1 = new THREE.Mesh(
       new THREE.BoxGeometry(60, 30, 140),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     box1.position.set(80, 15, 50);
@@ -98,7 +121,8 @@ export class Map {
     const box2 = new THREE.Mesh(
       new THREE.BoxGeometry(100, 30, 140),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     box2.position.set(-50, 15, 50);
@@ -109,7 +133,8 @@ export class Map {
     const wall1 = new THREE.Mesh(
       new THREE.BoxGeometry(300, 30, 10),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall1.position.set(0, 15, -155);
@@ -120,7 +145,8 @@ export class Map {
     const wall2 = new THREE.Mesh(
       new THREE.BoxGeometry(300, 30, 10),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall2.position.set(0, 15, 155);
@@ -131,7 +157,8 @@ export class Map {
     const wall3 = new THREE.Mesh(
       new THREE.BoxGeometry(10, 30, 300),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall3.name = "wall3";
@@ -143,7 +170,8 @@ export class Map {
     const wall4 = new THREE.Mesh(
       new THREE.BoxGeometry(10, 30, 300),
       new THREE.MeshStandardMaterial({
-        color: 0xd84444
+        // color: 0xd84444
+        map: brickTexture
       })
     );
     wall4.position.set(-155, 15, 0);
@@ -151,45 +179,30 @@ export class Map {
     wall4.receiveShadow = true;
     this.scene.add(wall4);
 
-    const geometry = new THREE.CircleGeometry(0.4, 32);
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const circle = new THREE.Mesh(geometry, material);
-    circle.position.set(60, 10, 149);
-    circle.rotation.x = Math.PI;
-    circle.name = "button1";
-    this.scene.add(circle);
+    this.addSphereTarget("education", { x: 20, y: 8, z: 15 });
+    this.addSphereTarget("projects", { x: 60, y: 15, z: 130 });
 
-    const geometry2 = new THREE.CircleGeometry(0.4, 32);
-    const material2 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const circle2 = new THREE.Mesh(geometry2, material2);
-    circle2.position.set(1, 10, 15);
-    circle2.rotation.y = Math.PI / 2;
-    circle2.name = "button2";
-    this.scene.add(circle2);
-
-    const geometry3 = new THREE.CircleGeometry(0.4, 32);
-    const material3 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    const circle3 = new THREE.Mesh(geometry3, material3);
-    circle3.position.set(20, 10, -149);
-    circle3.name = "button3";
-    this.scene.add(circle3);
-
-    this.interactingObjects.push(circle);
-    this.interactingObjects.push(circle2);
-    this.interactingObjects.push(circle3);
+    const texture = new THREE.TextureLoader().load("./negx.jpg");
+    const gplaneGeometry = new THREE.PlaneGeometry(20, 10);
+    const material4 = new THREE.MeshBasicMaterial({ map: texture });
+    const plane1 = new THREE.Mesh(gplaneGeometry, material4);
+    plane1.rotation.y = Math.PI / 2;
+    plane1.position.set(1, 20, 15);
+    this.scene.add(plane1);
   }
 
   isBoundaryBreached(currentPosition) {
     let boundaryBreached = false;
+    const threshold = 2;
     for (let i = 0; i < this.boundary.length; i += 1) {
       const currentBoundary = this.boundary[i];
       const isInside =
-        currentPosition.x >= currentBoundary.start.x &&
-        currentPosition.x <= currentBoundary.end.x &&
-        currentPosition.y >= currentBoundary.start.y &&
-        currentPosition.y <= currentBoundary.end.y &&
-        currentPosition.z >= currentBoundary.start.z &&
-        currentPosition.z <= currentBoundary.end.z;
+        currentPosition.x + threshold >= currentBoundary.start.x &&
+        currentPosition.x - threshold <= currentBoundary.end.x &&
+        currentPosition.y + threshold >= currentBoundary.start.y &&
+        currentPosition.y - threshold <= currentBoundary.end.y &&
+        currentPosition.z + threshold >= currentBoundary.start.z &&
+        currentPosition.z - threshold <= currentBoundary.end.z;
       if (currentBoundary.type === "outside" && !isInside) {
         boundaryBreached = true;
       }
