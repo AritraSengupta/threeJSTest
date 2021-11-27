@@ -182,7 +182,6 @@ export class Map {
     this.addSphereTarget("education", { x: 20, y: 8, z: 15 });
     this.addSphereTarget("projects", { x: 60, y: 15, z: 130 });
 
-    // const texture = new THREE.Texture(this.createTextCanvas("This is text"));
     const texture = new THREE.TextureLoader().load("./negx.jpg");
     const gplaneGeometry = new THREE.PlaneGeometry(20, 10);
     const material4 = new THREE.MeshBasicMaterial({ map: texture });

@@ -19,6 +19,7 @@ export class DOMManipulation {
     this.hideResume();
     this.updateScore();
     document.addEventListener("click", e => {
+      if (this.gameOver) return;
       if (e.target.id === "show-resume") {
         this.resumeShown ? this.hideResume() : this.showResume();
       } else if (e.target.id === "show-controls") {
@@ -54,6 +55,16 @@ export class DOMManipulation {
     const elem = document.getElementById("controls");
     elem.style.display = "none";
     this.controlShown = false;
+  }
+
+  updateTimer(time, callback) {
+    const name = "updateTimer";
+    if (this.currentAnimations[name]) return; //animation running
+    this.currentAnimations[name] = true;
+    const elem = document.getElementById("timer");
+    elem.innerText = `${parseInt(time)} s`;
+    this.currentAnimations[name] = false;
+    callback && callback();
   }
 
   updateScore(callback) {

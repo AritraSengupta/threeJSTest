@@ -111,6 +111,10 @@ export class BasicCharacterController {
     this.domManipulation = new DOMManipulation();
     this.currentData = {};
     this.loadModels();
+    this.timer = {
+      start: false,
+      duration: 0
+    };
   }
 
   loadModels() {
@@ -179,9 +183,30 @@ export class BasicCharacterController {
       return;
     }
 
+    if (this.domManipulation.gameOver) {
+      return;
+    }
+
+    if (this.domManipulation.currentScore === this.domManipulation.totalScore) {
+      // Game Over;
+      // show game over
+      // show resume
+      // set gamover true
+      this.domManipulation.animateAchievement(`You've Won`, () => {
+        this.domManipulation.showResume();
+        this.domManipulation.gameOver = true;
+      });
+    }
+
+    if (this.timer.start) {
+      this.timer.duration += timeInSeconds;
+      this.domManipulation.updateTimer(this.timer.duration);
+    }
+
     if (this.params.loaderStatus.loadingArray.length === 0) {
       // All loading complete
       this.domManipulation.removeLoader();
+      this.timer.start = true;
     }
 
     this.stateMachine.update(timeInSeconds, this.input);
