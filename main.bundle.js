@@ -69062,13 +69062,181 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraControl", function() { return CameraControl; });
 /* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
 /* harmony import */ var three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/loaders/GLTFLoader.js */ "./node_modules/three/examples/jsm/loaders/GLTFLoader.js");
-/* harmony import */ var three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three/examples/jsm/loaders/FBXLoader.js */ "./node_modules/three/examples/jsm/loaders/FBXLoader.js");
-/* harmony import */ var _StateMachines__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./StateMachines */ "./src/StateMachines.js");
-/* harmony import */ var _ThirdPersonCamera__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ThirdPersonCamera */ "./src/ThirdPersonCamera.js");
-/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Map */ "./src/Map.js");
-/* harmony import */ var _LoaderStatus__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LoaderStatus */ "./src/LoaderStatus.js");
-/* harmony import */ var _DOMManipulation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DOMManipulation */ "./src/DOMManipulation.js");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./data */ "./src/data.js");
+/* harmony import */ var _ThirdPersonCamera__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ThirdPersonCamera */ "./src/ThirdPersonCamera.js");
+/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Map */ "./src/Map.js");
+/* harmony import */ var _LoaderStatus__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LoaderStatus */ "./src/LoaderStatus.js");
+/* harmony import */ var _CharacterController__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CharacterController */ "./src/CharacterController.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+var CameraControl = /*#__PURE__*/function () {
+  function CameraControl() {
+    _classCallCheck(this, CameraControl);
+
+    this._initialize();
+  }
+
+  _createClass(CameraControl, [{
+    key: "_initialize",
+    value: function _initialize() {
+      var _this = this;
+
+      this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
+        antialias: true
+      });
+      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.type = three__WEBPACK_IMPORTED_MODULE_0__["PCFSoftShadowMap"];
+      this.renderer.setPixelRatio(window.devicePixelRatio);
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(this.renderer.domElement);
+      window.addEventListener("resize", function () {
+        return _this._onWindowResize();
+      }, false);
+      var fov = 60;
+      var aspect = window.innerWidth / window.innerHeight;
+      var near = 1.0;
+      var far = 1000.0;
+      this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](fov, aspect, near, far);
+      this.camera.position.set(0, 10, 0);
+      this.scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
+      var light = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](0xffffff);
+      light.position.set(10, 100, 10);
+      light.target.position.set(0, 0, 0);
+      light.castShadow = true;
+      light.shadow.bias = -0.01;
+      light.shadow.mapSize.width = 2048;
+      light.shadow.mapSize.height = 2048;
+      light.shadow.camera.near = 1.0;
+      light.shadow.camera.far = 500;
+      light.shadow.camera.left = 200;
+      light.shadow.camera.right = -200;
+      light.shadow.camera.top = 200;
+      light.shadow.camera.bottom = -200;
+      this.scene.add(light);
+      light = new three__WEBPACK_IMPORTED_MODULE_0__["AmbientLight"](0x404040, 1);
+      this.scene.add(light);
+      var loader = new three__WEBPACK_IMPORTED_MODULE_0__["CubeTextureLoader"]();
+      this.loaderStatus = new _LoaderStatus__WEBPACK_IMPORTED_MODULE_4__["LoaderStatus"]();
+      this.loaderStatus.addId("backgrounds");
+      var texture = loader.load(["./posx.jpg", "./negx.jpg", "./posy.jpg", "./negy.jpg", "./posz.jpg", "./negz.jpg"], function () {
+        return _this.loaderStatus.removeId("backgrounds");
+      });
+      texture.encoding = three__WEBPACK_IMPORTED_MODULE_0__["sRGBEncoding"];
+      this.scene.background = texture;
+      this.interactingObjects = [];
+      this.map = new _Map__WEBPACK_IMPORTED_MODULE_3__["Map"](this.scene, this.interactingObjects);
+      this.map.create();
+      this.mixers = [];
+      this.previousRaf = null;
+
+      this._loadAnimatedModel();
+
+      this._raf();
+    }
+  }, {
+    key: "_loadAnimatedModel",
+    value: function _loadAnimatedModel() {
+      var params = {
+        camera: this.camera,
+        scene: this.scene,
+        map: this.map,
+        interactingObjects: this.interactingObjects,
+        loaderStatus: this.loaderStatus
+      };
+      this.controls = new _CharacterController__WEBPACK_IMPORTED_MODULE_5__["BasicCharacterController"](params);
+      this.thirdPersonCamera = new _ThirdPersonCamera__WEBPACK_IMPORTED_MODULE_2__["ThirdPersonCamera"]({
+        camera: this.camera,
+        target: this.controls
+      });
+    }
+  }, {
+    key: "_loadStaticModel",
+    value: function _loadStaticModel() {
+      var _this2 = this;
+
+      var loader = new three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__["GLTFLoader"]();
+      loader.load("thing.glb", function (gltf) {
+        gltf.scene.traverse(function (c) {
+          c.castShadow = true;
+        });
+
+        _this2.scene.add(gltf.scene);
+      });
+    }
+  }, {
+    key: "_onWindowResize",
+    value: function _onWindowResize() {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+  }, {
+    key: "_raf",
+    value: function _raf() {
+      var _this3 = this;
+
+      window.requestAnimationFrame(function (t) {
+        if (_this3.previousRaf === null) {
+          _this3.previousRaf = t;
+        }
+
+        _this3._raf();
+
+        _this3.renderer.render(_this3.scene, _this3.camera);
+
+        _this3._step(t - _this3.previousRaf);
+
+        _this3.previousRaf = t;
+      });
+    }
+  }, {
+    key: "_step",
+    value: function _step(timeElapsed) {
+      var timeElapsedInSeconds = timeElapsed * 0.001;
+
+      if (this.mixers) {
+        this.mixers.map(function (m) {
+          return m.update(timeElapsedInSeconds);
+        });
+      }
+
+      if (this.controls) {
+        this.controls.update(timeElapsedInSeconds);
+      }
+
+      this.thirdPersonCamera.update(timeElapsedInSeconds);
+    }
+  }]);
+
+  return CameraControl;
+}();
+
+/***/ }),
+
+/***/ "./src/CharacterController.js":
+/*!************************************!*\
+  !*** ./src/CharacterController.js ***!
+  \************************************/
+/*! exports provided: BasicCharacterController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BasicCharacterController", function() { return BasicCharacterController; });
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
+/* harmony import */ var three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/loaders/FBXLoader.js */ "./node_modules/three/examples/jsm/loaders/FBXLoader.js");
+/* harmony import */ var _StateMachines__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StateMachines */ "./src/StateMachines.js");
+/* harmony import */ var _DOMManipulation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DOMManipulation */ "./src/DOMManipulation.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data */ "./src/data.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -69080,10 +69248,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
 
 
 
@@ -69108,247 +69272,6 @@ var BasicCharacterControllerProxy = /*#__PURE__*/function () {
   return BasicCharacterControllerProxy;
 }();
 
-var BasicCharacterController = /*#__PURE__*/function () {
-  function BasicCharacterController(params) {
-    _classCallCheck(this, BasicCharacterController);
-
-    this.init(params);
-  }
-
-  _createClass(BasicCharacterController, [{
-    key: "init",
-    value: function init(params) {
-      this.params = params;
-      this.decceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-0.0005, -0.0001, -5.0);
-      this.acceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0.25, 50.0);
-      this.velocity = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 0);
-      this._position = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-      this.raycaster = new three__WEBPACK_IMPORTED_MODULE_0__["Raycaster"]();
-      this.interactingObjects = params.interactingObjects;
-      this.animations = {};
-      this.input = new BasicCharacterControllerInput();
-      this.stateMachine = new _StateMachines__WEBPACK_IMPORTED_MODULE_3__["CharacterFSM"](new BasicCharacterControllerProxy(this.animations));
-      this.domManipulation = new _DOMManipulation__WEBPACK_IMPORTED_MODULE_7__["DOMManipulation"]();
-      this.currentData = {};
-      this.loadModels();
-    }
-  }, {
-    key: "loadModels",
-    value: function loadModels() {
-      var _this = this;
-
-      this.params.loaderStatus.addId("aj.fbx");
-      var loader = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_2__["FBXLoader"]();
-      loader.load("aj.fbx", function (fbx) {
-        fbx.scale.setScalar(0.05);
-        fbx.traverse(function (c) {
-          c.castShadow = true;
-        });
-        fbx.position.set(10, 0, 0);
-        _this.target = fbx;
-
-        _this.params.scene.add(_this.target);
-
-        _this.mixer = new three__WEBPACK_IMPORTED_MODULE_0__["AnimationMixer"](_this.target);
-        _this.manager = new three__WEBPACK_IMPORTED_MODULE_0__["LoadingManager"]();
-
-        _this.manager.onLoad = function () {
-          _this.params.loaderStatus.removeId("aj.fbx");
-
-          _this.stateMachine.setState("idle");
-        };
-
-        var onLoad = function onLoad(animName, anim) {
-          var clip = anim.animations[0];
-
-          var action = _this.mixer.clipAction(clip);
-
-          _this.params.loaderStatus.removeId(animName);
-
-          _this.animations[animName] = {
-            clip: clip,
-            action: action
-          };
-        };
-
-        _this.params.loaderStatus.addIds(["run", "walk", "idle", "dance"]);
-
-        var loader = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_2__["FBXLoader"](_this.manager);
-        loader.load("walk.fbx", function (a) {
-          return onLoad("walk", a);
-        });
-        loader.load("run.fbx", function (a) {
-          return onLoad("run", a);
-        });
-        loader.load("idle.fbx", function (a) {
-          return onLoad("idle", a);
-        });
-        loader.load("dance.fbx", function (a) {
-          return onLoad("dance", a);
-        });
-      });
-    }
-  }, {
-    key: "position",
-    get: function get() {
-      return this._position;
-    }
-  }, {
-    key: "rotation",
-    get: function get() {
-      if (!this.target) {
-        return new three__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]();
-      }
-
-      return this.target.quaternion;
-    }
-  }, {
-    key: "update",
-    value: function update(timeInSeconds) {
-      var _this2 = this;
-
-      if (!this.target) {
-        return;
-      }
-
-      if (this.params.loaderStatus.loadingArray.length === 0) {
-        // All loading complete
-        this.domManipulation.removeLoader();
-      }
-
-      this.stateMachine.update(timeInSeconds, this.input);
-      var frameDeccelaration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](this.velocity.x * this.decceleration.x, this.velocity.y * this.decceleration.y, this.velocity.z * this.decceleration.z);
-      frameDeccelaration.multiplyScalar(timeInSeconds);
-      frameDeccelaration.z = Math.sign(frameDeccelaration.z) * Math.min(Math.abs(frameDeccelaration.z), Math.abs(this.velocity.z));
-      this.velocity.add(frameDeccelaration);
-      var controlObject = this.target;
-
-      var _Q = new three__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]();
-
-      var _A = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-
-      var _R = controlObject.quaternion.clone();
-
-      var acc = this.acceleration.clone();
-
-      if (this.input.keys.shift) {
-        acc.multiplyScalar(2.0);
-      }
-
-      if (this.stateMachine.currentState && this.stateMachine.currentState.name === "dance") {
-        acc.multiplyScalar(0.0);
-      }
-
-      var colorCount = [];
-      var objectIndex = 0;
-
-      var _iterator = _createForOfIteratorHelper(this.interactingObjects),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var object = _step.value;
-          var geometry = object.geometry;
-          !geometry.boundingBox && geometry.computeBoundingBox();
-          var box = new three__WEBPACK_IMPORTED_MODULE_0__["Box3"]();
-          var center = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-          var size = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-          box.copy(geometry.boundingBox).applyMatrix4(object.matrixWorld);
-          box.getCenter(center);
-          box.getSize(size);
-          var factor = 3;
-          var isInRangePlayer = Math.abs(this._position.x - center.x) < size.x * factor / 2 && Math.abs(this._position.z - center.z) < size.z * factor / 2;
-
-          if (isInRangePlayer) {
-            (function () {
-              object.material.color.setHex(0x55ff63);
-              var resumeData = _data__WEBPACK_IMPORTED_MODULE_8__["default"].resume[object.name];
-              _this2.domManipulation.collections[object.name] = resumeData;
-
-              _this2.domManipulation.animateCoin(resumeData.points, function () {
-                _this2.domManipulation.updateScore();
-
-                _this2.domManipulation.animateAchievement("\n            You gained:\n            ".concat(resumeData.title, "\n          "));
-              });
-
-              colorCount.push(object);
-
-              _this2.params.scene.remove(object); // Probably not a good idea to manipulate the object on which we are iterating
-
-
-              _this2.interactingObjects.splice(objectIndex, 1);
-            })();
-          } else {
-            object.material.color.setHex(0xffff00);
-          }
-
-          objectIndex += 1;
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      if (this.input.keys.esc) {
-        this.domManipulation.resetScreen();
-      }
-
-      if (this.input.keys.forward) {
-        this.velocity.z += acc.z * timeInSeconds;
-      }
-
-      if (this.input.keys.backward) {
-        this.velocity.z -= acc.z * timeInSeconds;
-      }
-
-      if (this.input.keys.left) {
-        _A.set(0, 1, 0);
-
-        _Q.setFromAxisAngle(_A, Math.PI * timeInSeconds * this.acceleration.y);
-
-        _R.multiply(_Q);
-      }
-
-      if (this.input.keys.right) {
-        _A.set(0, 1, 0);
-
-        _Q.setFromAxisAngle(_A, -Math.PI * timeInSeconds * this.acceleration.y);
-
-        _R.multiply(_Q);
-      }
-
-      controlObject.quaternion.copy(_R);
-      var oldPosition = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-      oldPosition.copy(controlObject.position);
-      var forward = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 1);
-      forward.applyQuaternion(controlObject.quaternion);
-      forward.normalize();
-      var sideways = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0, 0);
-      sideways.applyQuaternion(controlObject.quaternion);
-      sideways.normalize();
-      sideways.multiplyScalar(this.velocity.x * timeInSeconds);
-      forward.multiplyScalar(this.velocity.z * timeInSeconds);
-      var simulatedNewPosition = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
-      simulatedNewPosition.copy(oldPosition);
-      simulatedNewPosition.add(forward);
-      simulatedNewPosition.add(sideways);
-
-      if (!this.params.map.isBoundaryBreached(simulatedNewPosition)) {
-        controlObject.position.copy(simulatedNewPosition);
-
-        this._position.copy(simulatedNewPosition);
-      }
-
-      if (this.mixer) {
-        this.mixer.update(timeInSeconds);
-      }
-    }
-  }]);
-
-  return BasicCharacterController;
-}();
-
 var BasicCharacterControllerInput = /*#__PURE__*/function () {
   function BasicCharacterControllerInput() {
     _classCallCheck(this, BasicCharacterControllerInput);
@@ -69359,7 +69282,7 @@ var BasicCharacterControllerInput = /*#__PURE__*/function () {
   _createClass(BasicCharacterControllerInput, [{
     key: "init",
     value: function init() {
-      var _this3 = this;
+      var _this = this;
 
       this.keys = {
         forward: false,
@@ -69372,10 +69295,10 @@ var BasicCharacterControllerInput = /*#__PURE__*/function () {
         esc: false
       };
       document.addEventListener("keydown", function (e) {
-        return _this3.onKeyDown(e);
+        return _this.onKeyDown(e);
       }, false);
       document.addEventListener("keyup", function (e) {
-        return _this3.onKeyUp(e);
+        return _this.onKeyUp(e);
       }, false);
     }
   }, {
@@ -69471,146 +69394,306 @@ var BasicCharacterControllerInput = /*#__PURE__*/function () {
   return BasicCharacterControllerInput;
 }();
 
-var CameraControl = /*#__PURE__*/function () {
-  function CameraControl() {
-    _classCallCheck(this, CameraControl);
+var BasicCharacterController = /*#__PURE__*/function () {
+  function BasicCharacterController(params) {
+    _classCallCheck(this, BasicCharacterController);
 
-    this._initialize();
+    this.init(params);
   }
 
-  _createClass(CameraControl, [{
-    key: "_initialize",
-    value: function _initialize() {
-      var _this4 = this;
-
-      this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
-        antialias: true
-      });
-      this.renderer.shadowMap.enabled = true;
-      this.renderer.shadowMap.type = three__WEBPACK_IMPORTED_MODULE_0__["PCFSoftShadowMap"];
-      this.renderer.setPixelRatio(window.devicePixelRatio);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(this.renderer.domElement);
-      window.addEventListener("resize", function () {
-        return _this4._onWindowResize();
-      }, false);
-      var fov = 60;
-      var aspect = window.innerWidth / window.innerHeight;
-      var near = 1.0;
-      var far = 1000.0;
-      this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](fov, aspect, near, far);
-      this.camera.position.set(0, 10, 0);
-      this.scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-      var light = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](0xffffff);
-      light.position.set(10, 100, 10);
-      light.target.position.set(0, 0, 0);
-      light.castShadow = true;
-      light.shadow.bias = -0.01;
-      light.shadow.mapSize.width = 2048;
-      light.shadow.mapSize.height = 2048;
-      light.shadow.camera.near = 1.0;
-      light.shadow.camera.far = 500;
-      light.shadow.camera.left = 200;
-      light.shadow.camera.right = -200;
-      light.shadow.camera.top = 200;
-      light.shadow.camera.bottom = -200;
-      this.scene.add(light);
-      light = new three__WEBPACK_IMPORTED_MODULE_0__["AmbientLight"](0x404040, 1);
-      this.scene.add(light);
-      var loader = new three__WEBPACK_IMPORTED_MODULE_0__["CubeTextureLoader"]();
-      this.loaderStatus = new _LoaderStatus__WEBPACK_IMPORTED_MODULE_6__["LoaderStatus"]();
-      this.loaderStatus.addId("backgrounds");
-      var texture = loader.load(["./posx.jpg", "./negx.jpg", "./posy.jpg", "./negy.jpg", "./posz.jpg", "./negz.jpg"], function () {
-        return _this4.loaderStatus.removeId("backgrounds");
-      });
-      texture.encoding = three__WEBPACK_IMPORTED_MODULE_0__["sRGBEncoding"];
-      this.scene.background = texture;
-      this.interactingObjects = [];
-      this.map = new _Map__WEBPACK_IMPORTED_MODULE_5__["Map"](this.scene, this.interactingObjects);
-      this.map.create();
-      this.mixers = [];
-      this.previousRaf = null;
-
-      this._loadAnimatedModel();
-
-      this._raf();
-    }
-  }, {
-    key: "_loadAnimatedModel",
-    value: function _loadAnimatedModel() {
-      var params = {
-        camera: this.camera,
-        scene: this.scene,
-        map: this.map,
-        interactingObjects: this.interactingObjects,
-        loaderStatus: this.loaderStatus
+  _createClass(BasicCharacterController, [{
+    key: "init",
+    value: function init(params) {
+      this.params = params;
+      this.decceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-0.0005, -0.0001, -5.0);
+      this.acceleration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0.25, 50.0);
+      this.velocity = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 0);
+      this._position = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
+      this.raycaster = new three__WEBPACK_IMPORTED_MODULE_0__["Raycaster"]();
+      this.interactingObjects = params.interactingObjects;
+      this.animations = {};
+      this.input = new BasicCharacterControllerInput();
+      this.stateMachine = new _StateMachines__WEBPACK_IMPORTED_MODULE_2__["CharacterFSM"](new BasicCharacterControllerProxy(this.animations));
+      this.domManipulation = new _DOMManipulation__WEBPACK_IMPORTED_MODULE_3__["DOMManipulation"]();
+      this.currentData = {};
+      this.loadModels();
+      this.timer = {
+        start: false,
+        duration: 0
       };
-      this.controls = new BasicCharacterController(params);
-      this.thirdPersonCamera = new _ThirdPersonCamera__WEBPACK_IMPORTED_MODULE_4__["ThirdPersonCamera"]({
-        camera: this.camera,
-        target: this.controls
-      });
     }
   }, {
-    key: "_loadStaticModel",
-    value: function _loadStaticModel() {
-      var _this5 = this;
+    key: "loadModels",
+    value: function loadModels() {
+      var _this2 = this;
 
-      var loader = new three_examples_jsm_loaders_GLTFLoader_js__WEBPACK_IMPORTED_MODULE_1__["GLTFLoader"]();
-      loader.load("thing.glb", function (gltf) {
-        gltf.scene.traverse(function (c) {
+      this.params.loaderStatus.addId("aj.fbx");
+      var loader = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_1__["FBXLoader"]();
+      loader.load("aj.fbx", function (fbx) {
+        fbx.scale.setScalar(0.05);
+        fbx.traverse(function (c) {
           c.castShadow = true;
         });
+        fbx.position.set(10, 0, 0);
+        _this2.target = fbx;
 
-        _this5.scene.add(gltf.scene);
+        _this2.params.scene.add(_this2.target);
+
+        _this2.mixer = new three__WEBPACK_IMPORTED_MODULE_0__["AnimationMixer"](_this2.target);
+        _this2.manager = new three__WEBPACK_IMPORTED_MODULE_0__["LoadingManager"]();
+
+        _this2.manager.onLoad = function () {
+          _this2.params.loaderStatus.removeId("aj.fbx");
+
+          _this2.stateMachine.setState("idle");
+        };
+
+        var onLoad = function onLoad(animName, anim) {
+          var clip = anim.animations[0];
+
+          var action = _this2.mixer.clipAction(clip);
+
+          _this2.params.loaderStatus.removeId(animName);
+
+          _this2.animations[animName] = {
+            clip: clip,
+            action: action
+          };
+        };
+
+        _this2.params.loaderStatus.addIds(["run", "walk", "idle", "dance", "jump"]);
+
+        var loader = new three_examples_jsm_loaders_FBXLoader_js__WEBPACK_IMPORTED_MODULE_1__["FBXLoader"](_this2.manager);
+        loader.load("walk.fbx", function (a) {
+          return onLoad("walk", a);
+        });
+        loader.load("run.fbx", function (a) {
+          return onLoad("run", a);
+        });
+        loader.load("idle.fbx", function (a) {
+          return onLoad("idle", a);
+        });
+        loader.load("dance.fbx", function (a) {
+          return onLoad("dance", a);
+        });
+        loader.load("jump.fbx", function (a) {
+          return onLoad("jump", a);
+        });
       });
     }
   }, {
-    key: "_onWindowResize",
-    value: function _onWindowResize() {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    key: "isGround",
+    get: function get() {
+      // currently its a flat ground
+      // can be made more complicated
+      // and a function of x and z
+      return this._position.y === 0;
     }
   }, {
-    key: "_raf",
-    value: function _raf() {
-      var _this6 = this;
-
-      window.requestAnimationFrame(function (t) {
-        if (_this6.previousRaf === null) {
-          _this6.previousRaf = t;
-        }
-
-        _this6._raf();
-
-        _this6.renderer.render(_this6.scene, _this6.camera);
-
-        _this6._step(t - _this6.previousRaf);
-
-        _this6.previousRaf = t;
-      });
+    key: "position",
+    get: function get() {
+      return this._position;
     }
   }, {
-    key: "_step",
-    value: function _step(timeElapsed) {
-      var timeElapsedInSeconds = timeElapsed * 0.001;
+    key: "rotation",
+    get: function get() {
+      if (!this.target) {
+        return new three__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]();
+      }
 
-      if (this.mixers) {
-        this.mixers.map(function (m) {
-          return m.update(timeElapsedInSeconds);
+      return this.target.quaternion;
+    }
+  }, {
+    key: "update",
+    value: function update(timeInSeconds) {
+      var _this3 = this;
+
+      if (!this.target) {
+        return;
+      }
+
+      if (this.domManipulation.gameOver) {
+        return;
+      }
+
+      if (this.domManipulation.currentScore === this.domManipulation.totalScore) {
+        // Game Over;
+        // show game over
+        // show resume
+        // set gamover true
+        this.domManipulation.animateAchievement("You've Won", function () {
+          _this3.domManipulation.showResume();
+
+          _this3.domManipulation.gameOver = true;
         });
       }
 
-      if (this.controls) {
-        this.controls.update(timeElapsedInSeconds);
+      if (this.timer.start) {
+        this.timer.duration += timeInSeconds;
+        this.domManipulation.updateTimer(this.timer.duration);
       }
 
-      this.thirdPersonCamera.update(timeElapsedInSeconds);
+      if (this.params.loaderStatus.loadingArray.length === 0) {
+        // All loading complete
+        this.domManipulation.removeLoader();
+        this.timer.start = true;
+      }
+
+      this.stateMachine.update(timeInSeconds, this.input);
+      var frameDeccelaration = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](this.velocity.x * this.decceleration.x, this.velocity.y * this.decceleration.y, this.velocity.z * this.decceleration.z);
+      frameDeccelaration.multiplyScalar(timeInSeconds);
+      frameDeccelaration.z = Math.sign(frameDeccelaration.z) * Math.min(Math.abs(frameDeccelaration.z), Math.abs(this.velocity.z));
+      this.velocity.add(frameDeccelaration);
+      var controlObject = this.target;
+
+      var _Q = new three__WEBPACK_IMPORTED_MODULE_0__["Quaternion"]();
+
+      var _A = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
+
+      var _R = controlObject.quaternion.clone();
+
+      var acc = this.acceleration.clone();
+
+      if (this.input.keys.shift) {
+        acc.multiplyScalar(2.0);
+      }
+
+      if (this.stateMachine.currentState && this.stateMachine.currentState.name === "dance") {
+        acc.multiplyScalar(0.0);
+      }
+
+      var colorCount = [];
+      var objectIndex = 0;
+      var initVelocity = 30;
+      var accFactor = 300;
+
+      var _iterator = _createForOfIteratorHelper(this.interactingObjects),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var object = _step.value;
+          var geometry = object.geometry;
+          !geometry.boundingBox && geometry.computeBoundingBox();
+          var box = new three__WEBPACK_IMPORTED_MODULE_0__["Box3"]();
+          var center = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
+          var size = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
+          box.copy(geometry.boundingBox).applyMatrix4(object.matrixWorld);
+          box.getCenter(center);
+          box.getSize(size);
+          var factor = 3;
+          var isInRangePlayer = Math.abs(this._position.x - center.x) < size.x * factor / 2 && Math.abs(this._position.z - center.z) < size.z * factor / 2 && Math.abs(this._position.y - center.y) < 15;
+
+          if (isInRangePlayer) {
+            (function () {
+              object.material.color.setHex(0x55ff63);
+              var resumeData = _data__WEBPACK_IMPORTED_MODULE_4__["default"].resume[object.name];
+              _this3.domManipulation.collections[object.name] = resumeData;
+
+              _this3.domManipulation.animateCoin(resumeData.points, function () {
+                _this3.domManipulation.updateScore();
+
+                _this3.domManipulation.animateAchievement("\n            You gained:\n            ".concat(resumeData.title, "\n          "));
+              });
+
+              colorCount.push(object);
+
+              _this3.params.scene.remove(object); // Probably not a good idea to manipulate the object on which we are iterating
+
+
+              _this3.interactingObjects.splice(objectIndex, 1);
+            })();
+          } else {
+            object.material.color.setHex(0xffff00);
+          }
+
+          objectIndex += 1;
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      if (this.input.keys.esc) {
+        this.domManipulation.resetScreen();
+      }
+
+      if (this.input.keys.forward) {
+        this.velocity.z += acc.z * timeInSeconds;
+      }
+
+      if (this.input.keys.backward) {
+        this.velocity.z -= acc.z * timeInSeconds;
+      }
+
+      if (this.input.keys.space && this.isGround) {
+        this.velocity.y = initVelocity;
+
+        if (this.input.keys.shift) {
+          this.velocity.y *= 1.5;
+        }
+      }
+
+      if (this.input.keys.left) {
+        _A.set(0, 1, 0);
+
+        _Q.setFromAxisAngle(_A, Math.PI * timeInSeconds * this.acceleration.y);
+
+        _R.multiply(_Q);
+      }
+
+      if (this.input.keys.right) {
+        _A.set(0, 1, 0);
+
+        _Q.setFromAxisAngle(_A, -Math.PI * timeInSeconds * this.acceleration.y);
+
+        _R.multiply(_Q);
+      }
+
+      if (!this.isGround) {
+        this.velocity.y -= acc.y * accFactor * timeInSeconds;
+      }
+
+      controlObject.quaternion.copy(_R);
+      var oldPosition = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
+      oldPosition.copy(controlObject.position);
+      var forward = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 0, 1);
+      forward.applyQuaternion(controlObject.quaternion);
+      forward.normalize();
+      var sideways = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 0, 0);
+      sideways.applyQuaternion(controlObject.quaternion);
+      sideways.normalize();
+      var upwards = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 1, 0);
+      upwards.applyQuaternion(controlObject.quaternion);
+      upwards.normalize();
+      sideways.multiplyScalar(this.velocity.x * timeInSeconds);
+      forward.multiplyScalar(this.velocity.z * timeInSeconds);
+      upwards.multiplyScalar(this.velocity.y * timeInSeconds);
+      var simulatedNewPosition = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"]();
+      simulatedNewPosition.copy(oldPosition);
+      simulatedNewPosition.add(forward);
+      simulatedNewPosition.add(sideways);
+      simulatedNewPosition.add(upwards);
+
+      if (simulatedNewPosition.y < 0) {
+        simulatedNewPosition.y = 0;
+        this.velocity.y = 0;
+      }
+
+      if (!this.params.map.isBoundaryBreached(simulatedNewPosition)) {
+        controlObject.position.copy(simulatedNewPosition);
+
+        this._position.copy(simulatedNewPosition);
+      }
+
+      if (this.mixer) {
+        this.mixer.update(timeInSeconds);
+      }
     }
   }]);
 
-  return CameraControl;
+  return BasicCharacterController;
 }();
 
 /***/ }),
@@ -69643,6 +69726,7 @@ var DOMManipulation = /*#__PURE__*/function () {
 
     this.controlShown = false;
     this.resumeShown = false;
+    this.gameOver = false;
     this.collections = {};
     this.currentAnimations = {};
     this.totalScore = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["calculatePoints"])(_data__WEBPACK_IMPORTED_MODULE_0__["default"].resume);
@@ -69651,6 +69735,8 @@ var DOMManipulation = /*#__PURE__*/function () {
     this.hideResume();
     this.updateScore();
     document.addEventListener("click", function (e) {
+      if (_this.gameOver) return;
+
       if (e.target.id === "show-resume") {
         _this.resumeShown ? _this.hideResume() : _this.showResume();
       } else if (e.target.id === "show-controls") {
@@ -69691,6 +69777,18 @@ var DOMManipulation = /*#__PURE__*/function () {
       var elem = document.getElementById("controls");
       elem.style.display = "none";
       this.controlShown = false;
+    }
+  }, {
+    key: "updateTimer",
+    value: function updateTimer(time, callback) {
+      var name = "updateTimer";
+      if (this.currentAnimations[name]) return; //animation running
+
+      this.currentAnimations[name] = true;
+      var elem = document.getElementById("timer");
+      elem.innerText = "".concat(parseInt(time), " s");
+      this.currentAnimations[name] = false;
+      callback && callback();
     }
   }, {
     key: "updateScore",
@@ -69758,6 +69856,20 @@ var DOMManipulation = /*#__PURE__*/function () {
         coin && coin.remove();
         callback && callback();
       }, 3100);
+    }
+  }, {
+    key: "animateGameOverScreen",
+    value: function animateGameOverScreen(callback) {
+      var name = "gameOver"; //animation currently running so don't run again
+
+      if (this.currentAnimations[name]) return;
+      this.currentAnimations[name] = true;
+      var gameOverDiv = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["gameOver"])(); // setTimeout(() => {
+      //   // remove from DOM and call callback
+      //   this.currentAnimations[name] = false;
+      //   coin && coin.remove();
+      //   callback && callback();
+      // }, 3100);
     }
   }]);
 
@@ -69862,7 +69974,7 @@ var Map = /*#__PURE__*/function () {
       },
       end: {
         x: 145,
-        y: 1,
+        y: 30,
         z: 145
       },
       type: "outside"
@@ -70001,10 +70113,9 @@ var Map = /*#__PURE__*/function () {
       });
       this.addSphereTarget("projects", {
         x: 60,
-        y: 10,
+        y: 15,
         z: 130
-      }); // const texture = new THREE.Texture(this.createTextCanvas("This is text"));
-
+      });
       var texture = new three__WEBPACK_IMPORTED_MODULE_0__["TextureLoader"]().load("./negx.jpg");
       var gplaneGeometry = new three__WEBPACK_IMPORTED_MODULE_0__["PlaneGeometry"](20, 10);
       var material4 = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
@@ -70019,10 +70130,11 @@ var Map = /*#__PURE__*/function () {
     key: "isBoundaryBreached",
     value: function isBoundaryBreached(currentPosition) {
       var boundaryBreached = false;
+      var threshold = 2;
 
       for (var i = 0; i < this.boundary.length; i += 1) {
         var currentBoundary = this.boundary[i];
-        var isInside = currentPosition.x >= currentBoundary.start.x && currentPosition.x <= currentBoundary.end.x && currentPosition.y >= currentBoundary.start.y && currentPosition.y <= currentBoundary.end.y && currentPosition.z >= currentBoundary.start.z && currentPosition.z <= currentBoundary.end.z;
+        var isInside = currentPosition.x + threshold >= currentBoundary.start.x && currentPosition.x - threshold <= currentBoundary.end.x && currentPosition.y + threshold >= currentBoundary.start.y && currentPosition.y - threshold <= currentBoundary.end.y && currentPosition.z + threshold >= currentBoundary.start.z && currentPosition.z - threshold <= currentBoundary.end.z;
 
         if (currentBoundary.type === "outside" && !isInside) {
           boundaryBreached = true;
@@ -70146,6 +70258,7 @@ var CharacterFSM = /*#__PURE__*/function (_FiniteStateMachine) {
       this.addState("walk", WalkState);
       this.addState("run", RunState);
       this.addState("dance", DanceState);
+      this.addState("jump", JumpState);
     }
   }]);
 
@@ -70235,15 +70348,81 @@ var DanceState = /*#__PURE__*/function (_State) {
   return DanceState;
 }(State);
 
-var WalkState = /*#__PURE__*/function (_State2) {
-  _inherits(WalkState, _State2);
+var JumpState = /*#__PURE__*/function (_State2) {
+  _inherits(JumpState, _State2);
 
-  var _super3 = _createSuper(WalkState);
+  var _super3 = _createSuper(JumpState);
+
+  function JumpState(parent) {
+    _classCallCheck(this, JumpState);
+
+    return _super3.call(this, parent);
+  }
+
+  _createClass(JumpState, [{
+    key: "name",
+    get: function get() {
+      return "jump";
+    }
+  }, {
+    key: "enter",
+    value: function enter(prevState) {
+      var currAction = this.parent.proxy.animations["jump"].action;
+
+      if (prevState) {
+        var prevAction = this.parent.proxy.animations[prevState.name].action;
+        currAction.enabled = true;
+
+        if (prevState.name === "run") {
+          var ratio = currAction.getClip().duration / prevAction.getClip().duration;
+          currAction.time = prevAction.time * ratio;
+        } else {
+          currAction.time = 0.0;
+          currAction.setEffectiveTimeScale(1.0);
+          currAction.setEffectiveWeight(1.0);
+        }
+
+        currAction.crossFadeFrom(prevAction, 0.5, true);
+        currAction.play();
+      } else {
+        currAction.play();
+      }
+    }
+  }, {
+    key: "exit",
+    value: function exit() {}
+  }, {
+    key: "update",
+    value: function update(timeElapsed, input) {
+      if (input.keys.space) {
+        this.parent.setState("jump");
+        return;
+      }
+
+      if (input.keys.forward || input.keys.backward) {
+        if (input.keys.shift) {
+          this.parent.setState("run");
+        } else {
+          this.parent.setState("walk");
+        }
+      }
+
+      this.parent.setState("idle");
+    }
+  }]);
+
+  return JumpState;
+}(State);
+
+var WalkState = /*#__PURE__*/function (_State3) {
+  _inherits(WalkState, _State3);
+
+  var _super4 = _createSuper(WalkState);
 
   function WalkState(parent) {
     _classCallCheck(this, WalkState);
 
-    return _super3.call(this, parent);
+    return _super4.call(this, parent);
   }
 
   _createClass(WalkState, [{
@@ -70289,6 +70468,11 @@ var WalkState = /*#__PURE__*/function (_State2) {
         return;
       }
 
+      if (input.keys.space) {
+        this.parent.setState("idle");
+        return;
+      }
+
       this.parent.setState("idle");
     }
   }]);
@@ -70296,15 +70480,15 @@ var WalkState = /*#__PURE__*/function (_State2) {
   return WalkState;
 }(State);
 
-var RunState = /*#__PURE__*/function (_State3) {
-  _inherits(RunState, _State3);
+var RunState = /*#__PURE__*/function (_State4) {
+  _inherits(RunState, _State4);
 
-  var _super4 = _createSuper(RunState);
+  var _super5 = _createSuper(RunState);
 
   function RunState(parent) {
     _classCallCheck(this, RunState);
 
-    return _super4.call(this, parent);
+    return _super5.call(this, parent);
   }
 
   _createClass(RunState, [{
@@ -70350,6 +70534,11 @@ var RunState = /*#__PURE__*/function (_State3) {
         return;
       }
 
+      if (input.keys.space) {
+        this.parent.setState("idle");
+        return;
+      }
+
       this.parent.setState("idle");
     }
   }]);
@@ -70357,15 +70546,15 @@ var RunState = /*#__PURE__*/function (_State3) {
   return RunState;
 }(State);
 
-var IdleState = /*#__PURE__*/function (_State4) {
-  _inherits(IdleState, _State4);
+var IdleState = /*#__PURE__*/function (_State5) {
+  _inherits(IdleState, _State5);
 
-  var _super5 = _createSuper(IdleState);
+  var _super6 = _createSuper(IdleState);
 
   function IdleState(parent) {
     _classCallCheck(this, IdleState);
 
-    return _super5.call(this, parent);
+    return _super6.call(this, parent);
   }
 
   _createClass(IdleState, [{
@@ -70398,8 +70587,11 @@ var IdleState = /*#__PURE__*/function (_State4) {
     value: function update(_, input) {
       if (input.keys.forward || input.keys.backward) {
         this.parent.setState("walk");
-      } else if (input.keys.space) {
-        this.parent.setState("dance");
+        return;
+      }
+
+      if (input.keys.space) {
+        this.parent.setState("idle");
       }
     }
   }]);
@@ -70500,11 +70692,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_resources_walk_fbx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./assets/resources/walk.fbx */ "./src/assets/resources/walk.fbx");
 /* harmony import */ var _assets_resources_run_fbx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./assets/resources/run.fbx */ "./src/assets/resources/run.fbx");
 /* harmony import */ var _assets_resources_dance_fbx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./assets/resources/dance.fbx */ "./src/assets/resources/dance.fbx");
-/* harmony import */ var _assets_resources_idle_fbx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./assets/resources/idle.fbx */ "./src/assets/resources/idle.fbx");
-/* harmony import */ var _assets_resources_thing_glb__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./assets/resources/thing.glb */ "./src/assets/resources/thing.glb");
-/* harmony import */ var _assets_resources_brick_jpg__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./assets/resources/brick.jpg */ "./src/assets/resources/brick.jpg");
-/* harmony import */ var _assets_resources_checkered_jpg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./assets/resources/checkered.jpg */ "./src/assets/resources/checkered.jpg");
-/* harmony import */ var _CameraControl__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./CameraControl */ "./src/CameraControl.js");
+/* harmony import */ var _assets_resources_jump_fbx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./assets/resources/jump.fbx */ "./src/assets/resources/jump.fbx");
+/* harmony import */ var _assets_resources_idle_fbx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./assets/resources/idle.fbx */ "./src/assets/resources/idle.fbx");
+/* harmony import */ var _assets_resources_thing_glb__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./assets/resources/thing.glb */ "./src/assets/resources/thing.glb");
+/* harmony import */ var _assets_resources_brick_jpg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./assets/resources/brick.jpg */ "./src/assets/resources/brick.jpg");
+/* harmony import */ var _assets_resources_checkered_jpg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./assets/resources/checkered.jpg */ "./src/assets/resources/checkered.jpg");
+/* harmony import */ var _CameraControl__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./CameraControl */ "./src/CameraControl.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -70529,53 +70722,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-  var APP, warning;
+  var warning;
   return regeneratorRuntime.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           if (_utils_webgl__WEBPACK_IMPORTED_MODULE_0__["WEBGL"].isWebGLAvailable()) {
-            // Initiate function or other initializations here
-
-            /* const canvas = document.querySelector("#c");
-            if (!canvas) {
-              throw new Error("Canvas is not setup properly");
-            }
-            const space = new ThreeDSpace(canvas);
-              space.init();
-            await space.loadModel();
-              const {
-              scene,
-              camera,
-              renderer,
-              mixer,
-              neck,
-              waist,
-              idle,
-              possibleAnims
-            } = space;
-              const animation = new ModelAnimation(scene, camera, renderer, mixer);
-            animation.update();
-              const { raycast, getMousePos, moveJoint } = animation;
-            window.addEventListener("click", e =>
-              raycast(e, false, idle, possibleAnims)
-            );
-            window.addEventListener("touchend", e =>
-              raycast(e, true, idle, possibleAnims)
-            );
-              document.addEventListener("mousemove", function(e) {
-              const mousecoords = getMousePos(e);
-              if (neck && waist) {
-                moveJoint(mousecoords, neck, 50);
-                moveJoint(mousecoords, waist, 30);
-              }
-            }); */
-            APP = null; // APP = new BasicWorldDemo();
-            // APP = new LoadModelDemo();
-            // APP = new CharacterController();
-
-            APP = new _CameraControl__WEBPACK_IMPORTED_MODULE_19__["CameraControl"]();
+            new _CameraControl__WEBPACK_IMPORTED_MODULE_20__["CameraControl"]();
           } else {
             warning = _utils_webgl__WEBPACK_IMPORTED_MODULE_0__["WEBGL"].getWebGLErrorMessage();
             document.getElementById("container").appendChild(warning);
@@ -70666,6 +70821,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "idle.fbx");
+
+/***/ }),
+
+/***/ "./src/assets/resources/jump.fbx":
+/*!***************************************!*\
+  !*** ./src/assets/resources/jump.fbx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "jump.fbx");
 
 /***/ }),
 
@@ -70923,7 +71091,7 @@ module.exports = content.locals || {};
 /*!**********************!*\
   !*** ./src/utils.js ***!
   \**********************/
-/*! exports provided: calculatePoints, createCoin, animateScore, createResume */
+/*! exports provided: calculatePoints, createCoin, animateScore, createResume, gameOver */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70932,6 +71100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCoin", function() { return createCoin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animateScore", function() { return animateScore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createResume", function() { return createResume; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "gameOver", function() { return gameOver; });
 function calculatePoints(resume) {
   return Object.keys(resume).reduce(function (prev, curr) {
     return prev + resume[curr].points;
@@ -70976,10 +71145,16 @@ function createResume(obj, collections) {
     return "\n    <div class=\"talen\"> You have yet to collect the ".concat(message, " coin </div>\n  ");
   };
 
-  var template = "\n    <div id=\"doc2\" class=\"yui-t7\">\n      <div id=\"inner\">\n      \n        <div id=\"hd\">\n          <div class=\"yui-gc\">\n            <div class=\"yui-u first\">\n              <h1>Jonathan Doe</h1>\n              <h2>Web Designer, Director</h2>\n            </div>\n\n            <div class=\"yui-u\">\n              <div class=\"contact-info\">\n                <h3><a id=\"pdf\" href=\"#\">Download PDF</a></h3>\n                <h3><a href=\"mailto:name@yourdomain.com\">name@yourdomain.com</a></h3>\n                <h3>(313) - 867-5309</h3>\n              </div><!--// .contact-info -->\n            </div>\n          </div><!--// .yui-gc -->\n        </div><!--// hd -->\n\n        <div id=\"bd\">\n          <div id=\"yui-main\">\n            <div class=\"yui-b\">\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Profile</h2>\n                </div>\n                <div class=\"yui-u\">\n                  ".concat(showProfile ? "\n                    <p class=\"enlarge\">\n                      Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. \n                    </p>\n                  " : defaultMessage("profile"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Skills</h2>\n                </div>\n                <div class=\"yui-u\">\n\n                    ").concat(showSkills ? "\n                      <div class=\"talent\">\n                        <h2>Web Design</h2>\n                        <p>Assertively exploit wireless initiatives rather than synergistic core competencies.\t</p>\n                      </div>\n\n                      <div class=\"talent\">\n                        <h2>Interface Design</h2>\n                        <p>Credibly streamline mission-critical value with multifunctional functionalities.\t </p>\n                      </div>\n\n                      <div class=\"talent\">\n                        <h2>Project Direction</h2>\n                        <p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>\n                      </div>\n                    " : defaultMessage("skills"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Technical</h2>\n                </div>\n                <div class=\"yui-u\">\n                  ").concat(showTechnical ? "\n                    <ul class=\"talent\">\n                      <li>XHTML</li>\n                      <li>CSS</li>\n                      <li class=\"last\">Javascript</li>\n                    </ul>\n\n                    <ul class=\"talent\">\n                      <li>Jquery</li>\n                      <li>PHP</li>\n                      <li class=\"last\">CVS / Subversion</li>\n                    </ul>\n\n                    <ul class=\"talent\">\n                      <li>OS X</li>\n                      <li>Windows XP/Vista</li>\n                      <li class=\"last\">Linux</li>\n                    </ul>        \n                  " : defaultMessage("techical"), "\n                </div>\n              </div><!--// .yui-gf-->\n\n              <div class=\"yui-gf\">   \n                <div class=\"yui-u first\">\n                  <h2>Experience</h2>\n                </div><!--// .yui-u -->\n\n                <div class=\"yui-u\">\n                  ").concat(showProjects ? "\n                    <div class=\"job\">\n                      <h2>Facebook</h2>\n                      <h3>Senior Interface Designer</h3>\n                      <h4>2005-2007</h4>\n                      <p>Intrinsicly enable optimal core competencies through corporate relationships. Phosfluorescently implement worldwide vortals and client-focused imperatives. Conveniently initiate virtual paradigms and top-line convergence. </p>\n                    </div>\n\n                    <div class=\"job\">\n                      <h2>Apple Inc.</h2>\n                      <h3>Senior Interface Designer</h3>\n                      <h4>2005-2007</h4>\n                      <p>Progressively reconceptualize multifunctional \"outside the box\" thinking through inexpensive methods of empowerment. Compellingly morph extensive niche markets with mission-critical ideas. Phosfluorescently deliver bricks-and-clicks strategic theme areas rather than scalable benefits. </p>\n                    </div>\n\n                    <div class=\"job\">\n                      <h2>Microsoft</h2>\n                      <h3>Principal and Creative Lead</h3>\n                      <h4>2004-2005</h4>\n                      <p>Intrinsicly transform flexible manufactured products without excellent intellectual capital. Energistically evisculate orthogonal architectures through covalent action items. Assertively incentivize sticky platforms without synergistic materials. </p>\n                    </div>\n\n\n                    <div class=\"job last\">\n                      <h2>International Business Machines (IBM)</h2>\n                      <h3>Lead Web Designer</h3>\n                      <h4>2001-2004</h4>\n                      <p>Globally re-engineer cross-media schemas through viral methods of empowerment. Proactively grow long-term high-impact human capital and highly efficient innovation. Intrinsicly iterate excellent e-tailers with timely e-markets.</p>\n                    </div>\n                  " : defaultMessage("Projects"), "\n\n                </div><!--// .yui-u -->\n              </div><!--// .yui-gf -->\n\n\n\n              <div class=\"yui-gf last\">\n                <div class=\"yui-u first\">\n                  <h2>Education</h2>\n                </div>\n                <div class=\"yui-u\">\n                ").concat(showEducation ? "\n                  <h2>Indiana University - Bloomington, Indiana</h2>\n                  <h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>\n                " : defaultMessage("education"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n\n            </div><!--// .yui-b -->\n          </div><!--// yui-main -->\n        </div><!--// bd -->\n\n        <div id=\"ft\">\n          <p>Jonathan Doe &mdash; <a href=\"mailto:name@yourdomain.com\">name@yourdomain.com</a> &mdash; (313) - 867-5309</p>\n        </div><!--// footer -->\n\n      </div><!-- // inner -->\n\n\n    </div><!--// doc -->\n  ");
+  var template = "\n    <div id=\"doc2\" class=\"yui-t7\">\n      <div id=\"inner\">\n      \n        <div id=\"hd\">\n          <div class=\"yui-gc\">\n            <div class=\"yui-u first\">\n              <h1>Aritra Sengupta, Ph.D.</h1>\n              <h2>Software Engineer</h2>\n            </div>\n\n            <div class=\"yui-u\">\n              <div class=\"contact-info\">\n                <h3><a href=\"mailto:aritra55@ygmail.com\">aritra55@ygmail.com</a></h3>\n                <h3>+917499158960</h3>\n              </div><!--// .contact-info -->\n            </div>\n          </div><!--// .yui-gc -->\n        </div><!--// hd -->\n\n        <div id=\"bd\">\n          <div id=\"yui-main\">\n            <div class=\"yui-b\">\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Profile</h2>\n                </div>\n                <div class=\"yui-u\">\n                  ".concat(showProfile ? "\n                    <p class=\"enlarge\">\n                      Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. \n                    </p>\n                  " : defaultMessage("profile"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Skills</h2>\n                </div>\n                <div class=\"yui-u\">\n\n                    ").concat(showSkills ? "\n                      <div class=\"talent\">\n                        <h2>Javascript</h2>\n                        <ul>\n                          <li>React</li>\n                          <li>React Native</li>\n                          <li>NodeJS</li>\n                        <ul>\n                      </div>\n\n                      <div class=\"talent\">\n                        <h2>APIs</h2>\n                        <ul>\n                          <li>REST APIs</li>\n                          <li>GraphQL</li>\n                          <li>Apollo</li>\n                        <ul>\n                      </div>\n\n                      <div class=\"talent\">\n                        <h2>CI / CD</h2>\n                        <ul>\n                          <li>Jenkins</li>\n                          <li>Github pipelines</li>\n                        <ul>\n                      </div>\n                    " : defaultMessage("skills"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Technical</h2>\n                </div>\n                <div class=\"yui-u\">\n                  ").concat(showTechnical ? "\n                    <ul class=\"talent\">\n                      <li>XHTML</li>\n                      <li>CSS</li>\n                      <li class=\"last\">Javascript</li>\n                    </ul>\n\n                    <ul class=\"talent\">\n                      <li>Jquery</li>\n                      <li>PHP</li>\n                      <li class=\"last\">CVS / Subversion</li>\n                    </ul>\n\n                    <ul class=\"talent\">\n                      <li>OS X</li>\n                      <li>Windows XP/Vista</li>\n                      <li class=\"last\">Linux</li>\n                    </ul>        \n                  " : defaultMessage("techical"), "\n                </div>\n              </div><!--// .yui-gf-->\n\n              <div class=\"yui-gf\">   \n                <div class=\"yui-u first\">\n                  <h2>Experience</h2>\n                </div><!--// .yui-u -->\n\n                <div class=\"yui-u\">\n                  ").concat(showProjects ? "\n                    <div class=\"job\">\n                      <h2>Catapharma Pvt Ltd.</h2>\n                      <h3>VP, IT Systems</h3>\n                      <h4>2020 - current</h4>\n                      <ul>\n                        <li> Leading a team of 4 people to design an inhouse ERP system to track inventory and accounts </li>\n                        <li> Built the architecture from scratch for both the frontend and backend </li>\n                        <li> Designed and documented the REST APIs </li>\n                        <li> Built an agile work environment and track progress using scrum </li>\n                      </ul>\n                    </div>\n\n                    <div class=\"job\">\n                      <h2>Medallia Inc.</h2>\n                      <h3>Senior Software Engineer</h3>\n                      <h4>2016-2020</h4>\n                      <ul>\n                        <li> Designed REST APIs for various deployer and deployer related technologies for the Infrastructure team </li>\n                        <li> Implemented the APIs and build web interfaces using React and Angular deployed in Medallia Cloud </li>\n                        <li> Designed the client facing UI for \u2018sandbox\u2019 feature, which is currently used by 75% of Medallia\u2019s clients </li>\n                        <li> Worked on developing the company app from scratch using React Native </li>\n                        <li> Developed a pipeline to automate the process of branded apps for clients </li>\n                      </ul>\n                    </div>\n                  " : defaultMessage("Projects"), "\n\n                </div><!--// .yui-u -->\n              </div><!--// .yui-gf -->\n\n              <div class=\"yui-gf\">\n                <div class=\"yui-u first\">\n                  <h2>Publication</h2>\n                </div>\n                <div class=\"yui-u\">\n                  <p>\n                    B. Sarkar, A. Sengupta, S. De, S. DasGupta, Prediction of permeate flux during electric field enhanced\n                    cross-flow ultrafiltration - A neural network approach, Separation and Purification Technology (2008)\n                  </p>\n                </div>\n              </div>\n\n              <div class=\"yui-gf last\">\n                <div class=\"yui-u first\">\n                  <h2>Education</h2>\n                </div>\n                <div class=\"yui-u\">\n                ").concat(showEducation ? "\n                  <h2>Georgia Institute of Technology, Atlanta, GA</h2>\n                  <h3>Ph.D. Chemical and Biomolecular Engineering &mdash; <strong>3.96 / 4.0 GPA</strong> </h3>\n                  <h3>Minor in Industrial Engineering &mdash; <strong>3.96 / 4.0 GPA</strong></h3>\n                  <br />\n                  <h2>Indian Institute of Technology, Kharagpur, India</h2>\n                  <h3>B.Tech. Chemical Engineering &mdash; <strong>8.75 / 10.0 GPA</strong> </h3>\n                " : defaultMessage("education"), "\n                </div>\n              </div><!--// .yui-gf -->\n\n\n            </div><!--// .yui-b -->\n          </div><!--// yui-main -->\n        </div><!--// bd -->\n\n        <div id=\"ft\">\n          <p>Aritra Sengupta &mdash; <a href=\"mailto:aritra55@gmail.com\">aritra55@gmail.com</a> &mdash; +917499158960</p>\n        </div><!--// footer -->\n\n      </div><!-- // inner -->\n\n\n    </div><!--// doc -->\n  ");
   div.innerHTML = template;
   obj.appendChild(div);
   return obj;
+}
+function gameOver() {
+  var innerHTML = "\n    <div class=\"coin_container\">\n      <div class=\"coin\">\n        <div class=\"face heads\">\n          Game Over\n        </div>\n        <div class=\"face tails\">\n          Game Over\n        </div>\n      </div>\n    </div>\n  ";
+  var elem = document.createElement("span");
+  elem.innerHTML = innerHTML;
+  return elem;
 }
 
 /***/ }),
