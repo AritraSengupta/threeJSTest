@@ -1,0 +1,78 @@
+@keyframes rotation {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg);
+  }
+}
+
+@keyframes transfer {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(0, -200px);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translate(calc(50vw - 100px), -60vh);
+  }
+}
+.coin_container {
+  position: absolute;
+  top: 40vh;
+  left: 40vw;
+  background-color: transparent;
+  width: 100px;
+  height: 100px;
+  perspective: 1000;
+  margin: 1em auto;
+  animation-name: transfer;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 3s;
+}
+.coin {
+  position: relative;
+  top: 25px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  animation-name: rotation;
+  animation-iteration-count: 2;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+}
+.face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  backface-visibility: hidden;
+}
+.heads {
+  background-color: #daa520;
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+.tails {
+  background-color: #daa520;
+  z-index: 1;
+  transform: rotateY(180deg);
+}

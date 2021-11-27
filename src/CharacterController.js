@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { CharacterFSM } from "./StateMachines";
+import { DOMManipulation } from "./DOMManipulation";
+import data from "./data";
 
 class BasicCharacterControllerProxy {
   constructor(animations) {
@@ -13,8 +13,84 @@ class BasicCharacterControllerProxy {
     return this._animations;
   }
 }
+class BasicCharacterControllerInput {
+  constructor() {
+    this.init();
+  }
 
-class BasicCharacterController {
+  init() {
+    this.keys = {
+      forward: false,
+      backward: false,
+      left: false,
+      right: false,
+      space: false,
+      shift: false,
+      interact: false,
+      esc: false
+    };
+    document.addEventListener("keydown", e => this.onKeyDown(e), false);
+    document.addEventListener("keyup", e => this.onKeyUp(e), false);
+  }
+
+  onKeyDown(event) {
+    switch (event.keyCode) {
+      case 87: // w
+        this.keys.forward = true;
+        break;
+      case 65: // a
+        this.keys.left = true;
+        break;
+      case 83: // s
+        this.keys.backward = true;
+        break;
+      case 68: // d
+        this.keys.right = true;
+        break;
+      case 69: //e
+        this.keys.interact = true;
+        break;
+      case 32: // SPACE
+        this.keys.space = true;
+        break;
+      case 16: // SHIFT
+        this.keys.shift = true;
+        break;
+      case 27: //ESC
+        this.keys.esc = true;
+    }
+  }
+
+  onKeyUp(event) {
+    switch (event.keyCode) {
+      case 87: // w
+        this.keys.forward = false;
+        break;
+      case 65: // a
+        this.keys.left = false;
+        break;
+      case 83: // s
+        this.keys.backward = false;
+        break;
+      case 68: // d
+        this.keys.right = false;
+        break;
+      case 69: //e
+        this.keys.interact = false;
+        break;
+      case 32: // SPACE
+        this.keys.space = false;
+        break;
+      case 16: // SHIFT
+        this.keys.shift = false;
+        break;
+      case 27: //ESC
+        this.keys.esc = false;
+    }
+  }
+}
+
+export class BasicCharacterController {
   constructor(params) {
     this.init(params);
   }
@@ -24,23 +100,32 @@ class BasicCharacterController {
     this.decceleration = new THREE.Vector3(-0.0005, -0.0001, -5.0);
     this.acceleration = new THREE.Vector3(1, 0.25, 50.0);
     this.velocity = new THREE.Vector3(0, 0, 0);
-
+    this._position = new THREE.Vector3();
+    this.raycaster = new THREE.Raycaster();
+    this.interactingObjects = params.interactingObjects;
     this.animations = {};
     this.input = new BasicCharacterControllerInput();
     this.stateMachine = new CharacterFSM(
       new BasicCharacterControllerProxy(this.animations)
     );
-
+    this.domManipulation = new DOMManipulation();
+    this.currentData = {};
     this.loadModels();
+    this.timer = {
+      start: false,
+      duration: 0
+    };
   }
 
   loadModels() {
+    this.params.loaderStatus.addId("aj.fbx");
     const loader = new FBXLoader();
     loader.load("aj.fbx", fbx => {
-      fbx.scale.setScalar(0.1);
+      fbx.scale.setScalar(0.05);
       fbx.traverse(c => {
         c.castShadow = true;
       });
+      fbx.position.set(10, 0, 0);
 
       this.target = fbx;
       this.params.scene.add(this.target);
@@ -49,6 +134,7 @@ class BasicCharacterController {
 
       this.manager = new THREE.LoadingManager();
       this.manager.onLoad = () => {
+        this.params.loaderStatus.removeId("aj.fbx");
         this.stateMachine.setState("idle");
       };
 
@@ -56,23 +142,71 @@ class BasicCharacterController {
         const clip = anim.animations[0];
         const action = this.mixer.clipAction(clip);
 
+        this.params.loaderStatus.removeId(animName);
         this.animations[animName] = {
           clip,
           action
         };
       };
 
+      this.params.loaderStatus.addIds(["run", "walk", "idle", "dance", "jump"]);
       const loader = new FBXLoader(this.manager);
       loader.load("walk.fbx", a => onLoad("walk", a));
       loader.load("run.fbx", a => onLoad("run", a));
       loader.load("idle.fbx", a => onLoad("idle", a));
       loader.load("dance.fbx", a => onLoad("dance", a));
+      loader.load("jump.fbx", a => onLoad("jump", a));
     });
+  }
+
+  get isGround() {
+    // currently its a flat ground
+    // can be made more complicated
+    // and a function of x and z
+    return this._position.y === 0;
+  }
+
+  get position() {
+    return this._position;
+  }
+
+  get rotation() {
+    if (!this.target) {
+      return new THREE.Quaternion();
+    }
+
+    return this.target.quaternion;
   }
 
   update(timeInSeconds) {
     if (!this.target) {
       return;
+    }
+
+    if (this.domManipulation.gameOver) {
+      return;
+    }
+
+    if (this.domManipulation.currentScore === this.domManipulation.totalScore) {
+      // Game Over;
+      // show game over
+      // show resume
+      // set gamover true
+      this.domManipulation.animateAchievement(`You've Won`, () => {
+        this.domManipulation.showResume();
+        this.domManipulation.gameOver = true;
+      });
+    }
+
+    if (this.timer.start) {
+      this.timer.duration += timeInSeconds;
+      this.domManipulation.updateTimer(this.timer.duration);
+    }
+
+    if (this.params.loaderStatus.loadingArray.length === 0) {
+      // All loading complete
+      this.domManipulation.removeLoader();
+      this.timer.start = true;
     }
 
     this.stateMachine.update(timeInSeconds, this.input);
@@ -107,11 +241,61 @@ class BasicCharacterController {
       acc.multiplyScalar(0.0);
     }
 
+    let colorCount = [];
+    let objectIndex = 0;
+    const initVelocity = 30;
+    const accFactor = 300;
+    for (const object of this.interactingObjects) {
+      var geometry = object.geometry;
+      !geometry.boundingBox && geometry.computeBoundingBox();
+      const box = new THREE.Box3();
+      const center = new THREE.Vector3();
+      const size = new THREE.Vector3();
+      box.copy(geometry.boundingBox).applyMatrix4(object.matrixWorld);
+      box.getCenter(center);
+      box.getSize(size);
+      const factor = 3;
+      const isInRangePlayer =
+        Math.abs(this._position.x - center.x) < (size.x * factor) / 2 &&
+        Math.abs(this._position.z - center.z) < (size.z * factor) / 2 &&
+        Math.abs(this._position.y - center.y) < 15;
+
+      if (isInRangePlayer) {
+        object.material.color.setHex(0x55ff63);
+        const resumeData = data.resume[object.name];
+        this.domManipulation.collections[object.name] = resumeData;
+        this.domManipulation.animateCoin(resumeData.points, () => {
+          this.domManipulation.updateScore();
+          this.domManipulation.animateAchievement(`
+            You gained:
+            ${resumeData.title}
+          `);
+        });
+        colorCount.push(object);
+        this.params.scene.remove(object);
+        // Probably not a good idea to manipulate the object on which we are iterating
+        this.interactingObjects.splice(objectIndex, 1);
+      } else {
+        object.material.color.setHex(0xffff00);
+      }
+      objectIndex += 1;
+    }
+
+    if (this.input.keys.esc) {
+      this.domManipulation.resetScreen();
+    }
+
     if (this.input.keys.forward) {
       this.velocity.z += acc.z * timeInSeconds;
     }
     if (this.input.keys.backward) {
       this.velocity.z -= acc.z * timeInSeconds;
+    }
+    if (this.input.keys.space && this.isGround) {
+      this.velocity.y = initVelocity;
+      if (this.input.keys.shift) {
+        this.velocity.y *= 1.5;
+      }
     }
     if (this.input.keys.left) {
       _A.set(0, 1, 0);
@@ -122,6 +306,10 @@ class BasicCharacterController {
       _A.set(0, 1, 0);
       _Q.setFromAxisAngle(_A, -Math.PI * timeInSeconds * this.acceleration.y);
       _R.multiply(_Q);
+    }
+
+    if (!this.isGround) {
+      this.velocity.y -= acc.y * accFactor * timeInSeconds;
     }
 
     controlObject.quaternion.copy(_R);
@@ -137,213 +325,32 @@ class BasicCharacterController {
     sideways.applyQuaternion(controlObject.quaternion);
     sideways.normalize();
 
+    const upwards = new THREE.Vector3(0, 1, 0);
+    upwards.applyQuaternion(controlObject.quaternion);
+    upwards.normalize();
+
     sideways.multiplyScalar(this.velocity.x * timeInSeconds);
     forward.multiplyScalar(this.velocity.z * timeInSeconds);
+    upwards.multiplyScalar(this.velocity.y * timeInSeconds);
 
-    controlObject.position.add(forward);
-    controlObject.position.add(sideways);
+    const simulatedNewPosition = new THREE.Vector3();
+    simulatedNewPosition.copy(oldPosition);
+    simulatedNewPosition.add(forward);
+    simulatedNewPosition.add(sideways);
+    simulatedNewPosition.add(upwards);
 
-    oldPosition.copy(controlObject.position);
+    if (simulatedNewPosition.y < 0) {
+      simulatedNewPosition.y = 0;
+      this.velocity.y = 0;
+    }
+
+    if (!this.params.map.isBoundaryBreached(simulatedNewPosition)) {
+      controlObject.position.copy(simulatedNewPosition);
+      this._position.copy(simulatedNewPosition);
+    }
 
     if (this.mixer) {
       this.mixer.update(timeInSeconds);
-    }
-  }
-}
-
-class BasicCharacterControllerInput {
-  constructor() {
-    this.init();
-  }
-
-  init() {
-    this.keys = {
-      forward: false,
-      backward: false,
-      left: false,
-      right: false,
-      space: false,
-      shift: false
-    };
-    document.addEventListener("keydown", e => this.onKeyDown(e), false);
-    document.addEventListener("keyup", e => this.onKeyUp(e), false);
-  }
-
-  onKeyDown(event) {
-    switch (event.keyCode) {
-      case 87: // w
-        this.keys.forward = true;
-        break;
-      case 65: // a
-        this.keys.left = true;
-        break;
-      case 83: // s
-        this.keys.backward = true;
-        break;
-      case 68: // d
-        this.keys.right = true;
-        break;
-      case 32: // SPACE
-        this.keys.space = true;
-        break;
-      case 16: // SHIFT
-        this.keys.shift = true;
-        break;
-    }
-  }
-
-  onKeyUp(event) {
-    switch (event.keyCode) {
-      case 87: // w
-        this.keys.forward = false;
-        break;
-      case 65: // a
-        this.keys.left = false;
-        break;
-      case 83: // s
-        this.keys.backward = false;
-        break;
-      case 68: // d
-        this.keys.right = false;
-        break;
-      case 32: // SPACE
-        this.keys.space = false;
-        break;
-      case 16: // SHIFT
-        this.keys.shift = false;
-        break;
-    }
-  }
-}
-
-export class CharacterController {
-  constructor() {
-    this._initialize();
-  }
-
-  _initialize() {
-    this.renderer = new THREE.WebGLRenderer({
-      antialias: true
-    });
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-    document.body.appendChild(this.renderer.domElement);
-
-    window.addEventListener("resize", () => this._onWindowResize(), false);
-
-    const fov = 60;
-    const aspect = window.innerWidth / window.innerHeight;
-    const near = 1.0;
-    const far = 1000.0;
-    this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    this.camera.position.set(25, 10, 25);
-
-    this.scene = new THREE.Scene();
-
-    let light = new THREE.DirectionalLight(0xffffff);
-    light.position.set(100, 100, 100);
-    light.target.position.set(0, 0, 0);
-    light.castShadow = true;
-    light.shadow.bias = -0.01;
-    light.shadow.mapSize.width = 2048;
-    light.shadow.mapSize.height = 2048;
-    light.shadow.camera.near = 1.0;
-    light.shadow.camera.far = 500;
-    light.shadow.camera.left = 200;
-    light.shadow.camera.right = -200;
-    light.shadow.camera.top = 200;
-    light.shadow.camera.bottom = -200;
-    this.scene.add(light);
-
-    light = new THREE.AmbientLight(0x404040);
-    this.scene.add(light);
-
-    const controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.target.set(0, 20, 0);
-    controls.listenToKeyEvents(window);
-    controls.update();
-
-    const loader = new THREE.CubeTextureLoader();
-    const texture = loader.load([
-      "./posx.jpg",
-      "./negx.jpg",
-      "./posy.jpg",
-      "./negy.jpg",
-      "./posz.jpg",
-      "./negz.jpg"
-    ]);
-    texture.encoding = THREE.sRGBEncoding;
-    this.scene.background = texture;
-
-    const plane = new THREE.Mesh(
-      new THREE.PlaneGeometry(100, 100, 10, 10),
-      new THREE.MeshStandardMaterial({
-        color: 0xffffff
-      })
-    );
-    plane.castShadow = false;
-    plane.receiveShadow = true;
-    plane.rotation.x = -Math.PI / 2;
-
-    this.scene.add(plane);
-
-    this.mixers = [];
-    this.previousRaf = null;
-
-    this._loadAnimatedModel();
-
-    this._raf();
-  }
-
-  _loadAnimatedModel() {
-    const params = {
-      camera: this.camera,
-      scene: this.scene
-    };
-
-    this.controls = new BasicCharacterController(params);
-  }
-
-  _loadStaticModel() {
-    const loader = new GLTFLoader();
-    loader.load("thing.glb", gltf => {
-      gltf.scene.traverse(c => {
-        c.castShadow = true;
-      });
-      this.scene.add(gltf.scene);
-    });
-  }
-
-  _onWindowResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-  }
-
-  _raf() {
-    window.requestAnimationFrame(t => {
-      if (this.previousRaf === null) {
-        this.previousRaf = t;
-      }
-      this._raf();
-      this.renderer.render(this.scene, this.camera);
-      this._step(t - this.previousRaf);
-      this.previousRaf = t;
-    });
-  }
-
-  _step(timeElapsed) {
-    const timeElapsedInSeconds = timeElapsed * 0.001;
-
-    if (this.mixers) {
-      this.mixers.map(m => m.update(timeElapsedInSeconds));
-    }
-
-    if (this.controls) {
-      this.controls.update(timeElapsedInSeconds);
     }
   }
 }
