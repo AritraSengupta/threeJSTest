@@ -67,6 +67,7 @@ export class Map {
     const sphere = new THREE.Mesh(geometry, material);
     sphere.position.set(position.x, position.y, position.z);
     sphere.name = name;
+    sphere.castShadow = true;
     this.scene.add(sphere);
     this.interactingObjects.push(sphere);
   }

@@ -96,16 +96,6 @@ export class CameraControl {
     });
   }
 
-  _loadStaticModel() {
-    const loader = new GLTFLoader();
-    loader.load("thing.glb", gltf => {
-      gltf.scene.traverse(c => {
-        c.castShadow = true;
-      });
-      this.scene.add(gltf.scene);
-    });
-  }
-
   _onWindowResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
